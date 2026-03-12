@@ -1,4 +1,5 @@
 const APP_URL = 'https://ai.learneris.com'
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 const footerLinks = {
   Product: [
@@ -15,8 +16,8 @@ const footerLinks = {
     { label: 'Contact', href: 'mailto:support@learneris.com' },
   ],
   Legal: [
-    { label: 'Terms & Conditions', href: '/terms' },
-    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms & Conditions', href: `${BASE}/terms` },
+    { label: 'Privacy Policy', href: `${BASE}/privacy` },
   ],
 }
 

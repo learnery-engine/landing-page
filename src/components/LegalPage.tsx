@@ -1,5 +1,7 @@
 import { ArrowLeft } from 'lucide-react'
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
+
 interface LegalPageProps {
   title: string
   effectiveDate: string
@@ -12,7 +14,7 @@ export function LegalPage({ title, effectiveDate, children }: LegalPageProps) {
       {/* Header */}
       <header className="bg-surface-dark text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-          <a href="/" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-6">
+          <a href={`${BASE}/`} className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-6">
             <ArrowLeft className="w-4 h-4" />
             Back to home
           </a>

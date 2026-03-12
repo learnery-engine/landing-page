@@ -12,6 +12,8 @@ import { Footer } from './components/Footer'
 import { TermsPage } from './pages/TermsPage'
 import { PrivacyPage } from './pages/PrivacyPage'
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '') // e.g. '' or '/learneris-landing'
+
 function usePathname() {
   const [pathname, setPathname] = useState(window.location.pathname)
 
@@ -21,7 +23,9 @@ function usePathname() {
     return () => window.removeEventListener('popstate', onPopState)
   }, [])
 
-  return pathname
+  // Strip the base path so routes stay simple: '/terms', '/privacy', '/'
+  const stripped = pathname.startsWith(BASE) ? pathname.slice(BASE.length) || '/' : pathname
+  return stripped
 }
 
 export default function App() {
