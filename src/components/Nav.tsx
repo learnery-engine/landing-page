@@ -29,7 +29,7 @@ export function Nav() {
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm font-medium text-text-muted hover:text-text transition-colors">Features</a>
+            <a href="#features" className="text-sm font-medium text-text-muted hover:text-text transition-colors">Mini AI Apps</a>
             <a href="#how-it-works" className="text-sm font-medium text-text-muted hover:text-text transition-colors">How it Works</a>
             <a href="#testimonials" className="text-sm font-medium text-text-muted hover:text-text transition-colors">Testimonials</a>
           </div>
@@ -40,9 +40,9 @@ export function Nav() {
               className="text-sm font-medium text-text-muted hover:text-text transition-colors px-4 py-2">
               Log In
             </a>
-            <a href={`${APP_URL}/profile?from=profile&tab=signup`}
+            <a href={`${APP_URL}/profile?from=profile&tab=login`}
               className="bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all hover:shadow-lg hover:shadow-primary/25">
-              Get Started Free
+              Sign Up
             </a>
           </div>
 
@@ -57,14 +57,14 @@ export function Nav() {
       {mobileOpen && (
         <div className="md:hidden bg-white border-t">
           <div className="px-4 py-4 space-y-3">
-            <a href="#features" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">Features</a>
+            <a href="#features" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">Mini AI Apps</a>
             <a href="#how-it-works" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">How it Works</a>
             <a href="#testimonials" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">Testimonials</a>
             <hr className="my-2" />
             <a href={`${APP_URL}/profile?from=profile&tab=login`} className="block text-sm font-medium text-text py-2">Log In</a>
-            <a href={`${APP_URL}/profile?from=profile&tab=signup`}
+            <a href={`${APP_URL}/profile?from=profile&tab=login`}
               className="block bg-primary text-white text-sm font-semibold px-5 py-3 rounded-xl text-center">
-              Get Started Free
+              Sign Up
             </a>
           </div>
         </div>

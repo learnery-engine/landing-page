@@ -26,7 +26,7 @@ export function CTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href={`${APP_URL}/profile?from=profile&tab=signup`}
+          <a href={`${APP_URL}/profile?from=profile&tab=login`}
             className="group bg-white text-primary-dark font-bold px-8 py-4 rounded-xl transition-all hover:shadow-2xl hover:shadow-black/20 flex items-center justify-center gap-2 text-lg">
             Start Creating for Free
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

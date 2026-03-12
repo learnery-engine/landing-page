@@ -1,4 +1,7 @@
-import { FileQuestion, BookOpen, GraduationCap, LayoutGrid, Presentation, PenTool, BarChart3, Gamepad2, Image, Mic, Globe, FileText, School, Bot } from 'lucide-react'
+import { FileQuestion, BookOpen, GraduationCap, LayoutGrid, Presentation, PenTool, BarChart3, Gamepad2, Image, Mic, Globe, FileText, School, Bot, ExternalLink } from 'lucide-react'
+
+const APP_URL = 'https://ai.learneris.com'
+const LOGIN_URL = `${APP_URL}/profile?from=profile&tab=login`
 
 const features = [
   { icon: FileQuestion, name: 'Quick Quiz', desc: 'Generate MCQ quizzes for any K-12 subject in seconds', tag: null, color: 'bg-purple-50 text-purple-600' },
@@ -44,13 +47,13 @@ export function Features() {
           {features.map((f) => {
             const Icon = f.icon
             return (
-              <div key={f.name}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-5 hover:shadow-lg hover:shadow-gray-100/80 hover:border-gray-200 transition-all duration-300 cursor-pointer">
+              <a key={f.name} href={LOGIN_URL}
+                className="group relative bg-white border border-gray-100 rounded-2xl p-5 hover:shadow-lg hover:shadow-gray-100/80 hover:border-gray-200 transition-all duration-300">
                 <div className="flex items-start gap-3.5">
                   <div className={`w-11 h-11 rounded-xl ${f.color} flex items-center justify-center shrink-0`}>
                     <Icon className="w-5 h-5" />
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="text-sm font-semibold text-text truncate">{f.name}</h3>
                       {f.tag && (
@@ -61,8 +64,9 @@ export function Features() {
                     </div>
                     <p className="text-xs text-text-muted leading-relaxed">{f.desc}</p>
                   </div>
+                  <ExternalLink className="w-4 h-4 text-gray-300 group-hover:text-primary shrink-0 mt-0.5 transition-colors" />
                 </div>
-              </div>
+              </a>
             )
           })}
         </div>

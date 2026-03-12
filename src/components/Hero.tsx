@@ -33,7 +33,7 @@ export function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href={`${APP_URL}/profile?from=profile&tab=signup`}
+              <a href={`${APP_URL}/profile?from=profile&tab=login`}
                 className="group bg-primary hover:bg-primary-dark text-white font-semibold px-7 py-3.5 rounded-xl transition-all hover:shadow-xl hover:shadow-primary/25 flex items-center justify-center gap-2">
                 Start Creating for Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
