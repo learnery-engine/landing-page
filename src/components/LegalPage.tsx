@@ -1,4 +1,5 @@
 import { ArrowLeft } from 'lucide-react'
+import { useTranslation } from '../i18n'
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
 
@@ -9,6 +10,8 @@ interface LegalPageProps {
 }
 
 export function LegalPage({ title, effectiveDate, children }: LegalPageProps) {
+  const { t } = useTranslation()
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -16,7 +19,7 @@ export function LegalPage({ title, effectiveDate, children }: LegalPageProps) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
           <a href={`${BASE}/`} className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-6">
             <ArrowLeft className="w-4 h-4" />
-            Back to home
+            {t.legal.backToHome}
           </a>
           <h1 className="text-3xl sm:text-4xl font-extrabold mb-2">{title}</h1>
           <p className="text-gray-400 text-sm">{effectiveDate}</p>
@@ -41,7 +44,7 @@ export function LegalPage({ title, effectiveDate, children }: LegalPageProps) {
       <footer className="border-t border-gray-100 py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-sm text-text-muted">
-            &copy; 2023&ndash;{new Date().getFullYear()} Learneris Pte. Ltd.
+            &copy; 2023&ndash;{new Date().getFullYear()} {t.legal.copyright}
           </div>
           <a href="mailto:support@learneris.com" className="text-sm text-text-muted hover:text-text transition-colors">
             support@learneris.com

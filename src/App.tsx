@@ -7,6 +7,7 @@ import { Features } from './components/Features'
 import { HowItWorks } from './components/HowItWorks'
 import { Testimonials } from './components/Testimonials'
 import { Stats } from './components/Stats'
+import { Programs } from './components/Programs'
 import { CTA } from './components/CTA'
 import { Footer } from './components/Footer'
 import { TermsPage } from './pages/TermsPage'
@@ -42,6 +43,7 @@ export default function App() {
       <Features />
       <HowItWorks />
       <Stats />
+      <Programs />
       <Testimonials />
       <CTA />
       <Footer />

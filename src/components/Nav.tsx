@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import { useTranslation } from '../i18n'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
 const APP_URL = 'https://ai.learneris.com'
 
 export function Nav() {
+  const { t } = useTranslation()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -24,25 +27,27 @@ export function Nav() {
             <div className="w-9 h-9 bg-primary rounded-xl flex items-center justify-center">
               <span className="text-white font-bold text-lg">L</span>
             </div>
-            <span className="text-xl font-bold text-text">Learneris</span>
+            <span className="text-xl font-bold text-text">{t.nav.brand}</span>
           </a>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm font-medium text-text-muted hover:text-text transition-colors">Mini AI Apps</a>
-            <a href="#how-it-works" className="text-sm font-medium text-text-muted hover:text-text transition-colors">How it Works</a>
-            <a href="#testimonials" className="text-sm font-medium text-text-muted hover:text-text transition-colors">Testimonials</a>
+            <a href="#features" className="text-sm font-medium text-text-muted hover:text-text transition-colors">{t.nav.links.features}</a>
+            <a href="#how-it-works" className="text-sm font-medium text-text-muted hover:text-text transition-colors">{t.nav.links.howItWorks}</a>
+            <a href="#programs" className="text-sm font-medium text-text-muted hover:text-text transition-colors">{t.nav.links.programs}</a>
+            <a href="#testimonials" className="text-sm font-medium text-text-muted hover:text-text transition-colors">{t.nav.links.testimonials}</a>
           </div>
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher className="text-text-muted hover:text-text px-2 py-1.5 rounded-lg hover:bg-surface" />
             <a href={`${APP_URL}/profile?from=profile&tab=login`}
               className="text-sm font-medium text-text-muted hover:text-text transition-colors px-4 py-2">
-              Log In
+              {t.nav.auth.login}
             </a>
             <a href={`${APP_URL}/profile?from=profile&tab=login`}
               className="bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all hover:shadow-lg hover:shadow-primary/25">
-              Sign Up
+              {t.nav.auth.signup}
             </a>
           </div>
 
@@ -57,14 +62,18 @@ export function Nav() {
       {mobileOpen && (
         <div className="md:hidden bg-white border-t">
           <div className="px-4 py-4 space-y-3">
-            <a href="#features" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">Mini AI Apps</a>
-            <a href="#how-it-works" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">How it Works</a>
-            <a href="#testimonials" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">Testimonials</a>
+            <a href="#features" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">{t.nav.links.features}</a>
+            <a href="#how-it-works" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">{t.nav.links.howItWorks}</a>
+            <a href="#programs" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">{t.nav.links.programs}</a>
+            <a href="#testimonials" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">{t.nav.links.testimonials}</a>
             <hr className="my-2" />
-            <a href={`${APP_URL}/profile?from=profile&tab=login`} className="block text-sm font-medium text-text py-2">Log In</a>
+            <div className="flex items-center justify-between py-2">
+              <LanguageSwitcher className="text-text-muted hover:text-text" />
+            </div>
+            <a href={`${APP_URL}/profile?from=profile&tab=login`} className="block text-sm font-medium text-text py-2">{t.nav.auth.login}</a>
             <a href={`${APP_URL}/profile?from=profile&tab=login`}
               className="block bg-primary text-white text-sm font-semibold px-5 py-3 rounded-xl text-center">
-              Sign Up
+              {t.nav.auth.signup}
             </a>
           </div>
         </div>

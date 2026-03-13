@@ -1,8 +1,18 @@
 import { ArrowRight, Sparkles, Clock, Zap } from 'lucide-react'
+import { useTranslation } from '../i18n'
 
 const APP_URL = 'https://ai.learneris.com'
 
 export function Hero() {
+  const { t } = useTranslation()
+
+  const mockupApps = [
+    { icon: '\ud83d\udcdd', key: 'quickQuiz' as const, color: 'bg-purple-100 text-purple-700' },
+    { icon: '\ud83d\udccb', key: 'lessonPlan' as const, color: 'bg-blue-100 text-blue-700' },
+    { icon: '\ud83c\udf93', key: 'lms' as const, color: 'bg-green-100 text-green-700' },
+    { icon: '\ud83c\udfae', key: 'interactiveContent' as const, color: 'bg-orange-100 text-orange-700' },
+  ]
+
   return (
     <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
       {/* Background decoration */}
@@ -18,29 +28,29 @@ export function Hero() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-primary-light/60 text-primary-dark text-sm font-medium px-4 py-1.5 rounded-full mb-6">
               <Sparkles className="w-4 h-4" />
-              Trusted by 10,000+ educators
+              {t.hero.badge}
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6">
-              Create teaching materials{' '}
-              <span className="gradient-text">in minutes,</span>{' '}
-              not hours
+              {t.hero.heading.before}
+              <span className="gradient-text">{t.hero.heading.highlight}</span>
+              {t.hero.heading.after}
             </h1>
 
             <p className="text-lg sm:text-xl text-text-muted leading-relaxed mb-8 max-w-lg">
-              AI-powered tools that help you generate quizzes, lesson plans, study guides, and interactive content — so you can focus on inspiring your students.
+              {t.hero.subheading}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <a href={`${APP_URL}/profile?from=profile&tab=login`}
                 className="group bg-primary hover:bg-primary-dark text-white font-semibold px-7 py-3.5 rounded-xl transition-all hover:shadow-xl hover:shadow-primary/25 flex items-center justify-center gap-2">
-                Start Creating for Free
+                {t.hero.ctaPrimary}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a href="#features"
                 className="border border-gray-200 hover:border-gray-300 text-text font-semibold px-7 py-3.5 rounded-xl transition-all hover:bg-surface flex items-center justify-center gap-2">
-                See All Tools
+                {t.hero.ctaSecondary}
               </a>
             </div>
 
@@ -48,15 +58,15 @@ export function Hero() {
             <div className="flex flex-wrap gap-6 text-sm text-text-muted">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary" />
-                <span><strong className="text-text">80%</strong> less prep time</span>
+                <span><strong className="text-text">{t.hero.stats.prepTime.value}</strong> {t.hero.stats.prepTime.label}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Zap className="w-4 h-4 text-primary" />
-                <span><strong className="text-text">14+</strong> AI tools</span>
+                <span><strong className="text-text">{t.hero.stats.tools.value}</strong> {t.hero.stats.tools.label}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-primary" />
-                <span><strong className="text-text">Free</strong> to get started</span>
+                <span><strong className="text-text">{t.hero.stats.free.value}</strong> {t.hero.stats.free.label}</span>
               </div>
             </div>
           </div>
@@ -84,18 +94,13 @@ export function Hero() {
                   <div className="space-y-4">
                     {/* Mini app cards preview */}
                     <div className="grid grid-cols-2 gap-3">
-                      {[
-                        { icon: '📝', name: 'Quick Quiz', color: 'bg-purple-100 text-purple-700' },
-                        { icon: '📋', name: 'Lesson Plan', color: 'bg-blue-100 text-blue-700' },
-                        { icon: '📊', name: 'Smart Diagram', color: 'bg-green-100 text-green-700' },
-                        { icon: '🎮', name: 'Interactive Content', color: 'bg-orange-100 text-orange-700' },
-                      ].map((app) => (
-                        <div key={app.name} className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                      {mockupApps.map((app) => (
+                        <div key={app.key} className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                           <div className={`w-10 h-10 rounded-lg ${app.color} flex items-center justify-center text-lg mb-2`}>
                             {app.icon}
                           </div>
-                          <div className="text-sm font-semibold text-text">{app.name}</div>
-                          <div className="text-xs text-text-muted mt-0.5">AI-powered</div>
+                          <div className="text-sm font-semibold text-text">{t.hero.mockup[app.key]}</div>
+                          <div className="text-xs text-text-muted mt-0.5">{t.hero.mockup.aiPowered}</div>
                         </div>
                       ))}
                     </div>
@@ -105,7 +110,7 @@ export function Hero() {
                         <Sparkles className="w-4 h-4 text-white" />
                       </div>
                       <div className="flex-1">
-                        <div className="text-sm font-medium text-text">Generating your quiz...</div>
+                        <div className="text-sm font-medium text-text">{t.hero.mockup.generating}</div>
                         <div className="w-2/3 h-1.5 bg-primary/20 rounded-full mt-1.5 overflow-hidden">
                           <div className="w-3/4 h-full bg-primary rounded-full animate-pulse" />
                         </div>
@@ -119,20 +124,20 @@ export function Hero() {
             {/* Floating badges */}
             <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg shadow-gray-200/60 border border-gray-100 px-4 py-2.5 animate-float" style={{ animationDelay: '1s' }}>
               <div className="flex items-center gap-2">
-                <span className="text-2xl">⚡</span>
+                <span className="text-2xl">{'\u26a1'}</span>
                 <div>
-                  <div className="text-xs font-medium text-text">Generated in</div>
-                  <div className="text-sm font-bold text-primary">30 seconds</div>
+                  <div className="text-xs font-medium text-text">{t.hero.floatingBadges.speed.label}</div>
+                  <div className="text-sm font-bold text-primary">{t.hero.floatingBadges.speed.value}</div>
                 </div>
               </div>
             </div>
 
             <div className="absolute -bottom-2 -left-4 bg-white rounded-xl shadow-lg shadow-gray-200/60 border border-gray-100 px-4 py-2.5 animate-float" style={{ animationDelay: '2s' }}>
               <div className="flex items-center gap-2">
-                <span className="text-2xl">🎯</span>
+                <span className="text-2xl">{'\ud83c\udfaf'}</span>
                 <div>
-                  <div className="text-xs font-medium text-text">Curriculum</div>
-                  <div className="text-sm font-bold text-accent">Aligned</div>
+                  <div className="text-xs font-medium text-text">{t.hero.floatingBadges.curriculum.label}</div>
+                  <div className="text-sm font-bold text-accent">{t.hero.floatingBadges.curriculum.value}</div>
                 </div>
               </div>
             </div>

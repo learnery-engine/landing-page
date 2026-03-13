@@ -1,30 +1,13 @@
 import { useState } from 'react'
 import { Send } from 'lucide-react'
+import { useTranslation } from '../i18n'
 
 const APP_URL = 'https://ai.learneris.com'
 const LOGIN_URL = `${APP_URL}/profile?from=profile&tab=login`
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
 
-const footerLinks = {
-  Product: [
-    { label: 'Quick Quiz', href: LOGIN_URL },
-    { label: 'Lesson Plan', href: LOGIN_URL },
-    { label: 'Smart Diagram', href: LOGIN_URL },
-    { label: 'Interactive Content', href: LOGIN_URL },
-    { label: 'All Tools', href: '#features' },
-  ],
-  Company: [
-    { label: 'About Us', href: '#' },
-    { label: 'Partners', href: '#' },
-    { label: 'Contact', href: 'mailto:support@learneris.com' },
-  ],
-  Legal: [
-    { label: 'Terms & Conditions', href: `${BASE}/terms` },
-    { label: 'Privacy Policy', href: `${BASE}/privacy` },
-  ],
-}
-
 export function Footer() {
+  const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
 
@@ -36,6 +19,34 @@ export function Footer() {
     }
   }
 
+  const footerColumns = [
+    {
+      title: t.footer.columns.product.title,
+      links: [
+        { label: t.footer.columns.product.items.aiTools, href: LOGIN_URL },
+        { label: t.footer.columns.product.items.lms, href: LOGIN_URL },
+        { label: t.footer.columns.product.items.contentLibrary, href: LOGIN_URL },
+        { label: t.footer.columns.product.items.curriculum, href: LOGIN_URL },
+        { label: t.footer.columns.product.items.allFeatures, href: '#features' },
+      ],
+    },
+    {
+      title: t.footer.columns.company.title,
+      links: [
+        { label: t.footer.columns.company.items.aboutUs, href: '#' },
+        { label: t.footer.columns.company.items.partners, href: '#' },
+        { label: t.footer.columns.company.items.contact, href: 'mailto:support@learneris.com' },
+      ],
+    },
+    {
+      title: t.footer.columns.legal.title,
+      links: [
+        { label: t.footer.columns.legal.items.terms, href: `${BASE}/terms` },
+        { label: t.footer.columns.legal.items.privacy, href: `${BASE}/privacy` },
+      ],
+    },
+  ]
+
   return (
     <footer className="bg-surface-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -43,18 +54,18 @@ export function Footer() {
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 mb-12">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <div className="flex-1">
-              <h3 className="text-lg font-bold mb-1">Stay updated with Learneris</h3>
-              <p className="text-sm text-gray-400">Get the latest AI teaching tools, tips, and updates delivered to your inbox.</p>
+              <h3 className="text-lg font-bold mb-1">{t.footer.newsletter.heading}</h3>
+              <p className="text-sm text-gray-400">{t.footer.newsletter.subheading}</p>
             </div>
             {subscribed ? (
               <div className="text-sm text-green-400 font-medium">
-                ✓ Thanks for subscribing!
+                ✓ {t.footer.newsletter.thanks}
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex gap-2 w-full sm:w-auto">
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t.footer.newsletter.placeholder}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -63,7 +74,7 @@ export function Footer() {
                 <button type="submit"
                   className="bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors flex items-center gap-2 shrink-0">
                   <Send className="w-4 h-4" />
-                  Subscribe
+                  {t.footer.newsletter.button}
                 </button>
               </form>
             )}
@@ -80,21 +91,22 @@ export function Footer() {
               <span className="text-xl font-bold">Learneris</span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed mb-4">
-              AI-powered teaching tools for educators. Create better materials in less time.
+              {t.footer.tagline}
             </p>
             <div className="text-xs text-gray-500 space-y-1">
-              <div>Learneris Pte. Ltd.</div>
-              <div>68 Circular Road #02-01</div>
-              <div>Singapore 049422</div>
+              <div>{t.footer.company}</div>
+              {t.footer.address.map((line) => (
+                <div key={line}>{line}</div>
+              ))}
             </div>
           </div>
 
           {/* Link columns */}
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h4 className="text-sm font-semibold mb-4">{title}</h4>
+          {footerColumns.map((col) => (
+            <div key={col.title}>
+              <h4 className="text-sm font-semibold mb-4">{col.title}</h4>
               <ul className="space-y-2.5">
-                {links.map((link) => (
+                {col.links.map((link) => (
                   <li key={link.label}>
                     <a href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
                       {link.label}
@@ -109,7 +121,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-sm text-gray-500">
-            © 2023–{new Date().getFullYear()} Learneris Pte. Ltd. All rights reserved.
+            © 2023–{new Date().getFullYear()} {t.footer.company} {t.footer.copyright}
           </div>
           <span className="text-sm text-gray-400">
             support@learneris.com

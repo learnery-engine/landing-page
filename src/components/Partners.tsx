@@ -1,4 +1,8 @@
+import { useTranslation } from '../i18n'
+
 export function Partners() {
+  const { t } = useTranslation()
+
   const partners = [
     { name: 'Google for Startups', abbr: 'G', colors: 'from-green-500 to-blue-500' },
     { name: 'Microsoft for Startups', abbr: 'M', colors: 'from-blue-500 to-cyan-500' },
@@ -12,7 +16,7 @@ export function Partners() {
     <section className="py-12 border-y border-gray-100 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="text-center text-sm font-medium text-text-muted mb-8">
-          Backed by industry leaders in education technology
+          {t.partners.header}
         </p>
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
           {partners.map((p) => (

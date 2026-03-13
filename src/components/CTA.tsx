@@ -1,8 +1,11 @@
 import { ArrowRight, Sparkles } from 'lucide-react'
+import { useTranslation } from '../i18n'
 
 const APP_URL = 'https://ai.learneris.com'
 
 export function CTA() {
+  const { t } = useTranslation()
+
   return (
     <section className="py-20 lg:py-28 bg-gradient-to-br from-primary to-primary-dark relative overflow-hidden">
       {/* Decorative */}
@@ -14,26 +17,26 @@ export function CTA() {
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="inline-flex items-center gap-2 bg-white/15 text-white text-sm font-medium px-4 py-1.5 rounded-full mb-6">
           <Sparkles className="w-4 h-4" />
-          Free to get started
+          {t.cta.badge}
         </div>
 
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6">
-          Ready to save hours on<br className="hidden sm:block" /> lesson preparation?
+          {t.cta.heading}
         </h2>
 
         <p className="text-lg text-white/80 max-w-xl mx-auto mb-10">
-          Join 10,000+ educators already using Learneris to create better teaching materials in less time. No credit card required.
+          {t.cta.body}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a href={`${APP_URL}/profile?from=profile&tab=login`}
             className="group bg-white text-primary-dark font-bold px-8 py-4 rounded-xl transition-all hover:shadow-2xl hover:shadow-black/20 flex items-center justify-center gap-2 text-lg">
-            Start Creating for Free
+            {t.cta.ctaPrimary}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
           <a href="mailto:support@learneris.com"
             className="border-2 border-white/30 hover:border-white/50 text-white font-semibold px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2">
-            Contact Sales
+            {t.cta.ctaSecondary}
           </a>
         </div>
       </div>
