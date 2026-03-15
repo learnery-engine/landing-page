@@ -1,7 +1,6 @@
 import { ArrowRight, Sparkles, Clock, Zap } from 'lucide-react'
 import { useTranslation } from '../i18n'
-
-const APP_URL = 'https://ai.learneris.com'
+import { navigate } from '../lib/navigate'
 
 export function Hero() {
   const { t } = useTranslation()
@@ -43,7 +42,7 @@ export function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href={`${APP_URL}/profile?from=profile&tab=login`}
+              <a href="/signup" onClick={(e) => { e.preventDefault(); navigate('/signup') }}
                 className="group bg-primary hover:bg-primary-dark text-white font-semibold px-7 py-3.5 rounded-xl transition-all hover:shadow-xl hover:shadow-primary/25 flex items-center justify-center gap-2">
                 {t.hero.ctaPrimary}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

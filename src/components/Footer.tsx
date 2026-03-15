@@ -2,8 +2,7 @@ import { useState } from 'react'
 import { Send } from 'lucide-react'
 import { useTranslation } from '../i18n'
 
-const APP_URL = 'https://ai.learneris.com'
-const LOGIN_URL = `${APP_URL}/profile?from=profile&tab=login`
+const SIGNUP_PATH = '/signup'
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 export function Footer() {
@@ -23,10 +22,10 @@ export function Footer() {
     {
       title: t.footer.columns.product.title,
       links: [
-        { label: t.footer.columns.product.items.aiTools, href: LOGIN_URL },
-        { label: t.footer.columns.product.items.lms, href: LOGIN_URL },
-        { label: t.footer.columns.product.items.contentLibrary, href: LOGIN_URL },
-        { label: t.footer.columns.product.items.curriculum, href: LOGIN_URL },
+        { label: t.footer.columns.product.items.aiTools, href: SIGNUP_PATH },
+        { label: t.footer.columns.product.items.lms, href: SIGNUP_PATH },
+        { label: t.footer.columns.product.items.contentLibrary, href: SIGNUP_PATH },
+        { label: t.footer.columns.product.items.curriculum, href: SIGNUP_PATH },
         { label: t.footer.columns.product.items.allFeatures, href: '#features' },
       ],
     },

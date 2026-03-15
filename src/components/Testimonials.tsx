@@ -18,7 +18,7 @@ export function Testimonials() {
   const next = () => setCurrent((c) => (c === items.length - 1 ? 0 : c + 1))
 
   return (
-    <section id="testimonials" className="py-20 lg:py-28 bg-white">
+    <section id="testimonials" className="py-20 lg:py-28 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">

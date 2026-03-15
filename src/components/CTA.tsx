@@ -1,7 +1,6 @@
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { useTranslation } from '../i18n'
-
-const APP_URL = 'https://ai.learneris.com'
+import { navigate } from '../lib/navigate'
 
 export function CTA() {
   const { t } = useTranslation()
@@ -29,7 +28,7 @@ export function CTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href={`${APP_URL}/profile?from=profile&tab=login`}
+          <a href="/signup" onClick={(e) => { e.preventDefault(); navigate('/signup') }}
             className="group bg-white text-primary-dark font-bold px-8 py-4 rounded-xl transition-all hover:shadow-2xl hover:shadow-black/20 flex items-center justify-center gap-2 text-lg">
             {t.cta.ctaPrimary}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

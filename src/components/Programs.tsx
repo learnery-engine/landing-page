@@ -2,8 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { Award, GraduationCap, CheckCircle2, ArrowRight, Bell, ShieldCheck, Send, Check } from 'lucide-react'
 import { useTranslation } from '../i18n'
 
-const APP_URL = 'https://ai.learneris.com'
-const LOGIN_URL = `${APP_URL}/profile?from=profile&tab=login`
+import { navigate } from '../lib/navigate'
 const WAITLIST_KEY = 'learneris_uni_waitlist'
 
 export function Programs() {
@@ -92,7 +91,7 @@ export function Programs() {
               </div>
 
               {/* CTA */}
-              <a href={LOGIN_URL}
+              <a href="/signup" onClick={(e) => { e.preventDefault(); navigate('/signup') }}
                 className="group/btn inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl transition-all hover:shadow-lg hover:shadow-primary/25">
                 {t.programs.k12.cta}
                 <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />

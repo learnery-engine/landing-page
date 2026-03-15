@@ -12,6 +12,10 @@ import { CTA } from './components/CTA'
 import { Footer } from './components/Footer'
 import { TermsPage } from './pages/TermsPage'
 import { PrivacyPage } from './pages/PrivacyPage'
+import { SignupPage } from './pages/SignupPage'
+import { LoginPage } from './pages/LoginPage'
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage'
+import { AppV2 } from './AppV2'
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '') // e.g. '' or '/learneris-landing'
 
@@ -34,6 +38,10 @@ export default function App() {
 
   if (pathname === '/terms') return <TermsPage />
   if (pathname === '/privacy') return <PrivacyPage />
+  if (pathname === '/signup') return <SignupPage />
+  if (pathname === '/login') return <LoginPage />
+  if (pathname === '/forgot-password') return <ForgotPasswordPage />
+  if (pathname === '/v2') return <AppV2 />
 
   return (
     <div className="min-h-screen bg-white">

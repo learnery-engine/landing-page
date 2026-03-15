@@ -1,8 +1,6 @@
 import { FileQuestion, BookOpen, GraduationCap, LayoutGrid, Presentation, PenTool, BarChart3, Gamepad2, Image, Mic, Globe, FileText, School, Bot, ExternalLink, LayoutDashboard, Library, Award } from 'lucide-react'
 import { useTranslation } from '../i18n'
-
-const APP_URL = 'https://ai.learneris.com'
-const LOGIN_URL = `${APP_URL}/profile?from=profile&tab=login`
+import { navigate } from '../lib/navigate'
 
 const features = [
   { key: 'lms', icon: LayoutDashboard, tag: 'popular' as const, color: 'bg-fuchsia-50 text-fuchsia-600' },
@@ -54,7 +52,7 @@ export function Features() {
             const Icon = f.icon
             const item = t.features.items[f.key]
             return (
-              <a key={f.key} href={LOGIN_URL}
+              <a key={f.key} href="/signup" onClick={(e) => { e.preventDefault(); navigate('/signup') }}
                 className="group relative bg-white border border-gray-100 rounded-2xl p-5 hover:shadow-lg hover:shadow-gray-100/80 hover:border-gray-200 transition-all duration-300">
                 <div className="flex items-start gap-3.5">
                   <div className={`w-11 h-11 rounded-xl ${f.color} flex items-center justify-center shrink-0`}>

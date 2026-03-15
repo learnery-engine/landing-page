@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { useTranslation } from '../i18n'
 import { LanguageSwitcher } from './LanguageSwitcher'
-
-const APP_URL = 'https://ai.learneris.com'
+import { navigate } from '../lib/navigate'
 
 export function Nav() {
   const { t } = useTranslation()
@@ -31,7 +30,7 @@ export function Nav() {
           </a>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             <a href="#features" className="text-sm font-medium text-text-muted hover:text-text transition-colors">{t.nav.links.features}</a>
             <a href="#how-it-works" className="text-sm font-medium text-text-muted hover:text-text transition-colors">{t.nav.links.howItWorks}</a>
             <a href="#programs" className="text-sm font-medium text-text-muted hover:text-text transition-colors">{t.nav.links.programs}</a>
@@ -39,20 +38,20 @@ export function Nav() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher className="text-text-muted hover:text-text px-2 py-1.5 rounded-lg hover:bg-surface" />
-            <a href={`${APP_URL}/profile?from=profile&tab=login`}
+            <a href="/login" onClick={(e) => { e.preventDefault(); navigate('/login') }}
               className="text-sm font-medium text-text-muted hover:text-text transition-colors px-4 py-2">
               {t.nav.auth.login}
             </a>
-            <a href={`${APP_URL}/profile?from=profile&tab=login`}
+            <a href="/signup" onClick={(e) => { e.preventDefault(); navigate('/signup') }}
               className="bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all hover:shadow-lg hover:shadow-primary/25">
               {t.nav.auth.signup}
             </a>
           </div>
 
           {/* Mobile menu button */}
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2 -mr-2">
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 -mr-2">
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -60,7 +59,7 @@ export function Nav() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-white border-t">
+        <div className="lg:hidden bg-white border-t">
           <div className="px-4 py-4 space-y-3">
             <a href="#features" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">{t.nav.links.features}</a>
             <a href="#how-it-works" onClick={() => setMobileOpen(false)} className="block text-sm font-medium text-text-muted py-2">{t.nav.links.howItWorks}</a>
@@ -70,8 +69,8 @@ export function Nav() {
             <div className="flex items-center justify-between py-2">
               <LanguageSwitcher className="text-text-muted hover:text-text" />
             </div>
-            <a href={`${APP_URL}/profile?from=profile&tab=login`} className="block text-sm font-medium text-text py-2">{t.nav.auth.login}</a>
-            <a href={`${APP_URL}/profile?from=profile&tab=login`}
+            <a href="/login" onClick={(e) => { e.preventDefault(); setMobileOpen(false); navigate('/login') }} className="block text-sm font-medium text-text py-2">{t.nav.auth.login}</a>
+            <a href="/signup" onClick={(e) => { e.preventDefault(); setMobileOpen(false); navigate('/signup') }}
               className="block bg-primary text-white text-sm font-semibold px-5 py-3 rounded-xl text-center">
               {t.nav.auth.signup}
             </a>
