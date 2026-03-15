@@ -202,6 +202,7 @@ export const en: Translations = {
       signupLink: 'Sign up',
       orContinueWith: 'or continue with',
       googleButton: 'Continue with Google',
+      resetSuccess: 'Your password has been reset. Please log in with your new password.',
     },
     forgotPassword: {
       heading: 'Reset your password',

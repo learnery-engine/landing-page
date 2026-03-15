@@ -140,6 +140,7 @@ export interface Translations {
       signupLink: string
       orContinueWith: string
       googleButton: string
+      resetSuccess: string
     }
     forgotPassword: {
       heading: string

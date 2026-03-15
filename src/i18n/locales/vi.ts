@@ -202,6 +202,7 @@ export const vi: Translations = {
       signupLink: 'Đăng ký',
       orContinueWith: 'hoặc tiếp tục với',
       googleButton: 'Tiếp tục với Google',
+      resetSuccess: 'Mật khẩu đã được đặt lại. Vui lòng đăng nhập bằng mật khẩu mới.',
     },
     forgotPassword: {
       heading: 'Đặt lại mật khẩu',

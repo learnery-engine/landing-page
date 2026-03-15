@@ -15,6 +15,7 @@ export function LoginPage() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [apiError, setApiError] = useState('')
   const [loading, setLoading] = useState(false)
+  const resetSuccess = new URLSearchParams(window.location.search).get('reset') === 'success'
 
   function validate() {
     const errs: Record<string, string> = {}
@@ -45,6 +46,12 @@ export function LoginPage() {
     <AuthLayout>
       <h1 className="text-2xl sm:text-3xl font-bold text-text mb-1">{t.auth.login.heading}</h1>
       <p className="text-text-muted mb-8">{t.auth.login.subheading}</p>
+
+      {resetSuccess && (
+        <div className="bg-green-50 border border-green-200 text-green-700 text-sm rounded-xl px-4 py-3 mb-6">
+          {t.auth.login.resetSuccess}
+        </div>
+      )}
 
       {apiError && (
         <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3 mb-6">
