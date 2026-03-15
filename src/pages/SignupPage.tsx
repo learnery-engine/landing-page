@@ -5,7 +5,6 @@ import { FormInput } from '../components/auth/FormInput'
 import { GoogleSignIn } from '../components/auth/GoogleSignIn'
 import { useTranslation } from '../i18n'
 import { auth } from '../lib/api'
-import { redirectToApp } from '../lib/redirect'
 import { navigate } from '../lib/navigate'
 
 export function SignupPage() {
@@ -37,7 +36,7 @@ export function SignupPage() {
     setLoading(true)
     try {
       const res = await auth.signup(email, password, name)
-      redirectToApp(res.response.token)
+      window.location.href = res.response.login_url
     } catch (err) {
       const msg = (err as Error).message || ''
       if (msg.toLowerCase().includes('already') || msg.toLowerCase().includes('exist')) {

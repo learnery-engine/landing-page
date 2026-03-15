@@ -3,9 +3,10 @@ import { BUBBLE_API_URL } from './constants'
 interface AuthResponse {
   status: string
   response: {
-    token: string
-    user_id: string
-    expires: number
+    login_url: string
+    token?: string
+    user_id?: string
+    expires?: number
   }
 }
 
