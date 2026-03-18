@@ -115,7 +115,7 @@ export const vi: Translations = {
       cta: 'Tìm hiểu chương trình K-12',
     },
     university: {
-      badge: '',
+      badge: 'Hợp tác cùng chúng tôi',
       title: 'Khóa học AI Đại học',
       subtitle: 'Chương trình AI nâng cao cho giáo dục đại học',
       description: 'Các khóa học AI cấp đại học dành cho sinh viên và học viên sau đại học. Trang bị cho thế hệ chuyên gia tương lai kỹ năng AI thực tế và kiến thức chuyên sâu.',
@@ -363,7 +363,7 @@ export const vi: Translations = {
         cta: 'Triển khai Chương trình K-12',
       },
       university: {
-        badge: '',
+        badge: 'Hợp tác cùng chúng tôi',
         title: 'Khóa học AI Đại học',
         subtitle: 'Chương trình AI nâng cao cho giáo dục đại học',
         description: 'Các khóa học AI cấp đại học dành cho sinh viên và học viên sau đại học. Trang bị cho thế hệ chuyên gia tương lai kỹ năng AI thực tế và kiến thức chuyên sâu.',

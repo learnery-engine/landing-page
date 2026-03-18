@@ -115,7 +115,7 @@ export const en: Translations = {
       cta: 'Learn about the K-12 Curriculum',
     },
     university: {
-      badge: '',
+      badge: 'Open for Partnership',
       title: 'AI University Courses',
       subtitle: 'Advanced AI programs for higher education',
       description: 'University-level AI courses designed for undergraduate and graduate students. Equipping the next generation of professionals with practical AI skills and deep technical knowledge.',
@@ -363,7 +363,7 @@ export const en: Translations = {
         cta: 'Deploy the K-12 Curriculum',
       },
       university: {
-        badge: '',
+        badge: 'Open for Partnership',
         title: 'AI University Courses',
         subtitle: 'Advanced AI programs for higher education',
         description: 'University-level AI courses designed for undergraduate and graduate students. Equipping the next generation of professionals with practical AI skills and deep technical knowledge.',
