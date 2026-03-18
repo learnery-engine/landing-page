@@ -33,30 +33,11 @@ const flowNodes = [
   },
 ]
 
-/* ── Featured tools (spotlight row) ── */
-const featuredTools = [
-  {
-    key: 'interactiveContent',
-    icon: Gamepad2,
-    iconBg: 'bg-amber-100 text-amber-600',
-    gradient: 'from-amber-400 to-orange-500',
-  },
-  {
-    key: 'premiumQuizMaker',
-    icon: FileText,
-    iconBg: 'bg-violet-100 text-violet-600',
-    gradient: 'from-violet-400 to-purple-600',
-  },
-  {
-    key: 'smartDiagram',
-    icon: BarChart3,
-    iconBg: 'bg-blue-100 text-blue-600',
-    gradient: 'from-blue-400 to-cyan-500',
-  },
-]
-
-/* ── Catalog tools (remaining 10) ── */
-const catalogTools = [
+/* ── All tools (uniform grid) ── */
+const allTools = [
+  { key: 'interactiveContent', icon: Gamepad2, iconBg: 'bg-amber-100 text-amber-600' },
+  { key: 'premiumQuizMaker', icon: FileText, iconBg: 'bg-violet-100 text-violet-600' },
+  { key: 'smartDiagram', icon: BarChart3, iconBg: 'bg-blue-100 text-blue-600' },
   { key: 'quickQuiz', icon: FileQuestion, iconBg: 'bg-purple-100 text-purple-600' },
   { key: 'studyGuide', icon: BookOpen, iconBg: 'bg-emerald-100 text-emerald-600' },
   { key: 'tosAssessment', icon: LayoutGrid, iconBg: 'bg-indigo-100 text-indigo-600' },
@@ -159,53 +140,7 @@ export function Platform() {
               </p>
             </div>
 
-            {/* Featured tools — 3 spotlight cards */}
-            <motion.div
-              className="grid md:grid-cols-3 gap-4 mb-6"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              {featuredTools.map((tool) => {
-                const ToolIcon = tool.icon
-                const tag = t.v2.platform.tools.tags[tool.key]
-                return (
-                  <motion.div
-                    key={tool.key}
-                    variants={cardVariants}
-                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                    className="group relative bg-white rounded-xl border border-gray-100 p-5 shadow-sm hover:shadow-md hover:border-gray-200 transition-all duration-200 cursor-default"
-                  >
-                    {/* Top accent line */}
-                    <div className={`absolute top-0 left-4 right-4 h-0.5 rounded-full bg-gradient-to-r ${tool.gradient} opacity-60`} />
-
-                    <div className="flex items-start gap-4">
-                      <motion.div
-                        whileHover={{ scale: 1.08 }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-                        className={`w-12 h-12 rounded-xl ${tool.iconBg} flex items-center justify-center shrink-0`}
-                      >
-                        <ToolIcon className="w-6 h-6" />
-                      </motion.div>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <h4 className="text-sm font-bold text-text">
-                            {t.v2.platform.tools.items[tool.key]}
-                          </h4>
-                          {tag && <TagBadge label={tag} />}
-                        </div>
-                        <p className="text-xs text-text-muted leading-relaxed">
-                          {t.v2.platform.tools.descriptions[tool.key]}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </motion.div>
-
-            {/* Catalog tools — 5-col grid */}
+            {/* All tools — uniform grid */}
             <motion.div
               className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
               variants={containerVariants}
@@ -213,7 +148,7 @@ export function Platform() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
             >
-              {catalogTools.map((tool) => {
+              {allTools.map((tool) => {
                 const ToolIcon = tool.icon
                 const tag = t.v2.platform.tools.tags[tool.key]
                 return (
@@ -250,12 +185,12 @@ export function Platform() {
                 )
               })}
 
-              {/* App Builder — double-width card inside the catalog grid */}
+              {/* App Builder — double-width card */}
               <motion.a
                 href={`${APP_URL}/app-builder`}
                 variants={cardVariants}
                 whileHover={{ y: -2, transition: { duration: 0.2 } }}
-                className="group relative col-span-2 sm:col-span-2 lg:col-span-2 bg-gradient-to-br from-violet-50 via-purple-50 to-fuchsia-50 hover:from-violet-100 hover:via-purple-100 hover:to-fuchsia-100 rounded-xl border border-violet-200/60 hover:border-violet-300 p-4 hover:shadow-sm transition-all duration-200 block"
+                className="group relative col-span-2 bg-gradient-to-br from-violet-50 via-purple-50 to-fuchsia-50 hover:from-violet-100 hover:via-purple-100 hover:to-fuchsia-100 rounded-xl border border-violet-200/60 hover:border-violet-300 p-4 hover:shadow-sm transition-all duration-200 block"
               >
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between">
