@@ -18,9 +18,9 @@ export function AppV2() {
       <Partners />
       <Platform />
       <PlatformFlow />
-      <ProgramsV2 />
       <Testimonials />
       <Stats />
+      <ProgramsV2 />
       <CTA />
       <Footer />
     </div>
