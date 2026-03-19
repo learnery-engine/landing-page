@@ -83,6 +83,196 @@ function TagBadge({ label }: { label: string }) {
   )
 }
 
+/* ── Orbit tool icons for AI Suite visual ── */
+const orbitTools = [
+  { icon: FileQuestion, bg: 'bg-purple-100 text-purple-600', label: 'Quiz' },
+  { icon: Presentation, bg: 'bg-green-100 text-green-600', label: 'Slides' },
+  { icon: Gamepad2, bg: 'bg-amber-100 text-amber-600', label: 'Games' },
+  { icon: PenTool, bg: 'bg-rose-100 text-rose-600', label: 'Essay' },
+  { icon: BarChart3, bg: 'bg-blue-100 text-blue-600', label: 'Diagram' },
+  { icon: BookOpen, bg: 'bg-emerald-100 text-emerald-600', label: 'Guide' },
+]
+
+function PillarVisual({ tab, color }: { tab: string; color: typeof pillarColors[keyof typeof pillarColors] }) {
+  return (
+    <div className="relative w-[280px] h-[220px]">
+      {tab === 'aiSuite' && (
+        /* Rotating orbit of tool icons around a central Wand icon */
+        <div className="relative w-full h-full flex items-center justify-center">
+          {/* Orbit ring */}
+          <div className="absolute w-[200px] h-[200px] rounded-full border-2 border-dashed opacity-20" style={{ borderColor: color.gradFrom }} />
+          <div className="absolute w-[130px] h-[130px] rounded-full border border-dashed opacity-15" style={{ borderColor: color.gradFrom }} />
+
+          {/* Center icon */}
+          <div className="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-200">
+            <Wand2 className="w-8 h-8 text-white" />
+          </div>
+
+          {/* Orbiting tool icons */}
+          <div className="absolute inset-0 animate-orbit">
+            {orbitTools.map((tool, i) => {
+              const angle = (i * 360) / orbitTools.length
+              const radius = 90
+              const x = Math.cos((angle * Math.PI) / 180) * radius
+              const y = Math.sin((angle * Math.PI) / 180) * radius
+              const ToolIcon = tool.icon
+              return (
+                <div
+                  key={i}
+                  className="absolute animate-orbit-reverse"
+                  style={{ left: `calc(50% + ${x}px - 20px)`, top: `calc(50% + ${y}px - 20px)` }}
+                >
+                  <div className={`w-10 h-10 rounded-xl ${tool.bg} flex items-center justify-center shadow-md`}>
+                    <ToolIcon className="w-5 h-5" />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {tab === 'production' && (
+        /* Stacked document layers with batch indicators */
+        <div className="relative w-full h-full flex items-center justify-center">
+          {[0, 1, 2, 3].map((i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1 - i * 0.15, y: -i * 14, scale: 1 - i * 0.03 }}
+              transition={{ delay: i * 0.1, duration: 0.4 }}
+              className="absolute w-[200px] rounded-xl border bg-white shadow-md"
+              style={{ borderColor: `${color.gradFrom}30`, height: i === 0 ? '140px' : '130px' }}
+            >
+              {i === 0 && (
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
+                      <Layers className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="h-2.5 w-20 bg-gray-200 rounded-full" />
+                      <div className="h-2 w-14 bg-gray-100 rounded-full mt-1" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="h-2 w-full bg-blue-50 rounded-full" />
+                    <div className="h-2 w-4/5 bg-blue-50 rounded-full" />
+                    <div className="h-2 w-3/5 bg-blue-50 rounded-full" />
+                  </div>
+                  <div className="mt-3 flex gap-2">
+                    <span className="text-[9px] px-2 py-0.5 rounded-full bg-green-100 text-green-600 font-semibold">Shared</span>
+                    <span className="text-[9px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-600 font-semibold">Library</span>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          ))}
+          {/* Batch count badge */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5, type: 'spring', stiffness: 300 }}
+            className="absolute -top-1 -right-1 w-10 h-10 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center shadow-lg"
+          >
+            ×12
+          </motion.div>
+        </div>
+      )}
+
+      {tab === 'lms' && (
+        /* Dashboard mockup with sidebar + progress bars */
+        <div className="relative w-full h-full flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="w-[260px] h-[180px] rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden"
+          >
+            <div className="flex h-full">
+              {/* Sidebar */}
+              <div className="w-12 bg-green-50 border-r border-green-100 flex flex-col items-center py-3 gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-green-500 flex items-center justify-center">
+                  <LayoutDashboard className="w-3.5 h-3.5 text-white" />
+                </div>
+                <div className="w-6 h-6 rounded bg-green-100" />
+                <div className="w-6 h-6 rounded bg-green-100" />
+                <div className="w-6 h-6 rounded bg-green-100" />
+              </div>
+              {/* Main content */}
+              <div className="flex-1 p-3">
+                <div className="h-2 w-16 bg-gray-200 rounded mb-3" />
+                <div className="space-y-2.5">
+                  {[85, 62, 45, 78].map((w, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded bg-gray-100 shrink-0" />
+                      <div className="flex-1 h-3 bg-gray-100 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${w}%` }}
+                          transition={{ delay: 0.3 + i * 0.15, duration: 0.6 }}
+                          className="h-full rounded-full"
+                          style={{ background: `linear-gradient(90deg, ${color.gradFrom}, ${color.gradTo})` }}
+                        />
+                      </div>
+                      <span className="text-[9px] font-semibold text-gray-400 w-6">{w}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {tab === 'aiLiteracy' && (
+        /* Concentric rings with grade level badges */
+        <div className="relative w-full h-full flex items-center justify-center">
+          {/* Rings */}
+          {[90, 65, 40].map((r, i) => (
+            <motion.div
+              key={i}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: i * 0.15, duration: 0.4 }}
+              className="absolute rounded-full border-2"
+              style={{
+                width: r * 2,
+                height: r * 2,
+                borderColor: `${color.gradFrom}${i === 0 ? '20' : i === 1 ? '30' : '40'}`,
+                background: `radial-gradient(circle, ${color.gradFrom}${i === 2 ? '15' : '05'}, transparent)`,
+              }}
+            />
+          ))}
+          {/* Center icon */}
+          <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-200">
+            <GraduationCap className="w-7 h-7 text-white" />
+          </div>
+          {/* Grade badges floating around */}
+          {['K-5', '6-8', '9-12'].map((grade, i) => {
+            const angle = -90 + i * 120
+            const x = Math.cos((angle * Math.PI) / 180) * 75
+            const y = Math.sin((angle * Math.PI) / 180) * 75
+            return (
+              <motion.div
+                key={grade}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.4 + i * 0.12, type: 'spring', stiffness: 300 }}
+                className="absolute"
+                style={{ left: `calc(50% + ${x}px - 22px)`, top: `calc(50% + ${y}px - 14px)` }}
+              >
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-white shadow-md text-[11px] font-bold text-amber-600 border border-amber-200">
+                  {grade}
+                </span>
+              </motion.div>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
 /* ── Pillar tab accent colors ── */
 const pillarColors = {
   aiSuite: { border: 'border-violet-500', bg: 'bg-violet-50', text: 'text-violet-600', gradFrom: '#8b5cf6', gradTo: '#c084fc' },
@@ -153,50 +343,9 @@ export function Platform() {
               className={`relative rounded-2xl ${activeColor.bg} border border-gray-100 p-6 sm:p-8 lg:p-10`}
             >
               <div className="flex flex-col lg:flex-row items-center gap-8">
-                {/* SVG illustration */}
+                {/* Visual illustration */}
                 <div className="w-full lg:w-2/5 flex justify-center">
-                  <svg viewBox="0 0 200 160" className="w-full max-w-[280px]" fill="none">
-                    {/* Base shape */}
-                    <rect x="10" y="20" width="180" height="120" rx="16" fill="white" fillOpacity="0.6" stroke={activeColor.gradFrom} strokeWidth="1.5" strokeOpacity="0.3" />
-                    {/* Inner elements vary by tab */}
-                    {activeTab === 'aiSuite' && <>
-                      <rect x="24" y="36" width="72" height="44" rx="8" fill={activeColor.gradFrom} fillOpacity="0.12" />
-                      <rect x="104" y="36" width="72" height="44" rx="8" fill={activeColor.gradFrom} fillOpacity="0.08" />
-                      <rect x="24" y="88" width="72" height="44" rx="8" fill={activeColor.gradFrom} fillOpacity="0.08" />
-                      <rect x="104" y="88" width="72" height="44" rx="8" fill={activeColor.gradFrom} fillOpacity="0.12" />
-                      <circle cx="60" cy="58" r="10" fill={activeColor.gradFrom} fillOpacity="0.3" />
-                      <circle cx="140" cy="58" r="10" fill={activeColor.gradTo} fillOpacity="0.3" />
-                      <circle cx="60" cy="110" r="10" fill={activeColor.gradTo} fillOpacity="0.3" />
-                      <circle cx="140" cy="110" r="10" fill={activeColor.gradFrom} fillOpacity="0.3" />
-                    </>}
-                    {activeTab === 'production' && <>
-                      <rect x="30" y="40" width="140" height="20" rx="6" fill={activeColor.gradFrom} fillOpacity="0.15" />
-                      <rect x="35" y="48" width="130" height="16" rx="5" fill={activeColor.gradFrom} fillOpacity="0.1" />
-                      <rect x="40" y="72" width="120" height="20" rx="6" fill={activeColor.gradFrom} fillOpacity="0.15" />
-                      <rect x="45" y="80" width="110" height="16" rx="5" fill={activeColor.gradFrom} fillOpacity="0.1" />
-                      <rect x="50" y="104" width="100" height="20" rx="6" fill={activeColor.gradFrom} fillOpacity="0.2" />
-                      <rect x="55" y="112" width="90" height="16" rx="5" fill={activeColor.gradFrom} fillOpacity="0.15" />
-                    </>}
-                    {activeTab === 'lms' && <>
-                      <rect x="20" y="30" width="40" height="110" rx="8" fill={activeColor.gradFrom} fillOpacity="0.1" />
-                      <rect x="68" y="30" width="122" height="50" rx="8" fill={activeColor.gradFrom} fillOpacity="0.08" />
-                      <rect x="68" y="88" width="58" height="52" rx="8" fill={activeColor.gradFrom} fillOpacity="0.12" />
-                      <rect x="132" y="88" width="58" height="52" rx="8" fill={activeColor.gradFrom} fillOpacity="0.08" />
-                      <circle cx="40" cy="50" r="8" fill={activeColor.gradFrom} fillOpacity="0.25" />
-                      <rect x="30" y="68" width="20" height="3" rx="1.5" fill={activeColor.gradFrom} fillOpacity="0.2" />
-                      <rect x="30" y="78" width="20" height="3" rx="1.5" fill={activeColor.gradFrom} fillOpacity="0.15" />
-                      <rect x="30" y="88" width="20" height="3" rx="1.5" fill={activeColor.gradFrom} fillOpacity="0.1" />
-                    </>}
-                    {activeTab === 'aiLiteracy' && <>
-                      <circle cx="100" cy="70" r="35" fill={activeColor.gradFrom} fillOpacity="0.08" stroke={activeColor.gradFrom} strokeWidth="1" strokeOpacity="0.15" />
-                      <circle cx="100" cy="70" r="22" fill={activeColor.gradFrom} fillOpacity="0.12" />
-                      <circle cx="100" cy="70" r="10" fill={activeColor.gradFrom} fillOpacity="0.25" />
-                      <rect x="30" y="115" width="140" height="16" rx="8" fill={activeColor.gradFrom} fillOpacity="0.1" />
-                      <rect x="50" y="118" width="20" height="10" rx="3" fill={activeColor.gradFrom} fillOpacity="0.2" />
-                      <rect x="80" y="118" width="40" height="10" rx="3" fill={activeColor.gradFrom} fillOpacity="0.25" />
-                      <rect x="130" y="118" width="20" height="10" rx="3" fill={activeColor.gradFrom} fillOpacity="0.15" />
-                    </>}
-                  </svg>
+                  <PillarVisual tab={activeTab} color={activeColor} />
                 </div>
 
                 {/* Description */}
