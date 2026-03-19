@@ -1,9 +1,33 @@
+import { useState, useEffect } from 'react'
 import { ArrowRight, Sparkles, Clock, Zap } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from '../i18n'
 import { navigate } from '../lib/navigate'
 
+const rotatingWords = {
+  en: ['quizzes', 'lessons', 'slides', 'games', 'courses'],
+  vi: ['bài kiểm tra', 'giáo án', 'slides', 'trò chơi', 'khóa học'],
+}
+
+const wordColors = [
+  'from-violet-500 to-purple-600',
+  'from-blue-500 to-cyan-500',
+  'from-green-500 to-emerald-500',
+  'from-amber-500 to-orange-500',
+  'from-rose-500 to-pink-500',
+]
+
 export function Hero() {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
+  const [wordIndex, setWordIndex] = useState(0)
+  const words = rotatingWords[locale] || rotatingWords.en
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % words.length)
+    }, 2500)
+    return () => clearInterval(interval)
+  }, [words.length])
 
   const mockupApps = [
     { icon: '\ud83d\udcdd', key: 'quickQuiz' as const, color: 'bg-purple-100 text-purple-700' },
@@ -35,6 +59,26 @@ export function Hero() {
               <span className="gradient-text">{t.hero.heading.highlight}</span>
               {t.hero.heading.after}
             </h1>
+
+            {/* Rotating keyword line */}
+            <div className="flex items-center gap-2 text-lg sm:text-xl text-text-muted mb-4 h-8">
+              <span>{locale === 'vi' ? 'Tạo' : 'Create'}</span>
+              <div className="relative h-8 overflow-hidden" style={{ minWidth: '140px' }}>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={wordIndex}
+                    initial={{ y: 24, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -24, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={`absolute font-bold bg-gradient-to-r ${wordColors[wordIndex]} bg-clip-text text-transparent`}
+                  >
+                    {words[wordIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+              <span>{locale === 'vi' ? 'trong vài giây' : 'in seconds'}</span>
+            </div>
 
             <p className="text-lg sm:text-xl text-text-muted leading-relaxed mb-8 max-w-lg">
               {t.hero.subheading}
