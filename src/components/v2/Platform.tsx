@@ -147,22 +147,22 @@ function PillarVisual({ tab, color }: { tab: string; color: typeof pillarColors[
               {i === 0 && (
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center shadow-sm">
                       <Layers className="w-4 h-4 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="h-2.5 w-20 bg-blue-200 rounded-full" />
-                      <div className="h-2 w-14 bg-gray-200 rounded-full mt-1" />
+                      <div className="h-3 w-24 bg-gray-800 rounded-full opacity-70" />
+                      <div className="h-2 w-16 bg-gray-400 rounded-full mt-1.5" />
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <div className="h-2.5 w-full bg-blue-100 rounded-full" />
-                    <div className="h-2.5 w-4/5 bg-blue-100 rounded-full" />
-                    <div className="h-2.5 w-3/5 bg-gray-100 rounded-full" />
+                  <div className="space-y-2 mt-1">
+                    <div className="h-2 w-full bg-gray-300 rounded-full" />
+                    <div className="h-2 w-4/5 bg-gray-200 rounded-full" />
+                    <div className="h-2 w-3/5 bg-gray-200 rounded-full" />
                   </div>
-                  <div className="mt-3 flex gap-2">
-                    <span className="text-[9px] px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-bold">Shared</span>
-                    <span className="text-[9px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-bold">Library</span>
+                  <div className="mt-4 flex gap-2">
+                    <span className="text-[9px] px-2.5 py-1 rounded-full bg-green-500 text-white font-bold shadow-sm">Shared</span>
+                    <span className="text-[9px] px-2.5 py-1 rounded-full bg-blue-500 text-white font-bold shadow-sm">Library</span>
                   </div>
                 </div>
               )}
