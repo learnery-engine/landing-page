@@ -269,10 +269,10 @@ function PillarVisual({ tab, color }: { tab: string; color: typeof pillarColors[
 
           {/* Domain nodes along the path */}
           {[
-            { label: 'Understanding', x: 75, y: 135, delay: 0.3 },
-            { label: 'Applying', x: 115, y: 100, delay: 0.5 },
-            { label: 'Critical Thinking', x: 145, y: 68, delay: 0.7 },
-            { label: 'Ethics', x: 120, y: 38, delay: 0.9 },
+            { label: 'Understanding', x: 75, y: 140, delay: 0.3 },
+            { label: 'Applying', x: 105, y: 108, delay: 0.5 },
+            { label: 'Critical Thinking', x: 60, y: 72, delay: 0.7 },
+            { label: 'Ethics', x: 100, y: 40, delay: 0.9 },
           ].map((d) => (
             <motion.div
               key={d.label}
