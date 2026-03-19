@@ -10,7 +10,7 @@ export const en: Translations = {
   hero: {
     badge: 'Trusted by 10,000+ educators',
     heading: {
-      before: 'Create, teach, and track — ',
+      before: 'Create, teach, track, and learn — ',
       highlight: 'powered by AI',
       after: '',
     },

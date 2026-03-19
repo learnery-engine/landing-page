@@ -54,28 +54,33 @@ export function Hero() {
               {t.hero.badge}
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-              <span className="block leading-[1.1]">
-                {locale === 'vi' ? 'Tạo ' : 'Create '}
-                <span className="inline-grid overflow-hidden align-bottom" style={{ height: '1.15em' }}>
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.span
-                      key={wordIndex}
-                      initial={{ y: '100%' }}
-                      animate={{ y: 0 }}
-                      exit={{ y: '-100%' }}
-                      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-                      className={`col-start-1 row-start-1 bg-gradient-to-r ${wordColors[wordIndex]} bg-clip-text text-transparent whitespace-nowrap`}
-                    >
-                      {words[wordIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                </span>
-              </span>
-              <span className="block leading-[1.1] gradient-text">
-                {locale === 'vi' ? 'với AI — trong vài giây' : 'with AI — in seconds'}
-              </span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-4">
+              {t.hero.heading.before}
+              <span className="gradient-text">{t.hero.heading.highlight}</span>
+              {t.hero.heading.after}
             </h1>
+
+            {/* Rotating keyword line */}
+            <div className="flex items-center gap-1.5 text-xl sm:text-2xl font-semibold text-text-muted mb-6">
+              <span>{locale === 'vi' ? 'Tạo' : 'Generate'}</span>
+              <span className="relative inline-block overflow-hidden align-bottom" style={{ height: '1.3em' }}>
+                {/* Hidden sizer — keeps width of current word */}
+                <span className="invisible font-bold whitespace-nowrap">{words[wordIndex]}</span>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={wordIndex}
+                    initial={{ y: '100%' }}
+                    animate={{ y: 0 }}
+                    exit={{ y: '-100%' }}
+                    transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className={`absolute left-0 top-0 bg-gradient-to-r ${wordColors[wordIndex]} bg-clip-text text-transparent whitespace-nowrap font-bold`}
+                  >
+                    {words[wordIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+              <span>{locale === 'vi' ? 'trong vài giây' : 'in seconds'}</span>
+            </div>
 
             <p className="text-lg sm:text-xl text-text-muted leading-relaxed mb-8 max-w-lg">
               {t.hero.subheading}

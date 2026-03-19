@@ -10,7 +10,7 @@ export const vi: Translations = {
   hero: {
     badge: 'Được 10.000+ giáo viên tin dùng',
     heading: {
-      before: 'Soạn bài, giảng dạy, theo dõi — ',
+      before: 'Soạn bài, giảng dạy, theo dõi, học tập — ',
       highlight: 'cùng sức mạnh AI',
       after: '',
     },
