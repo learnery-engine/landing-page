@@ -133,49 +133,63 @@ function PillarVisual({ tab, color }: { tab: string; color: typeof pillarColors[
       )}
 
       {tab === 'production' && (
-        /* Stacked document layers with batch indicators */
+        /* Content library grid with batch progress */
         <div className="relative w-full h-full flex items-center justify-center">
-          {[0, 1, 2, 3].map((i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1 - i * 0.15, y: -i * 14, scale: 1 - i * 0.03 }}
-              transition={{ delay: i * 0.1, duration: 0.4 }}
-              className="absolute w-[200px] rounded-xl border bg-white shadow-md"
-              style={{ borderColor: `${color.gradFrom}30`, height: i === 0 ? '140px' : '130px' }}
-            >
-              {i === 0 && (
-                <div className="p-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center shadow-sm">
-                      <Layers className="w-4 h-4 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="h-3 w-24 bg-gray-800 rounded-full opacity-70" />
-                      <div className="h-2 w-16 bg-gray-400 rounded-full mt-1.5" />
-                    </div>
-                  </div>
-                  <div className="space-y-2 mt-1">
-                    <div className="h-2 w-full bg-gray-300 rounded-full" />
-                    <div className="h-2 w-4/5 bg-gray-200 rounded-full" />
-                    <div className="h-2 w-3/5 bg-gray-200 rounded-full" />
-                  </div>
-                  <div className="mt-4 flex gap-2">
-                    <span className="text-[9px] px-2.5 py-1 rounded-full bg-green-500 text-white font-bold shadow-sm">Shared</span>
-                    <span className="text-[9px] px-2.5 py-1 rounded-full bg-blue-500 text-white font-bold shadow-sm">Library</span>
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          ))}
-          {/* Batch count badge */}
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.5, type: 'spring', stiffness: 300 }}
-            className="absolute -top-1 -right-1 w-10 h-10 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center shadow-lg"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="w-[260px] rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden"
           >
-            ×12
+            {/* Header bar */}
+            <div className="flex items-center justify-between px-3 py-2 border-b border-gray-100 bg-gray-50">
+              <div className="flex items-center gap-2">
+                <Layers className="w-3.5 h-3.5 text-blue-500" />
+                <span className="text-[10px] font-bold text-gray-700">Content Library</span>
+              </div>
+              <span className="text-[9px] px-2 py-0.5 rounded-full bg-blue-500 text-white font-bold">12 items</span>
+            </div>
+            {/* Content grid */}
+            <div className="p-3 grid grid-cols-3 gap-2">
+              {[
+                { icon: FileQuestion, bg: 'bg-purple-100 text-purple-500', label: 'Quiz' },
+                { icon: BookOpen, bg: 'bg-emerald-100 text-emerald-500', label: 'Guide' },
+                { icon: Presentation, bg: 'bg-green-100 text-green-500', label: 'Slides' },
+                { icon: Gamepad2, bg: 'bg-amber-100 text-amber-500', label: 'Game' },
+                { icon: PenTool, bg: 'bg-rose-100 text-rose-500', label: 'Essay' },
+                { icon: BarChart3, bg: 'bg-blue-100 text-blue-500', label: 'Chart' },
+              ].map((item, i) => {
+                const Icon = item.icon
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.15 + i * 0.08 }}
+                    className="flex flex-col items-center gap-1 p-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                  >
+                    <div className={`w-7 h-7 rounded-lg ${item.bg} flex items-center justify-center`}>
+                      <Icon className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[8px] font-semibold text-gray-500">{item.label}</span>
+                  </motion.div>
+                )
+              })}
+            </div>
+            {/* Batch progress bar */}
+            <div className="px-3 pb-3">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[9px] text-gray-400 font-medium">Batch generating...</span>
+                <span className="text-[9px] text-blue-500 font-bold">100%</span>
+              </div>
+              <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: 1.5, ease: 'easeOut' }}
+                  className="h-full rounded-full bg-gradient-to-r from-blue-400 to-blue-600"
+                />
+              </div>
+            </div>
           </motion.div>
         </div>
       )}
@@ -241,18 +255,24 @@ function PillarVisual({ tab, color }: { tab: string; color: typeof pillarColors[
             />
           </svg>
 
-          {/* K-12 node (bottom-left) */}
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.2, type: 'spring', stiffness: 300 }}
-            className="absolute bottom-4 left-2 flex flex-col items-center gap-1.5"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-200">
-              <School className="w-7 h-7 text-white" />
-            </div>
-            <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">K-12</span>
-          </motion.div>
+          {/* K-12 nodes (bottom-left, stacked vertically) */}
+          <div className="absolute bottom-2 left-2 flex flex-col items-center gap-1">
+            {['Primary', 'Secondary', 'High School'].map((level, i) => (
+              <motion.div
+                key={level}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.15 + i * 0.1, type: 'spring', stiffness: 300 }}
+              >
+                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold shadow-sm ${
+                  i === 0 ? 'bg-amber-400 text-white' : i === 1 ? 'bg-orange-400 text-white' : 'bg-red-400 text-white'
+                }`}>
+                  {i === 0 && <School className="w-2.5 h-2.5" />}
+                  {level}
+                </span>
+              </motion.div>
+            ))}
+          </div>
 
           {/* University node (top-right) */}
           <motion.div
