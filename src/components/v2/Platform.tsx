@@ -225,48 +225,84 @@ function PillarVisual({ tab, color }: { tab: string; color: typeof pillarColors[
       )}
 
       {tab === 'aiLiteracy' && (
-        /* Concentric rings with grade level badges */
+        /* Learning pathway: K-12 school → University with domain nodes */
         <div className="relative w-full h-full flex items-center justify-center">
-          {/* Rings */}
-          {[90, 65, 40].map((r, i) => (
+          {/* Pathway line */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 280 220" fill="none">
+            <motion.path
+              d="M 50 180 C 50 120, 90 80, 140 80 C 190 80, 230 50, 230 30"
+              stroke={color.gradFrom}
+              strokeWidth="2"
+              strokeDasharray="6 4"
+              strokeOpacity="0.3"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+            />
+          </svg>
+
+          {/* K-12 node (bottom-left) */}
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, type: 'spring', stiffness: 300 }}
+            className="absolute bottom-4 left-2 flex flex-col items-center gap-1.5"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-200">
+              <School className="w-7 h-7 text-white" />
+            </div>
+            <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">K-12</span>
+          </motion.div>
+
+          {/* University node (top-right) */}
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.5, type: 'spring', stiffness: 300 }}
+            className="absolute top-2 right-2 flex flex-col items-center gap-1.5"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-200">
+              <GraduationCap className="w-7 h-7 text-white" />
+            </div>
+            <span className="text-[10px] font-bold text-violet-700 bg-violet-50 px-2 py-0.5 rounded-full">University</span>
+          </motion.div>
+
+          {/* Domain nodes along the path */}
+          {[
+            { label: 'Understanding', x: 60, y: 120, delay: 0.3 },
+            { label: 'Applying', x: 110, y: 85, delay: 0.5 },
+            { label: 'Critical Thinking', x: 155, y: 70, delay: 0.7 },
+            { label: 'Ethics', x: 195, y: 55, delay: 0.9 },
+          ].map((d) => (
             <motion.div
-              key={i}
+              key={d.label}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: i * 0.15, duration: 0.4 }}
-              className="absolute rounded-full border-2"
-              style={{
-                width: r * 2,
-                height: r * 2,
-                borderColor: `${color.gradFrom}${i === 0 ? '20' : i === 1 ? '30' : '40'}`,
-                background: `radial-gradient(circle, ${color.gradFrom}${i === 2 ? '15' : '05'}, transparent)`,
-              }}
-            />
-          ))}
-          {/* Center icon */}
-          <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-200">
-            <GraduationCap className="w-7 h-7 text-white" />
-          </div>
-          {/* Grade badges floating around */}
-          {['K-5', '6-8', '9-12'].map((grade, i) => {
-            const angle = -90 + i * 120
-            const x = Math.cos((angle * Math.PI) / 180) * 75
-            const y = Math.sin((angle * Math.PI) / 180) * 75
-            return (
-              <motion.div
-                key={grade}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.4 + i * 0.12, type: 'spring', stiffness: 300 }}
-                className="absolute"
-                style={{ left: `calc(50% + ${x}px - 22px)`, top: `calc(50% + ${y}px - 14px)` }}
-              >
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-white shadow-md text-[11px] font-bold text-amber-600 border border-amber-200">
-                  {grade}
+              transition={{ delay: d.delay, type: 'spring', stiffness: 300 }}
+              className="absolute"
+              style={{ left: d.x, top: d.y }}
+            >
+              <div className="flex items-center gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-amber-400 shadow-sm ring-2 ring-amber-100" />
+                <span className="text-[9px] font-semibold text-gray-600 bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded shadow-sm whitespace-nowrap">
+                  {d.label}
                 </span>
-              </motion.div>
-            )
-          })}
+              </div>
+            </motion.div>
+          ))}
+
+          {/* VNIES badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1 }}
+            className="absolute bottom-3 right-2"
+          >
+            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-green-50 border border-green-200 text-[9px] font-semibold text-green-700 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-green-500" />
+              VNIES Certified
+            </span>
+          </motion.div>
         </div>
       )}
     </div>
