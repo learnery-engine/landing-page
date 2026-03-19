@@ -230,7 +230,7 @@ function PillarVisual({ tab, color }: { tab: string; color: typeof pillarColors[
           {/* Pathway line */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 280 220" fill="none">
             <motion.path
-              d="M 50 180 C 50 120, 90 80, 140 80 C 190 80, 230 50, 230 30"
+              d="M 55 170 C 70 130, 100 110, 130 95 C 160 80, 190 55, 220 35"
               stroke={color.gradFrom}
               strokeWidth="2"
               strokeDasharray="6 4"
@@ -259,7 +259,7 @@ function PillarVisual({ tab, color }: { tab: string; color: typeof pillarColors[
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.5, type: 'spring', stiffness: 300 }}
-            className="absolute top-2 right-2 flex flex-col items-center gap-1.5"
+            className="absolute top-1 right-4 flex flex-col items-center gap-1.5"
           >
             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-200">
               <GraduationCap className="w-7 h-7 text-white" />
@@ -269,10 +269,10 @@ function PillarVisual({ tab, color }: { tab: string; color: typeof pillarColors[
 
           {/* Domain nodes along the path */}
           {[
-            { label: 'Understanding', x: 60, y: 120, delay: 0.3 },
-            { label: 'Applying', x: 110, y: 85, delay: 0.5 },
-            { label: 'Critical Thinking', x: 155, y: 70, delay: 0.7 },
-            { label: 'Ethics', x: 195, y: 55, delay: 0.9 },
+            { label: 'Understanding', x: 75, y: 135, delay: 0.3 },
+            { label: 'Applying', x: 115, y: 100, delay: 0.5 },
+            { label: 'Critical Thinking', x: 145, y: 68, delay: 0.7 },
+            { label: 'Ethics', x: 120, y: 38, delay: 0.9 },
           ].map((d) => (
             <motion.div
               key={d.label}
