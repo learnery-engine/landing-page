@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import {
   Wand2, Layers, LayoutDashboard, GraduationCap,
   FileQuestion, FileText, BookOpen, LayoutGrid,
   Gamepad2, BarChart3, PenTool, Mic, Image, Presentation,
-  Globe, School, Rocket, ArrowRight, ExternalLink, ChevronRight,
+  Globe, School, Rocket, ArrowRight, ExternalLink, Quote,
 } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from '../../i18n'
 
 const APP_URL = 'https://ai.learneris.com'
@@ -82,14 +83,30 @@ function TagBadge({ label }: { label: string }) {
   )
 }
 
+/* ── Pillar tab accent colors ── */
+const pillarColors = {
+  aiSuite: { border: 'border-violet-500', bg: 'bg-violet-50', text: 'text-violet-600', gradFrom: '#8b5cf6', gradTo: '#c084fc' },
+  production: { border: 'border-blue-500', bg: 'bg-blue-50', text: 'text-blue-600', gradFrom: '#3b82f6', gradTo: '#93c5fd' },
+  lms: { border: 'border-green-500', bg: 'bg-green-50', text: 'text-green-600', gradFrom: '#22c55e', gradTo: '#86efac' },
+  aiLiteracy: { border: 'border-amber-500', bg: 'bg-amber-50', text: 'text-amber-600', gradFrom: '#f59e0b', gradTo: '#fcd34d' },
+} as const
+
 export function Platform() {
   const { t } = useTranslation()
+  const [activeTab, setActiveTab] = useState<'aiSuite' | 'production' | 'lms' | 'aiLiteracy'>('aiSuite')
+  const activeColor = pillarColors[activeTab]
 
   return (
-    <section id="features" className="py-20 lg:py-28 bg-white">
+    <section id="features" className="relative py-20 lg:py-28 bg-white overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <svg className="absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.03]" viewBox="0 0 600 600"><circle cx="500" cy="100" r="300" fill="url(#pg1)" /><defs><radialGradient id="pg1"><stop offset="0%" stopColor="#8b5cf6" /><stop offset="100%" stopColor="transparent" /></radialGradient></defs></svg>
+        <svg className="absolute bottom-0 left-0 w-[500px] h-[500px] opacity-[0.03]" viewBox="0 0 500 500"><circle cx="100" cy="400" r="250" fill="url(#pg2)" /><defs><radialGradient id="pg2"><stop offset="0%" stopColor="#22c55e" /><stop offset="100%" stopColor="transparent" /></radialGradient></defs></svg>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
             {t.v2.platform.heading.before}
             <span className="gradient-text">{t.v2.platform.heading.highlight}</span>
@@ -99,34 +116,112 @@ export function Platform() {
           </p>
         </div>
 
-        {/* ── Pillar Cards ── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-0 mb-10 lg:mb-14">
-          {flowNodes.map((node, i) => {
-            const Icon = node.icon
-            const data = t.v2.platform.pillars[node.key]
-            return (
-              <div key={node.key} className="relative flex items-center">
-                {/* Pillar card */}
-                <div className="flex-1 bg-gray-50 rounded-xl p-4 lg:p-5 hover:bg-gray-100/80 transition-colors">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className={`w-11 h-11 rounded-xl ${node.iconBg} flex items-center justify-center shrink-0`}>
-                      <Icon className="w-5.5 h-5.5" />
-                    </div>
-                    <h3 className="text-sm font-bold text-text leading-tight">{data.title}</h3>
-                  </div>
-                  <p className="text-xs text-text-muted leading-relaxed">{data.description}</p>
+        {/* ── Interactive Pillar Tabs ── */}
+        <div className="mb-12">
+          {/* Tab strip */}
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
+            {flowNodes.map((node) => {
+              const Icon = node.icon
+              const data = t.v2.platform.pillars[node.key]
+              const isActive = activeTab === node.key
+              const color = pillarColors[node.key]
+              return (
+                <button
+                  key={node.key}
+                  onClick={() => setActiveTab(node.key as typeof activeTab)}
+                  className={`flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-semibold transition-all duration-200 border-2 ${
+                    isActive
+                      ? `${color.bg} ${color.text} ${color.border} shadow-sm`
+                      : 'bg-white border-gray-200 text-text-muted hover:border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="hidden sm:inline">{data.title}</span>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Active pillar canvas */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
+              className={`relative rounded-2xl ${activeColor.bg} border border-gray-100 p-6 sm:p-8 lg:p-10`}
+            >
+              <div className="flex flex-col lg:flex-row items-center gap-8">
+                {/* SVG illustration */}
+                <div className="w-full lg:w-2/5 flex justify-center">
+                  <svg viewBox="0 0 200 160" className="w-full max-w-[280px]" fill="none">
+                    {/* Base shape */}
+                    <rect x="10" y="20" width="180" height="120" rx="16" fill="white" fillOpacity="0.6" stroke={activeColor.gradFrom} strokeWidth="1.5" strokeOpacity="0.3" />
+                    {/* Inner elements vary by tab */}
+                    {activeTab === 'aiSuite' && <>
+                      <rect x="24" y="36" width="72" height="44" rx="8" fill={activeColor.gradFrom} fillOpacity="0.12" />
+                      <rect x="104" y="36" width="72" height="44" rx="8" fill={activeColor.gradFrom} fillOpacity="0.08" />
+                      <rect x="24" y="88" width="72" height="44" rx="8" fill={activeColor.gradFrom} fillOpacity="0.08" />
+                      <rect x="104" y="88" width="72" height="44" rx="8" fill={activeColor.gradFrom} fillOpacity="0.12" />
+                      <circle cx="60" cy="58" r="10" fill={activeColor.gradFrom} fillOpacity="0.3" />
+                      <circle cx="140" cy="58" r="10" fill={activeColor.gradTo} fillOpacity="0.3" />
+                      <circle cx="60" cy="110" r="10" fill={activeColor.gradTo} fillOpacity="0.3" />
+                      <circle cx="140" cy="110" r="10" fill={activeColor.gradFrom} fillOpacity="0.3" />
+                    </>}
+                    {activeTab === 'production' && <>
+                      <rect x="30" y="40" width="140" height="20" rx="6" fill={activeColor.gradFrom} fillOpacity="0.15" />
+                      <rect x="35" y="48" width="130" height="16" rx="5" fill={activeColor.gradFrom} fillOpacity="0.1" />
+                      <rect x="40" y="72" width="120" height="20" rx="6" fill={activeColor.gradFrom} fillOpacity="0.15" />
+                      <rect x="45" y="80" width="110" height="16" rx="5" fill={activeColor.gradFrom} fillOpacity="0.1" />
+                      <rect x="50" y="104" width="100" height="20" rx="6" fill={activeColor.gradFrom} fillOpacity="0.2" />
+                      <rect x="55" y="112" width="90" height="16" rx="5" fill={activeColor.gradFrom} fillOpacity="0.15" />
+                    </>}
+                    {activeTab === 'lms' && <>
+                      <rect x="20" y="30" width="40" height="110" rx="8" fill={activeColor.gradFrom} fillOpacity="0.1" />
+                      <rect x="68" y="30" width="122" height="50" rx="8" fill={activeColor.gradFrom} fillOpacity="0.08" />
+                      <rect x="68" y="88" width="58" height="52" rx="8" fill={activeColor.gradFrom} fillOpacity="0.12" />
+                      <rect x="132" y="88" width="58" height="52" rx="8" fill={activeColor.gradFrom} fillOpacity="0.08" />
+                      <circle cx="40" cy="50" r="8" fill={activeColor.gradFrom} fillOpacity="0.25" />
+                      <rect x="30" y="68" width="20" height="3" rx="1.5" fill={activeColor.gradFrom} fillOpacity="0.2" />
+                      <rect x="30" y="78" width="20" height="3" rx="1.5" fill={activeColor.gradFrom} fillOpacity="0.15" />
+                      <rect x="30" y="88" width="20" height="3" rx="1.5" fill={activeColor.gradFrom} fillOpacity="0.1" />
+                    </>}
+                    {activeTab === 'aiLiteracy' && <>
+                      <circle cx="100" cy="70" r="35" fill={activeColor.gradFrom} fillOpacity="0.08" stroke={activeColor.gradFrom} strokeWidth="1" strokeOpacity="0.15" />
+                      <circle cx="100" cy="70" r="22" fill={activeColor.gradFrom} fillOpacity="0.12" />
+                      <circle cx="100" cy="70" r="10" fill={activeColor.gradFrom} fillOpacity="0.25" />
+                      <rect x="30" y="115" width="140" height="16" rx="8" fill={activeColor.gradFrom} fillOpacity="0.1" />
+                      <rect x="50" y="118" width="20" height="10" rx="3" fill={activeColor.gradFrom} fillOpacity="0.2" />
+                      <rect x="80" y="118" width="40" height="10" rx="3" fill={activeColor.gradFrom} fillOpacity="0.25" />
+                      <rect x="130" y="118" width="20" height="10" rx="3" fill={activeColor.gradFrom} fillOpacity="0.15" />
+                    </>}
+                  </svg>
                 </div>
-                {/* Arrow connector (desktop only, not on last) */}
-                {i < flowNodes.length - 1 && (
-                  <ChevronRight className="hidden lg:block w-5 h-5 text-gray-300 shrink-0 -mr-2.5 z-10" />
-                )}
+
+                {/* Description */}
+                <div className="flex-1 text-center lg:text-left">
+                  <div className="flex items-center gap-3 mb-3 justify-center lg:justify-start">
+                    {(() => { const Icon = flowNodes.find(n => n.key === activeTab)!.icon; return (
+                      <div className={`w-12 h-12 rounded-xl ${flowNodes.find(n => n.key === activeTab)!.iconBg} flex items-center justify-center`}>
+                        <Icon className="w-6 h-6" />
+                      </div>
+                    )})()}
+                    <h3 className="text-xl sm:text-2xl font-bold text-text">
+                      {t.v2.platform.pillars[activeTab].title}
+                    </h3>
+                  </div>
+                  <p className="text-sm sm:text-base text-text-muted leading-relaxed max-w-lg">
+                    {t.v2.platform.pillars[activeTab].description}
+                  </p>
+                </div>
               </div>
-            )
-          })}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* ── AI Tools Showcase ── */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-lg shadow-gray-100/60 overflow-hidden">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-gray-100 shadow-lg shadow-gray-100/60 overflow-hidden">
           <div className="h-1.5 bg-gradient-to-r from-violet-400 via-purple-500 to-fuchsia-500" />
           <div className="p-6 sm:p-8">
 
@@ -214,6 +309,25 @@ export function Platform() {
                 </div>
               </motion.a>
             </motion.div>
+
+            {/* ── Inline testimonial ── */}
+            <div className="mt-8 pt-6 border-t border-gray-100">
+              <div className="flex items-start gap-4 max-w-2xl mx-auto">
+                <Quote className="w-8 h-8 text-violet-300 shrink-0 mt-1" />
+                <div>
+                  <p className="text-sm text-text-muted italic leading-relaxed mb-2">
+                    {t.testimonials.items[0].quote}
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center">
+                      {t.testimonials.items[0].name.charAt(0)}
+                    </div>
+                    <span className="text-xs font-semibold text-text">{t.testimonials.items[0].name}</span>
+                    <span className="text-xs text-text-muted">· {t.testimonials.items[0].role}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
