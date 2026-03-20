@@ -1,15 +1,5 @@
 import { useState, useEffect } from 'react'
 import './index.css'
-import { Nav } from './components/Nav'
-import { Hero } from './components/Hero'
-import { Partners } from './components/Partners'
-import { Features } from './components/Features'
-import { HowItWorks } from './components/HowItWorks'
-import { Testimonials } from './components/Testimonials'
-import { Stats } from './components/Stats'
-import { Programs } from './components/Programs'
-import { CTA } from './components/CTA'
-import { Footer } from './components/Footer'
 import { TermsPage } from './pages/TermsPage'
 import { PrivacyPage } from './pages/PrivacyPage'
 import { SignupPage } from './pages/SignupPage'
@@ -41,20 +31,6 @@ export default function App() {
   if (pathname === '/signup') return <SignupPage />
   if (pathname === '/login') return <LoginPage />
   if (pathname === '/forgot-password') return <ForgotPasswordPage />
-  if (pathname === '/v2') return <AppV2 />
-
-  return (
-    <div className="min-h-screen bg-white">
-      <Nav />
-      <Hero />
-      <Partners />
-      <Features />
-      <HowItWorks />
-      <Stats />
-      <Programs />
-      <Testimonials />
-      <CTA />
-      <Footer />
-    </div>
-  )
+  // v2 is now the default landing page
+  return <AppV2 />
 }
