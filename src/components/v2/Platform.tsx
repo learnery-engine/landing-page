@@ -7,7 +7,6 @@ import {
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from '../../i18n'
-
 const APP_URL = 'https://ai.learneris.com'
 
 /* ── Flow strip: 4 pillars as medium cards ── */
@@ -430,11 +429,14 @@ export function Platform() {
                 const ToolIcon = tool.icon
                 const tag = t.v2.platform.tools.tags[tool.key]
                 return (
-                  <motion.div
+                  <motion.a
                     key={tool.key}
+                    href={APP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     variants={cardVariants}
                     whileHover={{ y: -2, transition: { duration: 0.2 } }}
-                    className="group relative bg-gray-50/70 hover:bg-white rounded-xl border border-transparent hover:border-gray-200 p-4 hover:shadow-sm transition-all duration-200 cursor-default"
+                    className="group relative bg-gray-50/70 hover:bg-white rounded-xl border border-transparent hover:border-gray-200 p-4 hover:shadow-sm transition-all duration-200 cursor-pointer block"
                   >
                     <div className="flex flex-col gap-3">
                       <div className="flex items-center justify-between">
@@ -459,13 +461,15 @@ export function Platform() {
                         </p>
                       </div>
                     </div>
-                  </motion.div>
+                  </motion.a>
                 )
               })}
 
               {/* App Builder — double-width card */}
               <motion.a
-                href={`${APP_URL}/app-builder`}
+                href={APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 variants={cardVariants}
                 whileHover={{ y: -2, transition: { duration: 0.2 } }}
                 className="group relative col-span-2 bg-gradient-to-br from-violet-50 via-purple-50 to-fuchsia-50 hover:from-violet-100 hover:via-purple-100 hover:to-fuchsia-100 rounded-xl border border-violet-200/60 hover:border-violet-300 p-4 hover:shadow-sm transition-all duration-200 block"
