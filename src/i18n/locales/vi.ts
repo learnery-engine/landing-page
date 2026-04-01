@@ -83,6 +83,7 @@ export const vi: Translations = {
       { value: '10.000+', label: 'Giáo viên sử dụng Learneris' },
       { value: '80%', label: 'Giảm thời gian soạn bài' },
       { value: '14+', label: 'Ứng dụng AI' },
+      { value: 'Toàn diện', label: 'Soạn bài · Dạy học · Học tập' },
     ],
   },
 

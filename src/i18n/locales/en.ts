@@ -83,6 +83,7 @@ export const en: Translations = {
       { value: '10,000+', label: 'Educators using Learneris' },
       { value: '80%', label: 'Less time on lesson prep' },
       { value: '14+', label: 'AI-powered mini apps' },
+      { value: 'All-in-one', label: 'Create · Teach · Learn' },
     ],
   },
 
