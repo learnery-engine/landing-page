@@ -16,17 +16,17 @@ const flowNodes = [
     icon: Wand2,
     iconBg: 'bg-violet-100 text-violet-600',
   },
-  // Production & Library pillar hidden — restore when ready
-  // {
-  //   key: 'production' as const,
-  //   icon: Layers,
-  //   iconBg: 'bg-blue-100 text-blue-600',
-  // },
   {
-    key: 'lms' as const,
-    icon: LayoutDashboard,
-    iconBg: 'bg-green-100 text-green-600',
+    key: 'production' as const,
+    icon: Layers,
+    iconBg: 'bg-blue-100 text-blue-600',
   },
+  // AI-Powered Classroom pillar hidden — restore when ready
+  // {
+  //   key: 'lms' as const,
+  //   icon: LayoutDashboard,
+  //   iconBg: 'bg-green-100 text-green-600',
+  // },
   {
     key: 'aiLiteracy' as const,
     icon: GraduationCap,
@@ -317,7 +317,7 @@ const pillarColors = {
 
 export function Platform() {
   const { t } = useTranslation()
-  const [activeTab, setActiveTab] = useState<'aiSuite' | 'production' | 'lms' | 'aiLiteracy'>('aiSuite')
+  const [activeTab, setActiveTab] = useState<'aiSuite' | 'production' | 'lms' | 'aiLiteracy'>('aiSuite') // lms hidden but type kept for easy restore
   const activeColor = pillarColors[activeTab]
 
   return (
