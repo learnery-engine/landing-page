@@ -11,13 +11,13 @@ export const vi: Translations = {
     badge: 'Được 10.000+ giáo viên tin dùng',
     heading: {
       before: 'Soạn bài, giảng dạy, học tập — ',
-      highlight: 'cùng sức mạnh AI',
+      highlight: 'cùng AI',
       after: '',
     },
     subheading:
       'Dạy theo cách học sinh xứng đáng được học. AI tạo nội dung trong tích tắc, tổ chức lớp học gọn gàng, và giúp bạn tập trung vào điều quan trọng nhất — truyền cảm hứng.',
     ctaPrimary: 'Bắt đầu miễn phí',
-    ctaSecondary: 'Khám phá công cụ',
+    ctaSecondary: 'Khám phá nền tảng',
     stats: {
       prepTime: { value: '80%', label: 'giảm thời gian soạn bài' },
       tools: { value: '14+', label: 'ứng dụng AI' },

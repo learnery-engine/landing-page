@@ -11,13 +11,13 @@ export const en: Translations = {
     badge: 'Trusted by 10,000+ educators',
     heading: {
       before: 'Create, teach, and learn — ',
-      highlight: 'powered by AI',
+      highlight: 'with AI',
       after: '',
     },
     subheading:
       'Teach the way your students deserve. AI creates your content in seconds, organizes your classroom, and frees you to do what you do best — inspire.',
     ctaPrimary: 'Get Started Free',
-    ctaSecondary: 'Explore Our Tools',
+    ctaSecondary: 'Explore the Platform',
     stats: {
       prepTime: { value: '80%', label: 'less prep time' },
       tools: { value: '14+', label: 'AI mini apps' },
