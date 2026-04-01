@@ -10,14 +10,14 @@ export const vi: Translations = {
   hero: {
     badge: 'Được 10.000+ giáo viên tin dùng',
     heading: {
-      before: 'Soạn bài, giảng dạy, theo dõi, học tập — ',
+      before: 'Soạn bài, giảng dạy, học tập — ',
       highlight: 'cùng sức mạnh AI',
       after: '',
     },
     subheading:
       'Dạy theo cách học sinh xứng đáng được học. AI tạo nội dung trong tích tắc, tổ chức lớp học gọn gàng, và giúp bạn tập trung vào điều quan trọng nhất — truyền cảm hứng.',
     ctaPrimary: 'Bắt đầu miễn phí',
-    ctaSecondary: 'Khám phá nền tảng',
+    ctaSecondary: 'Khám phá công cụ',
     stats: {
       prepTime: { value: '80%', label: 'giảm thời gian soạn bài' },
       tools: { value: '14+', label: 'ứng dụng AI' },
@@ -83,7 +83,6 @@ export const vi: Translations = {
       { value: '10.000+', label: 'Giáo viên sử dụng Learneris' },
       { value: '80%', label: 'Giảm thời gian soạn bài' },
       { value: '14+', label: 'Ứng dụng AI' },
-      { value: 'Toàn diện', label: 'Soạn · Dạy · Theo dõi' },
     ],
   },
 
@@ -235,8 +234,8 @@ export const vi: Translations = {
 
   v2: {
     platform: {
-      heading: { before: 'Một nền tảng, ', highlight: 'bốn trụ cột' },
-      subheading: 'Từ tạo nội dung AI đến giảng dạy trên lớp — hệ sinh thái tích hợp cùng vận hành để đổi mới cách trường học giảng dạy.',
+      heading: { before: 'Ba cách chúng tôi hỗ trợ ', highlight: 'giáo viên' },
+      subheading: 'Từ tạo nội dung AI đến giảng dạy trên lớp — tất cả kết nối liền mạch để đổi mới cách trường học giảng dạy.',
       pillars: {
         aiSuite: {
           title: 'Công cụ AI & Tạo ứng dụng',

@@ -10,14 +10,14 @@ export const en: Translations = {
   hero: {
     badge: 'Trusted by 10,000+ educators',
     heading: {
-      before: 'Create, teach, track, and learn — ',
+      before: 'Create, teach, and learn — ',
       highlight: 'powered by AI',
       after: '',
     },
     subheading:
       'Teach the way your students deserve. AI creates your content in seconds, organizes your classroom, and frees you to do what you do best — inspire.',
     ctaPrimary: 'Get Started Free',
-    ctaSecondary: 'Explore the Platform',
+    ctaSecondary: 'Explore Our Tools',
     stats: {
       prepTime: { value: '80%', label: 'less prep time' },
       tools: { value: '14+', label: 'AI mini apps' },
@@ -83,7 +83,6 @@ export const en: Translations = {
       { value: '10,000+', label: 'Educators using Learneris' },
       { value: '80%', label: 'Less time on lesson prep' },
       { value: '14+', label: 'AI-powered mini apps' },
-      { value: 'All-in-one', label: 'Create · Teach · Track' },
     ],
   },
 
@@ -235,8 +234,8 @@ export const en: Translations = {
 
   v2: {
     platform: {
-      heading: { before: 'One platform, ', highlight: 'four pillars' },
-      subheading: 'From AI content creation to classroom delivery — an integrated ecosystem that works together to transform how schools teach.',
+      heading: { before: 'Three ways we help ', highlight: 'educators' },
+      subheading: 'From AI content creation to classroom delivery — everything works together to transform how schools teach.',
       pillars: {
         aiSuite: {
           title: 'AI Tools & App Builder',

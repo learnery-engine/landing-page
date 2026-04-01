@@ -9,18 +9,19 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from '../../i18n'
 const APP_URL = 'https://ai.learneris.com'
 
-/* ── Flow strip: 4 pillars as medium cards ── */
+/* ── Flow strip: 3 pillars as medium cards ── */
 const flowNodes = [
   {
     key: 'aiSuite' as const,
     icon: Wand2,
     iconBg: 'bg-violet-100 text-violet-600',
   },
-  {
-    key: 'production' as const,
-    icon: Layers,
-    iconBg: 'bg-blue-100 text-blue-600',
-  },
+  // Production & Library pillar hidden — restore when ready
+  // {
+  //   key: 'production' as const,
+  //   icon: Layers,
+  //   iconBg: 'bg-blue-100 text-blue-600',
+  // },
   {
     key: 'lms' as const,
     icon: LayoutDashboard,
