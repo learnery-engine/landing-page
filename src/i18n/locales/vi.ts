@@ -15,7 +15,7 @@ export const vi: Translations = {
       after: '',
     },
     subheading:
-      '14+ công cụ AI tạo nội dung tức thì, quy trình sản xuất quy mô lớn, thư viện nội dung dùng chung, và hệ thống LMS — tất cả trong một nền tảng dành cho giáo viên.',
+      'Dạy theo cách học sinh xứng đáng được học. AI tạo nội dung trong tích tắc, tổ chức lớp học gọn gàng, và giúp bạn tập trung vào điều quan trọng nhất — truyền cảm hứng.',
     ctaPrimary: 'Bắt đầu miễn phí',
     ctaSecondary: 'Khám phá nền tảng',
     stats: {
@@ -26,7 +26,7 @@ export const vi: Translations = {
     mockup: {
       quickQuiz: 'Tạo đề nhanh',
       lessonPlan: 'Giáo án',
-      lms: 'LMS & Lớp học',
+      lms: 'Lớp học & Khóa học',
       interactiveContent: 'Nội dung tương tác',
       aiPowered: 'Hỗ trợ AI',
       generating: 'Đang tạo nội dung...',
@@ -47,7 +47,7 @@ export const vi: Translations = {
       '14+ công cụ tạo nội dung AI, hệ thống quản lý học tập, và thư viện nội dung cộng tác — tất cả dành cho giáo viên K-12.',
     tags: { new: 'Mới', popular: 'Phổ biến', preview: 'Thử nghiệm', org: 'Tổ chức' },
     items: {
-      lms: { name: 'LMS & Lớp học', desc: 'Tạo khóa học, quản lý lớp, giao bài tập, chấm điểm và theo dõi tiến độ học sinh' },
+      lms: { name: 'Lớp học & Khóa học', desc: 'Tạo khóa học, quản lý lớp, giao bài tập, chấm điểm và theo dõi tiến độ học sinh' },
       contentLibrary: { name: 'Thư viện nội dung', desc: 'Tổ chức, cộng tác và sản xuất hàng loạt nội dung giáo dục cùng đội ngũ' },
       k12Curriculum: { name: 'CT Giáo dục AI K-12', desc: 'Chương trình "Học Cùng AI" được chứng nhận cho giáo dục AI từ lớp 1 đến lớp 12' },
       quickQuiz: { name: 'Tạo đề nhanh', desc: 'Tạo bài kiểm tra trắc nghiệm cho mọi môn K-12 trong vài giây' },
@@ -73,7 +73,7 @@ export const vi: Translations = {
     stepLabel: 'Bước',
     steps: [
       { title: 'Tạo nội dung với AI', description: 'Sử dụng 14+ công cụ AI để tạo bài kiểm tra, bài giảng, slide, trò chơi tương tác và nhiều hơn — tất cả phù hợp chương trình.' },
-      { title: 'Tổ chức & Giảng dạy', description: 'Xây dựng khóa học trên LMS, quản lý lớp, giao nội dung cho học sinh và cộng tác cùng đồng nghiệp qua thư viện nội dung.' },
+      { title: 'Tổ chức & Giảng dạy', description: 'Xây dựng khóa học, quản lý lớp, giao nội dung cho học sinh và cộng tác cùng đồng nghiệp qua thư viện nội dung.' },
       { title: 'Theo dõi & Cải thiện', description: 'Theo dõi tiến độ học sinh, chấm bài, trao huy hiệu và sử dụng dữ liệu để liên tục cải thiện kết quả học tập.' },
     ],
   },
@@ -92,7 +92,7 @@ export const vi: Translations = {
     subheading: 'Tham gia cùng hàng nghìn giáo viên đang đổi mới lớp học với Learneris.',
     items: [
       { name: 'Cô Thanh Nguyễn', role: 'Giáo viên tiếng Anh THPT', location: 'TP. Hồ Chí Minh', quote: 'Learneris giúp tôi giảm thời gian tạo đề từ 2 tiếng xuống dưới 5 phút. AI hiểu chính xác trình độ học sinh cần.' },
-      { name: 'Thầy Đức Trần', role: 'Trưởng bộ môn Toán', location: 'Hà Nội', quote: 'LMS giúp tôi quản lý 6 lớp thật dễ dàng. Tôi tạo khóa học, giao bài tập và theo dõi điểm số — tất cả từ một bảng điều khiển.' },
+      { name: 'Thầy Đức Trần', role: 'Trưởng bộ môn Toán', location: 'Hà Nội', quote: 'Learneris giúp tôi quản lý 6 lớp thật dễ dàng. Tôi tạo khóa học, giao bài tập và theo dõi điểm số — tất cả từ một bảng điều khiển.' },
       { name: 'Cô Linh Phạm', role: 'Giáo viên Tiểu học', location: 'Đà Nẵng', quote: 'Học sinh rất thích nội dung tương tác, còn tôi thì yêu Thư viện nội dung. Tổ bộ môn cộng tác và chia sẻ tài nguyên hiệu quả hơn bao giờ hết.' },
       { name: 'Thầy Minh Lê', role: 'Phụ trách STEM', location: 'Cần Thơ', quote: 'Chương trình Giáo dục AI K-12 giúp trường chúng tôi có lộ trình rõ ràng để dạy AI. Học sinh hiểu AI qua các hoạt động thực hành thú vị.' },
     ],
@@ -154,7 +154,7 @@ export const vi: Translations = {
     columns: {
       product: {
         title: 'Sản phẩm',
-        items: { aiTools: 'Công cụ AI', lms: 'LMS & Lớp học', contentLibrary: 'Thư viện nội dung', curriculum: 'CT Giáo dục AI', allFeatures: 'Tất cả tính năng' },
+        items: { aiTools: 'Công cụ AI', lms: 'Lớp học & Khóa học', contentLibrary: 'Thư viện nội dung', curriculum: 'CT Giáo dục AI', allFeatures: 'Tất cả tính năng' },
       },
       company: {
         title: 'Công ty',
@@ -249,7 +249,7 @@ export const vi: Translations = {
           description: 'Sản xuất hàng loạt cả học kỳ, tổ chức vào thư viện và chia sẻ trong toàn tổ chức.',
         },
         lms: {
-          title: 'LMS Tích hợp AI',
+          title: 'Lớp học thông minh',
           badge: 'Giảng dạy & theo dõi',
           description: 'Xây dựng khóa học trong vài phút với AI, quản lý lớp, chấm điểm tự động và theo dõi tiến độ.',
         },
@@ -326,7 +326,7 @@ export const vi: Translations = {
           icon: 'school',
           title: 'Xây dựng & Giảng dạy',
           audience: 'Cho trường học & người tạo khóa học',
-          description: 'Xây dựng khóa học đầy đủ trong LMS, thêm nội dung AI vào từng bài và quản lý lớp học toàn diện.',
+          description: 'Xây dựng khóa học đầy đủ, thêm nội dung AI vào từng bài và quản lý lớp học toàn diện.',
           steps: [
             'Xây dựng cấu trúc khóa học với chương và bài học',
             'Thêm nội dung AI tự động vào mỗi bài học',
@@ -341,7 +341,7 @@ export const vi: Translations = {
           steps: [
             'Tải lên khung chương trình để tạo nội dung hàng loạt',
             'Quy trình nhóm: phân công, duyệt và phê duyệt',
-            'Xuất bản vào Thư viện hoặc triển khai trực tiếp qua LMS',
+            'Xuất bản vào Thư viện hoặc triển khai trực tiếp đến lớp học',
           ],
         },
       ],

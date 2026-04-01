@@ -15,7 +15,7 @@ export const en: Translations = {
       after: '',
     },
     subheading:
-      '14+ AI tools for instant content, a production pipeline for scale, a shared content library, and a full LMS — everything educators need in one platform.',
+      'Teach the way your students deserve. AI creates your content in seconds, organizes your classroom, and frees you to do what you do best — inspire.',
     ctaPrimary: 'Get Started Free',
     ctaSecondary: 'Explore the Platform',
     stats: {
@@ -26,7 +26,7 @@ export const en: Translations = {
     mockup: {
       quickQuiz: 'Quick Quiz',
       lessonPlan: 'Lesson Plan',
-      lms: 'LMS & Classroom',
+      lms: 'Classroom & Courses',
       interactiveContent: 'Interactive Content',
       aiPowered: 'AI-powered',
       generating: 'Generating your content...',
@@ -44,10 +44,10 @@ export const en: Translations = {
   features: {
     heading: { before: 'The complete platform to ', highlight: 'transform education' },
     subheading:
-      '14+ AI content tools, a full learning management system, and a collaborative content library — all designed for K-12 educators.',
+      '14+ AI content tools, AI-powered classroom and course management, and a collaborative content library — all designed for K-12 educators.',
     tags: { new: 'New', popular: 'Popular', preview: 'Preview', org: 'Org' },
     items: {
-      lms: { name: 'LMS & Classroom', desc: 'Create courses, manage classes, assign homework, grade work, and track student progress' },
+      lms: { name: 'Classroom & Courses', desc: 'Create courses, manage classes, assign homework, grade work, and track student progress' },
       contentLibrary: { name: 'Content Library', desc: 'Organize, collaborate, and batch-produce educational content with your team' },
       k12Curriculum: { name: 'K-12 AI Curriculum', desc: 'Certified "Học Cùng AI" framework for AI literacy education across all grade levels' },
       quickQuiz: { name: 'Quick Quiz', desc: 'Generate MCQ quizzes for any K-12 subject in seconds' },
@@ -73,7 +73,7 @@ export const en: Translations = {
     stepLabel: 'Step',
     steps: [
       { title: 'Create with AI', description: 'Use 14+ AI tools to generate quizzes, lessons, slides, interactive games, and more — all aligned to your curriculum.' },
-      { title: 'Organize & Deliver', description: 'Build courses on the LMS, manage your classes, assign content to students, and collaborate with your team via the content library.' },
+      { title: 'Organize & Deliver', description: 'Build courses, manage your classes, assign content to students, and collaborate with your team via the content library.' },
       { title: 'Track & Improve', description: 'Monitor student progress, grade assignments, award badges, and use insights to continuously improve learning outcomes.' },
     ],
   },
@@ -92,7 +92,7 @@ export const en: Translations = {
     subheading: 'Join thousands of teachers who are transforming their classrooms with Learneris.',
     items: [
       { name: 'Ms. Thanh Nguyen', role: 'High School English Teacher', location: 'Ho Chi Minh City', quote: 'Learneris cut my quiz creation time from 2 hours to under 5 minutes. The AI understands exactly what level my students need.' },
-      { name: 'Mr. Duc Tran', role: 'Math Department Head', location: 'Hanoi', quote: 'The LMS makes managing my 6 classes effortless. I create courses, assign homework, and track grades — all from one dashboard.' },
+      { name: 'Mr. Duc Tran', role: 'Math Department Head', location: 'Hanoi', quote: 'Managing my 6 classes is now effortless. I create courses, assign homework, and track grades — all from one dashboard.' },
       { name: 'Ms. Linh Pham', role: 'Primary School Teacher', location: 'Da Nang', quote: 'My students love the interactive content, and I love the Content Library. Our department collaborates and shares resources like never before.' },
       { name: 'Mr. Minh Le', role: 'STEM Coordinator', location: 'Can Tho', quote: 'The K-12 AI Curriculum gave our school a structured path to teach AI literacy. Students finally understand AI through hands-on activities.' },
     ],
@@ -154,7 +154,7 @@ export const en: Translations = {
     columns: {
       product: {
         title: 'Product',
-        items: { aiTools: 'AI Tools', lms: 'LMS & Classroom', contentLibrary: 'Content Library', curriculum: 'AI Curriculum', allFeatures: 'All Features' },
+        items: { aiTools: 'AI Tools', lms: 'Classroom & Courses', contentLibrary: 'Content Library', curriculum: 'AI Curriculum', allFeatures: 'All Features' },
       },
       company: {
         title: 'Company',
@@ -249,7 +249,7 @@ export const en: Translations = {
           description: 'Batch-create entire semesters, organize into libraries, and share across your organization.',
         },
         lms: {
-          title: 'AI-Powered LMS',
+          title: 'AI-Powered Classroom',
           badge: 'Deliver & track',
           description: 'Build courses in minutes with AI, manage classes, auto-grade, and track student progress.',
         },
@@ -326,7 +326,7 @@ export const en: Translations = {
           icon: 'school',
           title: 'Build & Teach',
           audience: 'For schools & course creators',
-          description: 'Build full courses in the LMS, fill them with AI-generated content, and manage your classes end-to-end.',
+          description: 'Build full courses, fill them with AI-generated content, and manage your classes end-to-end.',
           steps: [
             'Build course structure with chapters and lessons',
             'Add AI-generated content to every lesson',
@@ -341,7 +341,7 @@ export const en: Translations = {
           steps: [
             'Upload curriculum maps for bulk content generation',
             'Team workflows: assign, review, and approve',
-            'Publish to Library or deploy directly via LMS',
+            'Publish to Library or deploy directly to your classroom',
           ],
         },
       ],
