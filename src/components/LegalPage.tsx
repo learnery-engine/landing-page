@@ -1,5 +1,6 @@
 import { ArrowLeft } from 'lucide-react'
 import { useTranslation } from '../i18n'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
 
@@ -17,10 +18,13 @@ export function LegalPage({ title, effectiveDate, children }: LegalPageProps) {
       {/* Header */}
       <header className="bg-surface-dark text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-          <a href={`${BASE}/`} className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-6">
-            <ArrowLeft className="w-4 h-4" />
-            {t.legal.backToHome}
-          </a>
+          <div className="flex items-center justify-between mb-6">
+            <a href={`${BASE}/`} className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+              <ArrowLeft className="w-4 h-4" />
+              {t.legal.backToHome}
+            </a>
+            <LanguageSwitcher className="text-gray-400 hover:text-white" />
+          </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold mb-2">{title}</h1>
           <p className="text-gray-400 text-sm">{effectiveDate}</p>
         </div>
