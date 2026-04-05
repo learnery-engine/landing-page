@@ -5,11 +5,12 @@ import { auth } from '../../lib/api'
 interface Props {
   label: string
   disabled?: boolean
+  next?: string
   onError: (msg: string) => void
   onLoading: (loading: boolean) => void
 }
 
-function GoogleButton({ label, disabled, onError, onLoading }: Props) {
+function GoogleButton({ label, disabled, next, onError, onLoading }: Props) {
   const googleLogin = useGoogleLogin({
     scope: 'openid email profile',
     onSuccess: async (tokenResponse) => {
@@ -20,7 +21,9 @@ function GoogleButton({ label, disabled, onError, onLoading }: Props) {
         }).then(r => r.json())
 
         const res = await auth.googleAuth(userInfo.email, tokenResponse.access_token, userInfo.name || '')
-        window.location.href = res.response.login_url
+        const loginUrl = new URL(res.response.login_url)
+        if (next) loginUrl.searchParams.set('next', next)
+        window.location.href = loginUrl.toString()
       } catch {
         onError('Something went wrong. Please try again.')
         onLoading(false)

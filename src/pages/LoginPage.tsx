@@ -14,7 +14,9 @@ export function LoginPage() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [apiError, setApiError] = useState('')
   const [loading, setLoading] = useState(false)
-  const resetSuccess = new URLSearchParams(window.location.search).get('reset') === 'success'
+  const params = new URLSearchParams(window.location.search)
+  const resetSuccess = params.get('reset') === 'success'
+  const next = params.get('next') ?? undefined
 
   function validate() {
     const errs: Record<string, string> = {}
@@ -34,7 +36,9 @@ export function LoginPage() {
     setLoading(true)
     try {
       const res = await auth.login(email, password)
-      window.location.href = res.response.login_url
+      const loginUrl = new URL(res.response.login_url)
+      if (next) loginUrl.searchParams.set('next', next)
+      window.location.href = loginUrl.toString()
     } catch {
       setApiError(t.auth.errors.invalidCredentials)
       setLoading(false)
@@ -110,6 +114,7 @@ export function LoginPage() {
       <GoogleSignIn
         label={t.auth.login.googleButton}
         disabled={loading}
+        next={next}
         onError={setApiError}
         onLoading={setLoading}
       />
