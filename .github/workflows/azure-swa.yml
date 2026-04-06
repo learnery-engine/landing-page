@@ -26,6 +26,7 @@ jobs:
         env:
           VITE_BUBBLE_API_URL: ${{ secrets.VITE_BUBBLE_API_URL }}
           VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+          VITE_TRACKING_URL: https://admin.learneris.com
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
