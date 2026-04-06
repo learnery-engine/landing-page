@@ -1,5 +1,6 @@
 export const BUBBLE_API_URL = import.meta.env.VITE_BUBBLE_API_URL as string
 export const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID as string
+export const TRACKING_URL = import.meta.env.VITE_TRACKING_URL as string
 
 export const LOGIN_PATH = '/login'
 export const SIGNUP_PATH = '/signup'

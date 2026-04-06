@@ -1,6 +1,6 @@
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google'
 import { GOOGLE_CLIENT_ID } from '../../lib/constants'
-import { auth } from '../../lib/api'
+import { auth, trackLogin } from '../../lib/api'
 
 interface Props {
   label: string
@@ -21,6 +21,7 @@ function GoogleButton({ label, disabled, next, onError, onLoading }: Props) {
         }).then(r => r.json())
 
         const res = await auth.googleAuth(userInfo.email, tokenResponse.access_token, userInfo.name || '')
+        trackLogin(userInfo.email, 'google')
         const loginUrl = new URL(res.response.login_url)
         if (next) loginUrl.searchParams.set('next', next)
         window.location.href = loginUrl.toString()

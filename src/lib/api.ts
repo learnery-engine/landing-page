@@ -1,4 +1,4 @@
-import { BUBBLE_API_URL } from './constants'
+import { BUBBLE_API_URL, TRACKING_URL } from './constants'
 
 interface AuthResponse {
   status: string
@@ -35,6 +35,24 @@ async function post<T>(endpoint: string, body: Record<string, string>): Promise<
     throw new Error(err.message || err.body?.message || `Request failed (${res.status})`)
   }
   return res.json()
+}
+
+export function trackLogin(email: string, method: 'email' | 'google') {
+  if (!TRACKING_URL) return
+  const body = JSON.stringify({ email, method, userAgent: navigator.userAgent })
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(
+      `${TRACKING_URL}/admin/api/track/login`,
+      new Blob([body], { type: 'application/json' }),
+    )
+  } else {
+    fetch(`${TRACKING_URL}/admin/api/track/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body,
+      keepalive: true,
+    }).catch(() => {})
+  }
 }
 
 export const auth = {

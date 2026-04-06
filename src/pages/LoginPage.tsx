@@ -4,7 +4,7 @@ import { AuthLayout } from '../components/auth/AuthLayout'
 import { FormInput } from '../components/auth/FormInput'
 import { GoogleSignIn } from '../components/auth/GoogleSignIn'
 import { useTranslation } from '../i18n'
-import { auth } from '../lib/api'
+import { auth, trackLogin } from '../lib/api'
 import { navigate } from '../lib/navigate'
 
 export function LoginPage() {
@@ -36,6 +36,7 @@ export function LoginPage() {
     setLoading(true)
     try {
       const res = await auth.login(email, password)
+      trackLogin(email, 'email')
       const loginUrl = new URL(res.response.login_url)
       if (next) loginUrl.searchParams.set('next', next)
       window.location.href = loginUrl.toString()
