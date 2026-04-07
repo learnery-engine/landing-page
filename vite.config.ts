@@ -6,4 +6,14 @@ export default defineConfig({
   base: '/',
   plugins: [react(), tailwindcss()],
   server: { port: 5180 },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          sentry: ['@sentry/react'],
+          motion: ['framer-motion'],
+        },
+      },
+    },
+  },
 })
