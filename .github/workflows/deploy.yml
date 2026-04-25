@@ -27,7 +27,7 @@ jobs:
       - run: npm run build
         env:
           VITE_BUBBLE_API_URL: https://ai.learneris.com/api/1.1/wf
-          VITE_GOOGLE_CLIENT_ID: 921313343830-m8cp0tjgcp83cjvi7qtoc8vo58vaduff.apps.googleusercontent.com
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
       - run: cp dist/index.html dist/404.html
       - uses: actions/upload-pages-artifact@v3
         with:
