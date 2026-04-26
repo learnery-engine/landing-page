@@ -18,9 +18,12 @@ function usePathname() {
     return () => window.removeEventListener('popstate', onPopState)
   }, [])
 
-  // Strip the base path so routes stay simple: '/terms', '/privacy', '/'
+  // Strip the base path so routes stay simple: '/terms', '/privacy', '/'.
+  // Also strip a trailing slash so prerendered routes served as folders
+  // (e.g. /privacy/index.html → URL /privacy/) match the same way as /privacy.
   const stripped = pathname.startsWith(BASE) ? pathname.slice(BASE.length) || '/' : pathname
-  return stripped
+  const normalised = stripped.length > 1 ? stripped.replace(/\/$/, '') : stripped
+  return normalised
 }
 
 export default function App() {
