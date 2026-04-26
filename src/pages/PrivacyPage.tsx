@@ -5,138 +5,368 @@ function PrivacyContentEn() {
   return (
     <>
       <p>
-        Learneris Pte. Ltd. ("Learneris") is committed to protecting the privacy and Personal
-        Information of its users. This Privacy Policy describes how we collect, use, store, and
-        protect your personal data when you use our Platform.
+        Learneris Pte. Ltd. ("Learneris", "we", "us") is committed to protecting your
+        privacy. This Privacy Policy describes how we collect, use, store, share, and
+        protect your personal data when you use any product in the Learneris family of
+        services.
       </p>
 
       <hr />
 
-      <h2>1. Introduction</h2>
+      <h2>1. Scope &amp; Application</h2>
       <p>
-        This Privacy Policy applies to all users of the Learneris Platform, including educational
-        institutions, teachers, lecturers, content creators, parents, and students. We comply with
-        applicable data protection regulations, including the Children's Online Privacy Protection
-        Act (COPPA) and the Family Educational Rights and Privacy Act (FERPA) where those laws
-        apply.
+        This Privacy Policy applies to all products and services made available by
+        Learneris under the Learneris brand, including the public website at{' '}
+        <a href="https://www.learneris.com">learneris.com</a>, the AI generation studio
+        at <a href="https://studio.learneris.com">studio.learneris.com</a>, the LMS at{' '}
+        <a href="https://lms.learneris.com">lms.learneris.com</a>, and any other tools
+        or services subsequently released by Learneris (collectively, the "Services").
+        It applies to all users — educational institutions, teachers, lecturers, content
+        creators, parents, and students.
+      </p>
+      <p>
+        Where a school or institution uses the Services to manage its own students,
+        the institution is the "controller" of that data and Learneris acts as a
+        "processor" on the institution's instructions.
       </p>
 
-      <h2>2. Data Collection</h2>
+      <h2>2. Information We Collect</h2>
       <p>We collect the following categories of information:</p>
       <ul>
         <li>
-          <strong>Account information:</strong> Name, email address, and role (teacher, student,
-          parent, etc.).
+          <strong>Account information:</strong> name, email address, role (teacher,
+          student, parent, administrator), institution affiliation, and password (stored
+          as a one-way hash).
         </li>
         <li>
-          <strong>Usage data:</strong> Information about how you interact with the Platform,
-          including content created, time spent, and frequency of access.
+          <strong>Content you create or upload:</strong> lesson plans, study guides,
+          quizzes, slides, images, prompts, and any other content you input or generate
+          through the Services.
         </li>
         <li>
-          <strong>Technical information:</strong> IP address, browser type, operating system, and
-          device information.
+          <strong>Usage data:</strong> features used, content created, time spent, and
+          frequency of access.
         </li>
         <li>
-          <strong>Student data:</strong> When provided by an educational institution or parent,
-          this may include name, grade level, and learning data.
+          <strong>Technical information:</strong> IP address, browser type, operating
+          system, device information, and a session cookie used to keep you signed in.
+        </li>
+        <li>
+          <strong>Student data:</strong> when a school or parent enrols a student, we
+          may receive name, year/grade level, class assignment, and learning progress.
+          We treat student data as sensitive and protect it under COPPA, FERPA, and
+          applicable national child-data laws where they apply.
+        </li>
+        <li>
+          <strong>LMS launch data:</strong> when you launch a Learneris activity from a
+          third-party Learning Management System (such as Moodle, Canvas, or Google
+          Classroom) using the LTI 1.3 standard, we receive your name, email address,
+          role, and the course/assignment context from your LMS. This data is used only
+          to identify you for the launched session and to return scores when supported.
+        </li>
+        <li>
+          <strong>Payment information:</strong> if you purchase paid Services, our
+          payment processor collects payment-method details. Learneris itself does not
+          store full card numbers.
         </li>
       </ul>
 
-      <h2>3. Purpose of Data Use</h2>
+      <h2>3. How We Use Information</h2>
       <p>We use the information we collect to:</p>
       <ul>
-        <li>Provide and improve the Platform and its services.</li>
-        <li>Personalize the user experience.</li>
-        <li>Provide technical support and customer service.</li>
-        <li>Comply with applicable legal requirements.</li>
-        <li>Conduct analysis and research to improve educational quality.</li>
+        <li>Provide, operate, and maintain the Services.</li>
+        <li>Generate AI content on your request (see § 5).</li>
+        <li>Personalise your experience and recommend relevant features.</li>
+        <li>Provide customer support and respond to your enquiries.</li>
+        <li>Detect, prevent, and address fraud, abuse, security incidents, and policy violations.</li>
+        <li>Comply with legal obligations, court orders, and regulatory requirements.</li>
+        <li>
+          Improve the Services through aggregated, de-identified analytics. We do not
+          use your inputs or generated content to train the underlying AI models we
+          rely on, and we contract our AI providers to the same restriction.
+        </li>
       </ul>
 
-      <h2>4. Storage and Security</h2>
-
-      <h3>4.1 Data Storage</h3>
+      <h2>4. Legal Bases for Processing (EU/UK Users)</h2>
       <p>
-        Data is stored on secure servers with protections that meet industry-standard requirements.
+        Where the GDPR or UK GDPR applies, we process your personal data on one or more
+        of the following legal bases: (a) performance of a contract with you; (b) your
+        consent; (c) our legitimate interests in operating and improving the Services;
+        and (d) compliance with legal obligations.
       </p>
 
-      <h3>4.2 Encryption</h3>
+      <h2>5. AI-Generated Content &amp; AI Service Providers</h2>
       <p>
-        All data is encrypted in transit using SSL/TLS and encrypted at rest to ensure the
-        security of your information.
-      </p>
-
-      <h3>4.3 Other Security Measures</h3>
-      <ul>
-        <li>Role-based access controls.</li>
-        <li>Intrusion detection and ongoing monitoring.</li>
-        <li>Periodic security assessments.</li>
-        <li>Staff training on data security practices.</li>
-      </ul>
-
-      <h2>5. Data Retention</h2>
-      <p>
-        We retain Personal Information for as long as necessary to provide the service or as
-        required by law. When an account is deleted or becomes inactive, we will delete or
-        anonymize Personal Information within 90 days, unless a longer retention period is
-        required by applicable law.
-      </p>
-
-      <h2>6. Data Sharing and Disclosure</h2>
-      <p>
-        We do not sell your Personal Information. We share data only in the following
-        circumstances:
+        Some Services use third-party large-language and image-generation models to
+        produce educational content from prompts you provide. When you use these
+        features:
       </p>
       <ul>
-        <li>With your consent.</li>
         <li>
-          With third-party service providers that support the operation of the Platform, under
-          strict data protection agreements.
+          Your prompts and any related context are transmitted to the AI provider that
+          processes that request. Providers we use are listed in § 7.
         </li>
-        <li>When required by law or legal process.</li>
         <li>
-          To protect the rights, property, or safety of Learneris, its users, or the public.
+          We require, by contract, that AI providers do <em>not</em> use your inputs or
+          generated outputs to train their general-purpose models.
+        </li>
+        <li>
+          AI-generated content is provided for educational use. Outputs may contain
+          inaccuracies and should be reviewed by a qualified educator before being used
+          with students.
+        </li>
+        <li>
+          Subject to the rest of our agreements, you retain ownership of the content
+          you generate; see the Terms &amp; Conditions for details.
         </li>
       </ul>
 
-      <h2>7. Data Breach</h2>
-      <p>In the event of a data breach affecting Personal Information, Learneris will:</p>
+      <h2>6. Cookies &amp; Local Storage</h2>
+      <p>
+        We use a small number of cookies and similar technologies that are strictly
+        necessary to operate the Services, including a session cookie that keeps you
+        signed in across pages. We use Google Analytics 4 to understand aggregated
+        usage patterns; you can opt out via your browser's Do-Not-Track signal or
+        through the Google Analytics opt-out add-on.
+      </p>
+
+      <h2>7. Subprocessors</h2>
+      <p>
+        We rely on the following service providers to operate the Services. Each is
+        bound by a data-processing agreement with Learneris and processes data only on
+        our instructions.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Purpose</th>
+            <th>Provider</th>
+            <th>Region</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cloud hosting &amp; database</td>
+            <td>Microsoft Azure</td>
+            <td>Asia Pacific</td>
+          </tr>
+          <tr>
+            <td>AI text generation</td>
+            <td>OpenAI, Anthropic, Google</td>
+            <td>Varies</td>
+          </tr>
+          <tr>
+            <td>AI image generation</td>
+            <td>Google</td>
+            <td>Varies</td>
+          </tr>
+          <tr>
+            <td>Transactional email</td>
+            <td>Resend</td>
+            <td>United States</td>
+          </tr>
+          <tr>
+            <td>Error monitoring</td>
+            <td>Sentry</td>
+            <td>United States</td>
+          </tr>
+          <tr>
+            <td>Product analytics</td>
+            <td>Google Analytics 4</td>
+            <td>United States</td>
+          </tr>
+          <tr>
+            <td>Authentication (optional)</td>
+            <td>Google OAuth</td>
+            <td>United States</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        We will give reasonable advance notice on this page of any material change to
+        our list of subprocessors.
+      </p>
+
+      <h2>8. Google API Services — Limited Use Disclosure</h2>
+      <p>
+        Some Services integrate with Google Workspace (including Google Classroom,
+        Drive, Docs, and Slides) to import or export content on your behalf. When we
+        access your Google data through these integrations, we follow the{' '}
+        <a
+          href="https://developers.google.com/terms/api-services-user-data-policy"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Google API Services User Data Policy
+        </a>
+        , including the Limited Use requirements:
+      </p>
       <ul>
-        <li>Notify affected users within 72 hours of becoming aware of the breach.</li>
-        <li>Notify relevant regulatory authorities as required by applicable law.</li>
-        <li>Implement remediation measures to prevent further unauthorized access.</li>
+        <li>
+          We use Google user data <strong>only</strong> to provide and improve the
+          Services that you have explicitly authorised.
+        </li>
+        <li>
+          We do <strong>not</strong> sell Google user data, transfer it for advertising,
+          or use it for credit-worthiness or lending purposes.
+        </li>
+        <li>
+          We do <strong>not</strong> allow humans to read your Google user data, except
+          (a) with your explicit consent, (b) where required for security or to comply
+          with applicable law, or (c) where the data has been aggregated and is used
+          for internal operations in accordance with the User Data Policy.
+        </li>
       </ul>
 
-      <h2>8. User Rights</h2>
-      <p>You have the following rights with respect to your Personal Information:</p>
+      <h2>9. Sharing &amp; Disclosure</h2>
+      <p>We do not sell your personal information. We share data only in the circumstances below:</p>
       <ul>
         <li>
-          <strong>Right of access:</strong> Request to view the Personal Information we hold about
-          you.
+          <strong>With your consent</strong> or on your direct instruction (for example,
+          when you click "Share to Classroom" or push content to your LMS).
         </li>
         <li>
-          <strong>Right to rectification:</strong> Request correction of inaccurate information.
+          <strong>With our subprocessors</strong> as listed in § 7, under written
+          data-protection terms.
         </li>
         <li>
-          <strong>Right to erasure:</strong> Request deletion of your Personal Information.
+          <strong>With your school or institution</strong> where you use the Services
+          through an institutional account and the institution has lawful authority to
+          access the data.
         </li>
         <li>
-          <strong>Right to restriction of processing:</strong> Request that we limit how we use
-          your data.
+          <strong>To comply with law</strong> or respond to valid legal process,
+          government requests, or to protect the rights, property, or safety of
+          Learneris, our users, or the public.
         </li>
         <li>
-          <strong>Right to data portability:</strong> Request a copy of your data in a
-          machine-readable format.
+          <strong>In a corporate transaction</strong> such as a merger, acquisition, or
+          asset sale, in which case any acquirer must honour the commitments in this
+          Privacy Policy.
+        </li>
+      </ul>
+
+      <h2>10. Data Retention</h2>
+      <p>
+        We retain personal data for as long as your account is active and as needed to
+        provide the Services, comply with legal obligations, resolve disputes, and
+        enforce our agreements. Specifically:
+      </p>
+      <ul>
+        <li>
+          <strong>Content you create</strong> (lessons, study guides, etc.) is retained
+          for as long as your account is active so you can access it.
+        </li>
+        <li>
+          <strong>Account data</strong> is retained for the life of your account.
+        </li>
+        <li>
+          <strong>LMS launch records</strong> are retained for up to 24 months for
+          audit and grade-passback reconciliation.
+        </li>
+        <li>
+          <strong>Server and security logs</strong> are retained for up to 90 days.
+        </li>
+        <li>
+          When you delete your account, we will delete or anonymise associated personal
+          data within 90 days, except where a longer period is required by law.
+        </li>
+      </ul>
+
+      <h2>11. International Data Transfers</h2>
+      <p>
+        Learneris is incorporated in Singapore. Our infrastructure is hosted on
+        Microsoft Azure in the Asia Pacific region. Some of our subprocessors process
+        data in the United States or other regions, as listed in § 7. Where we transfer
+        personal data internationally, we rely on appropriate safeguards, including
+        contractual protections that meet applicable law.
+      </p>
+
+      <h2>12. Data Security</h2>
+      <p>
+        We implement and maintain administrative, technical, and physical safeguards
+        designed to protect personal data, including:
+      </p>
+      <ul>
+        <li>Encryption in transit (TLS) and at rest.</li>
+        <li>Role-based access controls and the principle of least privilege.</li>
+        <li>Continuous monitoring, logging, and intrusion detection.</li>
+        <li>Periodic security review of our infrastructure and dependencies.</li>
+        <li>Staff training on data security and privacy responsibilities.</li>
+      </ul>
+      <p>
+        No system is perfectly secure. If we become aware of a data breach affecting
+        your personal data, we will notify affected users within 72 hours and notify
+        relevant regulators where required by law.
+      </p>
+
+      <h2>13. Your Rights</h2>
+      <p>You have the following rights with respect to your personal data:</p>
+      <ul>
+        <li>
+          <strong>Access:</strong> request a copy of the personal data we hold about you.
+        </li>
+        <li>
+          <strong>Rectification:</strong> request correction of inaccurate or incomplete
+          data.
+        </li>
+        <li>
+          <strong>Erasure:</strong> request deletion of your personal data, subject to
+          legal exceptions.
+        </li>
+        <li>
+          <strong>Restriction:</strong> ask us to limit how we process your data.
+        </li>
+        <li>
+          <strong>Portability:</strong> request your data in a machine-readable format.
+        </li>
+        <li>
+          <strong>Objection:</strong> object to processing based on our legitimate
+          interests.
+        </li>
+        <li>
+          <strong>Withdraw consent</strong> where processing is based on consent.
+        </li>
+        <li>
+          <strong>Lodge a complaint</strong> with your local data-protection authority.
         </li>
       </ul>
       <p>
-        To exercise any of the rights above, please contact us at{' '}
-        <a href="mailto:support@learneris.com">support@learneris.com</a>.
+        To exercise any of these rights, email{' '}
+        <a href="mailto:support@learneris.com">support@learneris.com</a>. If you are a
+        student at an institution that uses the Services, please direct rights requests
+        to your school first; we will assist them in fulfilling your request.
       </p>
 
-      <h2>9. Contact</h2>
+      <h2>14. California Residents (CCPA / CPRA)</h2>
       <p>
-        If you have any questions or concerns about this Privacy Policy, please contact us at:
+        If you are a California resident, you have the rights described in § 13 plus
+        the right to opt out of the "sale" or "sharing" of personal information.
+        Learneris does not sell or share personal information as those terms are
+        defined under the California Consumer Privacy Act. To exercise California
+        rights, email <a href="mailto:support@learneris.com">support@learneris.com</a>.
       </p>
+
+      <h2>15. Children's Privacy</h2>
+      <p>
+        Some Services are designed to be used by children under 13 in school settings.
+        In those cases we rely on the school or institution to act as the parents'
+        representative in providing verifiable parental consent under COPPA. We do not
+        knowingly collect personal information directly from children under 13 outside
+        of an institutional context. If you believe we have inadvertently collected
+        such information, please contact us and we will delete it promptly.
+      </p>
+
+      <h2>16. Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. The most recent version is
+        always available on this page. If we make material changes, we will notify you
+        by email or through a prominent notice in the Services before the change takes
+        effect.
+      </p>
+
+      <h2>17. Contact Us</h2>
+      <p>For privacy questions or rights requests, contact us at:</p>
       <ul>
         <li>
           <strong>Learneris Pte. Ltd.</strong>
@@ -146,13 +376,7 @@ function PrivacyContentEn() {
           Email: <a href="mailto:support@learneris.com">support@learneris.com</a>
         </li>
       </ul>
-
-      <h2>10. Acceptance and Updates</h2>
-      <p>
-        By using the Learneris Platform, you accept the terms of this Privacy Policy. We may
-        update this policy from time to time and will notify you of any material changes. The most
-        recent version will always be available on our Platform.
-      </p>
+      <p>By using the Services, you accept the terms of this Privacy Policy.</p>
     </>
   )
 }
@@ -327,7 +551,7 @@ export function PrivacyPage() {
       effectiveDate={
         isVi
           ? 'Có hiệu lực từ ngày 26 tháng 7 năm 2024 · Cập nhật lần cuối ngày 17/01/2025'
-          : 'Effective July 26, 2024 · Last updated January 17, 2025'
+          : 'Effective July 26, 2024 · Last updated April 26, 2026'
       }
     >
       {isVi ? <PrivacyContentVi /> : <PrivacyContentEn />}
