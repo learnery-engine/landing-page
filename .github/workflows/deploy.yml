@@ -28,7 +28,8 @@ jobs:
         env:
           VITE_BUBBLE_API_URL: https://ai.learneris.com/api/1.1/wf
           VITE_GOOGLE_CLIENT_ID: 921313343830-m8cp0tjgcp83cjvi7qtoc8vo58vaduff.apps.googleusercontent.com
-      - run: cp dist/index.html dist/404.html
+      # 404.html + per-route prerender are produced by scripts/prerender-routes.js
+      # (invoked from npm run build) so /privacy and /terms return HTTP 200.
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
