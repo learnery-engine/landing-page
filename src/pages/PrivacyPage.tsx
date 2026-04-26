@@ -104,8 +104,9 @@ function PrivacyContentEn() {
       </p>
       <ul>
         <li>
-          Your prompts and any related context are transmitted to the AI provider that
-          processes that request. Providers we use are listed in § 7.
+          Your prompts and any related context are transmitted to a third-party AI
+          provider for processing. We may use more than one provider and may change
+          providers from time to time.
         </li>
         <li>
           We require, by contract, that AI providers do <em>not</em> use your inputs or
@@ -153,12 +154,12 @@ function PrivacyContentEn() {
           </tr>
           <tr>
             <td>AI text generation</td>
-            <td>OpenAI, Anthropic, Google</td>
+            <td>Third-party AI providers</td>
             <td>Varies</td>
           </tr>
           <tr>
             <td>AI image generation</td>
-            <td>Google</td>
+            <td>Third-party AI providers</td>
             <td>Varies</td>
           </tr>
           <tr>
@@ -495,8 +496,9 @@ function PrivacyContentVi() {
       </p>
       <ul>
         <li>
-          Lệnh nhập và bối cảnh liên quan của bạn được truyền đến nhà cung cấp
-          AI xử lý yêu cầu đó. Danh sách nhà cung cấp được liệt kê tại § 7.
+          Lệnh nhập và bối cảnh liên quan của bạn được truyền đến một nhà cung
+          cấp AI bên thứ ba để xử lý. Chúng tôi có thể sử dụng nhiều nhà cung
+          cấp AI và có thể thay đổi nhà cung cấp theo thời gian.
         </li>
         <li>
           Chúng tôi yêu cầu, bằng hợp đồng, các nhà cung cấp AI <em>không</em> sử
@@ -547,12 +549,12 @@ function PrivacyContentVi() {
           </tr>
           <tr>
             <td>Tạo văn bản bằng AI</td>
-            <td>OpenAI, Anthropic, Google</td>
+            <td>Nhà cung cấp AI bên thứ ba</td>
             <td>Đa khu vực</td>
           </tr>
           <tr>
             <td>Tạo hình ảnh bằng AI</td>
-            <td>Google</td>
+            <td>Nhà cung cấp AI bên thứ ba</td>
             <td>Đa khu vực</td>
           </tr>
           <tr>
