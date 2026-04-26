@@ -22,11 +22,10 @@ function TermsContentEn() {
           Services.
         </li>
         <li>
-          <strong>Services:</strong> all products and services made available by
-          Learneris under the Learneris brand, including the public website at
-          learneris.com, the AI generation studio at studio.learneris.com, the LMS at
-          lms.learneris.com, and any other tools or services subsequently released by
-          Learneris.
+          <strong>Services:</strong> any website, application, or service operated by
+          Learneris under the learneris.com domain or any of its subdomains (for
+          example, learneris.com, studio.learneris.com, and ai.learneris.com),
+          together with any tools or services subsequently released by Learneris.
         </li>
         <li>
           <strong>Account:</strong> the account you create to access the Services. A

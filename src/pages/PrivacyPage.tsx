@@ -15,14 +15,15 @@ function PrivacyContentEn() {
 
       <h2>1. Scope &amp; Application</h2>
       <p>
-        This Privacy Policy applies to all products and services made available by
-        Learneris under the Learneris brand, including the public website at{' '}
-        <a href="https://www.learneris.com">learneris.com</a>, the AI generation studio
-        at <a href="https://studio.learneris.com">studio.learneris.com</a>, the LMS at{' '}
-        <a href="https://lms.learneris.com">lms.learneris.com</a>, and any other tools
-        or services subsequently released by Learneris (collectively, the "Services").
-        It applies to all users — educational institutions, teachers, lecturers, content
-        creators, parents, and students.
+        This Privacy Policy applies to any website, application, or service operated
+        by Learneris under the learneris.com domain or any of its subdomains (for
+        example,{' '}
+        <a href="https://www.learneris.com">learneris.com</a>,{' '}
+        <a href="https://studio.learneris.com">studio.learneris.com</a>, and{' '}
+        <a href="https://ai.learneris.com">ai.learneris.com</a>), together with any
+        tools or services subsequently released by Learneris (collectively, the
+        "Services"). It applies to all users — educational institutions, teachers,
+        lecturers, content creators, parents, and students.
       </p>
       <p>
         Where a school or institution uses the Services to manage its own students,
