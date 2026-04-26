@@ -401,220 +401,408 @@ function TermsContentVi() {
   return (
     <>
       <p>
-        Thỏa thuận này ("Thỏa thuận") có hiệu lực vào ngày 26 tháng 7 năm 2024, bởi Learneris
-        Pte. Ltd., một công ty được thành lập và hoạt động theo pháp luật Singapore, có trụ sở
-        chính tại địa chỉ 68 CIRCULAR ROAD #02-01, SINGAPORE (049422) ("Learneris").
+        Thoả thuận này ("Thoả thuận") được giao kết giữa Learneris Pte. Ltd., một
+        công ty được thành lập và hoạt động theo pháp luật Singapore, có trụ sở
+        chính tại 68 Circular Road #02-01, Singapore 049422 ("Learneris", "chúng
+        tôi") và bạn ("bạn", "Người dùng"). Thoả thuận điều chỉnh việc bạn sử
+        dụng các Dịch vụ (như được định nghĩa dưới đây).
       </p>
 
       <hr />
 
       <h2>1. Định nghĩa</h2>
-      <p>Cho các mục đích của Thỏa thuận này:</p>
+      <p>Cho các mục đích của Thoả thuận này:</p>
       <ul>
         <li>
-          <strong>Learneris:</strong> Chỉ Learneris Pte. Ltd., đơn vị cung cấp nền tảng.
+          <strong>Learneris:</strong> Learneris Pte. Ltd., đơn vị cung cấp các
+          Dịch vụ.
         </li>
         <li>
-          <strong>Tổ chức (Institution(s)):</strong> Bao gồm các trường học, trung tâm giáo dục,
-          trung tâm dạy kèm, và các cơ sở đào tạo kỹ năng.
+          <strong>Dịch vụ:</strong> mọi trang web, ứng dụng hoặc dịch vụ do
+          Learneris vận hành trên tên miền learneris.com hoặc bất kỳ tên miền
+          phụ nào của learneris.com (ví dụ: learneris.com, studio.learneris.com
+          và ai.learneris.com), cùng với mọi công cụ hoặc dịch vụ khác do
+          Learneris phát hành sau này.
         </li>
         <li>
-          <strong>Người dùng cá nhân (Individual User(s)):</strong> Bao gồm giáo viên, giảng viên,
-          nhà sáng tạo nội dung, phụ huynh và học sinh.
+          <strong>Tài khoản:</strong> tài khoản bạn tạo để truy cập các Dịch vụ.
+          Một Tài khoản duy nhất có thể được sử dụng cho tất cả các sản phẩm của
+          Learneris.
         </li>
         <li>
-          <strong>Nền tảng (Platform):</strong> Là dịch vụ trực tuyến do Learneris cung cấp để tạo
-          và truy cập nội dung giáo dục.
+          <strong>Tổ chức:</strong> trường học, trung tâm giáo dục, trung tâm
+          dạy kèm và các cơ sở đào tạo kỹ năng sử dụng các Dịch vụ.
         </li>
         <li>
-          <strong>Thông tin cá nhân (Personal Information):</strong> Là bất kỳ thông tin nào nhận
-          dạng một cá nhân, được bảo vệ theo các luật hiện hành như COPPA và FERPA.
+          <strong>Người dùng cá nhân:</strong> giáo viên, giảng viên, nhà sáng
+          tạo nội dung, phụ huynh và học sinh.
+        </li>
+        <li>
+          <strong>Nội dung Người dùng:</strong> mọi nội dung bạn tải lên, tạo
+          ra, sản sinh hoặc gửi qua các Dịch vụ, bao gồm lệnh nhập (prompt),
+          giáo án, tài liệu học tập, bài kiểm tra, slide, hình ảnh và tài liệu
+          tải lên.
+        </li>
+        <li>
+          <strong>Kết quả AI:</strong> nội dung được mô hình AI tạo ra để phản
+          hồi các lệnh nhập của bạn.
+        </li>
+        <li>
+          <strong>Thông tin Cá nhân:</strong> mọi thông tin nhận dạng một cá
+          nhân, được bảo vệ theo pháp luật hiện hành bao gồm COPPA và FERPA khi
+          áp dụng.
         </li>
       </ul>
 
-      <h2>2. Mục đích</h2>
+      <h2>2. Điều kiện và Tài khoản</h2>
       <p>
-        Thỏa thuận này quy định các điều khoản và điều kiện theo đó Tổ chức và Người dùng cá nhân
-        sẽ sử dụng nền tảng của Learneris để tạo và truy cập nội dung giáo dục.
+        Để tự đăng ký Tài khoản, bạn phải đủ ít nhất 13 tuổi (hoặc cao hơn nếu
+        pháp luật địa phương yêu cầu). Trẻ em dưới 13 tuổi có thể sử dụng các
+        Dịch vụ thông qua Tài khoản do một Tổ chức hoặc cha mẹ/người giám hộ
+        tạo và quản lý; các yêu cầu về sự đồng ý nêu tại §§ 14&ndash;15 sẽ áp
+        dụng. Khi Tổ chức tạo Tài khoản thay mặt cho học sinh, Tổ chức chịu
+        trách nhiệm quản lý các Tài khoản đó và các sự đồng ý theo luật bảo vệ
+        dữ liệu trẻ em hiện hành.
+      </p>
+      <p>
+        Bạn đồng ý cung cấp thông tin đăng ký chính xác và bảo mật thông tin
+        đăng nhập của mình. Bạn chịu trách nhiệm về hoạt động trên Tài khoản của
+        mình.
       </p>
 
-      <h2>3. Trách nhiệm của Learneris</h2>
-      <p>Learneris đồng ý:</p>
+      <h2>3. Chấp nhận và Thay đổi</h2>
+      <p>
+        Khi tạo Tài khoản hoặc sử dụng các Dịch vụ, bạn chấp nhận Thoả thuận này
+        và Chính sách Bảo mật của chúng tôi. Chúng tôi có thể cập nhật Thoả
+        thuận này theo thời gian; với các thay đổi quan trọng, chúng tôi sẽ
+        thông báo trước bằng email hoặc thông báo nổi bật trên Dịch vụ. Việc
+        bạn tiếp tục sử dụng sau khi thay đổi có hiệu lực được coi là chấp
+        nhận thay đổi đó.
+      </p>
+
+      <h2>4. Sử dụng được phép</h2>
+      <p>
+        Tuỳ thuộc vào việc bạn tuân thủ Thoả thuận này, Learneris cấp cho bạn
+        quyền sử dụng giới hạn, không độc quyền, không thể chuyển nhượng, có
+        thể thu hồi để truy cập và sử dụng các Dịch vụ cho mục đích giáo dục.
+      </p>
+
+      <h2>5. Tính năng AI và Nội dung do AI tạo</h2>
+      <p>
+        Một số Dịch vụ sử dụng các nhà cung cấp AI bên thứ ba để tạo nội dung
+        giáo dục từ các lệnh nhập của bạn. Khi sử dụng các tính năng này, bạn
+        thừa nhận rằng:
+      </p>
       <ul>
-        <li>Cung cấp quyền truy cập vào nền tảng cho Tổ chức và Người dùng cá nhân.</li>
         <li>
-          Đảm bảo nền tảng tuân thủ tất cả các quy định pháp luật hiện hành, bao gồm COPPA và
-          FERPA (nếu áp dụng) hoặc các yêu cầu bảo vệ dữ liệu tương đương theo luật quốc gia.
+          Kết quả AI có thể không chính xác, chưa đầy đủ hoặc không phù hợp, và
+          cần được giáo viên có chuyên môn rà soát trước khi sử dụng với học
+          sinh. Learneris không bảo đảm tính chính xác của Kết quả AI.
         </li>
         <li>
-          Thực hiện và duy trì các biện pháp an ninh dữ liệu hợp lý để bảo vệ thông tin cá nhân
-          thu thập từ người dùng.
+          Giữa bạn và Learneris, bạn sở hữu Kết quả AI mà bạn tạo, tuỳ thuộc
+          vào quyền của bên thứ ba đối với mọi tài liệu nguồn bạn cung cấp. Bạn
+          cấp cho Learneris một giấy phép toàn cầu, không độc quyền để lưu trữ,
+          truyền tải và hiển thị Kết quả AI khi cần thiết để vận hành các Dịch
+          vụ.
         </li>
-        <li>Cung cấp đào tạo và hỗ trợ cho người dùng về cách sử dụng nền tảng.</li>
         <li>
-          Cho phép phụ huynh hoặc Người dùng cá nhân xem xét và yêu cầu xóa thông tin cá nhân
-          của họ.
+          Learneris không sử dụng các lệnh nhập hoặc Kết quả AI của bạn để huấn
+          luyện các mô hình tổng quát của riêng mình hoặc của các nhà cung cấp,
+          và ràng buộc các nhà cung cấp AI bằng cùng nguyên tắc này.
+        </li>
+        <li>
+          Bạn chịu trách nhiệm đối với các lệnh nhập bạn gửi và mọi cách bạn sử
+          dụng Kết quả AI, bao gồm việc bảo đảm phù hợp với đối tượng và tuân
+          thủ pháp luật hiện hành.
         </li>
       </ul>
 
-      <h2>4. Trách nhiệm của Tổ chức</h2>
-      <p>Tổ chức đồng ý:</p>
+      <h2>6. Tích hợp bên thứ ba (LMS, Google Workspace, SCORM)</h2>
+      <p>
+        Các Dịch vụ tích hợp với các hệ thống bên thứ ba bao gồm, khi được hỗ
+        trợ, Learning Tools Interoperability (LTI 1.3), Google Classroom, Google
+        Drive, Google Docs, Google Slides và các Hệ thống Quản lý Học tập tương
+        thích SCORM. Khi bạn sử dụng các tích hợp này, nội dung và một phần dữ
+        liệu định danh có thể được trao đổi giữa Learneris và hệ thống bên thứ
+        ba theo chỉ dẫn của bạn. Việc bạn sử dụng hệ thống bên thứ ba được điều
+        chỉnh bởi điều khoản và chính sách bảo mật của riêng hệ thống đó, và
+        Learneris không chịu trách nhiệm cho các hành động hoặc thiếu sót của
+        bên thứ ba.
+      </p>
+
+      <h2>7. Nội dung Người dùng</h2>
       <ul>
         <li>
-          Tạo điều kiện cho việc sử dụng nền tảng của Learneris bởi giáo viên, giảng viên và học
-          sinh của mình.
+          <strong>Quyền sở hữu:</strong> giữa bạn và Learneris, bạn giữ quyền
+          sở hữu đối với Nội dung Người dùng do bạn tạo. Tổ chức có thể có
+          quyền riêng đối với nội dung do nhân sự hoặc học sinh của họ tạo theo
+          chính sách nội bộ.
         </li>
         <li>
-          Đóng vai trò đại diện cho phụ huynh trong việc cung cấp sự đồng ý cho việc sử dụng dữ
-          liệu học sinh trên nền tảng.
+          <strong>Giấy phép cho Learneris:</strong> bạn cấp cho Learneris một
+          giấy phép toàn cầu, không độc quyền, miễn phí bản quyền để lưu trữ,
+          sao chép, truyền tải và hiển thị Nội dung Người dùng khi cần thiết để
+          vận hành, bảo mật và cải thiện các Dịch vụ và để cung cấp cho bạn và
+          các bên nhận được uỷ quyền (như học sinh hoặc LMS của bạn).
         </li>
         <li>
-          Đảm bảo rằng giáo viên, giảng viên và học sinh tuân thủ Thỏa thuận này và chính sách
-          bảo mật của Learneris.
+          <strong>Trách nhiệm:</strong> bạn cam kết rằng bạn có quyền gửi Nội
+          dung Người dùng và việc gửi không xâm phạm quyền của bên thứ ba hoặc
+          vi phạm pháp luật.
         </li>
         <li>
-          Phối hợp với Learneris để lấy sự đồng ý có thể xác minh được từ phụ huynh khi được yêu
-          cầu theo COPPA.
+          <strong>Xoá:</strong> bạn có thể xoá Nội dung Người dùng khỏi Dịch vụ
+          bất cứ lúc nào, tuỳ thuộc vào các yêu cầu lưu trữ theo pháp luật hoặc
+          để giải quyết tranh chấp.
         </li>
-        <li>Hỗ trợ đảm bảo tính chính xác và đầy đủ của dữ liệu cung cấp cho Learneris.</li>
       </ul>
 
-      <h2>5. Trách nhiệm của Người dùng cá nhân</h2>
+      <h2>8. Đăng ký, Phí và Tín dụng</h2>
+      <p>
+        Một số Dịch vụ được cung cấp miễn phí; số khác yêu cầu đăng ký trả phí
+        hoặc mua tín dụng sử dụng. Giá cả và tính năng được mô tả tại thời
+        điểm mua. Phí không được hoàn trả trừ khi pháp luật yêu cầu hoặc được
+        nêu rõ. Learneris có thể thay đổi giá với thông báo hợp lý; thay đổi
+        giá sẽ không áp dụng hồi tố cho gói đăng ký mà bạn đã trả trước.
+      </p>
+
+      <h2>9. Sử dụng được chấp nhận</h2>
+      <p>Bạn đồng ý không, và không cho phép người khác:</p>
+      <ul>
+        <li>
+          sử dụng các Dịch vụ để tạo hoặc phát tán nội dung trái pháp luật, bôi
+          nhọ, kích động thù ghét, quấy rối, khiêu dâm, bạo lực hoặc gây hại;
+        </li>
+        <li>
+          xâm phạm quyền tác giả, nhãn hiệu, bí mật kinh doanh hoặc các quyền
+          sở hữu trí tuệ khác, hoặc các quyền riêng tư hay quyền hình ảnh;
+        </li>
+        <li>
+          can thiệp, làm gián đoạn hoặc xâm phạm các Dịch vụ, bao gồm việc tải
+          lên mã độc, dò tìm lỗ hổng ngoài chương trình nghiên cứu an ninh được
+          uỷ quyền, hoặc từ chối dịch vụ đối với người dùng khác;
+        </li>
+        <li>
+          truy cập các Dịch vụ qua các hình thức tự động như scraping, crawling
+          hoặc thu thập, ngoại trừ trường hợp được Learneris cho phép rõ ràng;
+        </li>
+        <li>
+          phân tích ngược, dịch ngược hoặc tìm cách trích xuất mã nguồn của
+          các Dịch vụ, ngoại trừ trong phạm vi pháp luật hiện hành cho phép rõ
+          ràng;
+        </li>
+        <li>
+          bán lại, cấp phép phụ hoặc phân phối lại các Dịch vụ hoặc Kết quả AI
+          dưới dạng sản phẩm độc lập mà không có thoả thuận bằng văn bản với
+          Learneris;
+        </li>
+        <li>
+          sử dụng các Dịch vụ để gửi thư rác hàng loạt, thư không mong muốn
+          hoặc tấn công lừa đảo (phishing).
+        </li>
+      </ul>
+
+      <h2>10. Bản quyền và Yêu cầu Gỡ bỏ</h2>
+      <p>
+        Chúng tôi tôn trọng quyền sở hữu trí tuệ. Nếu bạn cho rằng nội dung
+        trên các Dịch vụ xâm phạm quyền tác giả hoặc các quyền khác của bạn,
+        vui lòng gửi thông báo bằng văn bản tới{' '}
+        <a href="mailto:support@learneris.com">support@learneris.com</a> nêu
+        rõ (i) tác phẩm bị cho là bị xâm phạm, (ii) vị trí của tài liệu bị cho
+        là vi phạm trên Dịch vụ, (iii) thông tin liên hệ của bạn, và (iv) tuyên
+        bố thiện chí rằng việc sử dụng đó không được uỷ quyền và thông tin
+        trong thông báo của bạn là chính xác. Chúng tôi có thể gỡ bỏ hoặc vô
+        hiệu hoá truy cập tới tài liệu bị cho là vi phạm và chấm dứt tài khoản
+        của những người vi phạm nhiều lần.
+      </p>
+
+      <h2>11. Trách nhiệm của Tổ chức</h2>
+      <p>Mỗi Tổ chức đồng ý:</p>
+      <ul>
+        <li>
+          Tạo điều kiện cho việc giáo viên, giảng viên và học sinh của mình sử
+          dụng các Dịch vụ.
+        </li>
+        <li>
+          Đóng vai trò đại diện cho phụ huynh trong việc cung cấp sự đồng ý cho
+          việc sử dụng dữ liệu học sinh trên các Dịch vụ.
+        </li>
+        <li>
+          Đảm bảo rằng giáo viên, giảng viên và học sinh tuân thủ Thoả thuận
+          này và Chính sách Bảo mật.
+        </li>
+        <li>
+          Phối hợp với Learneris để có được sự đồng ý có thể xác minh từ phụ
+          huynh khi COPPA yêu cầu.
+        </li>
+        <li>
+          Hỗ trợ tính chính xác và đầy đủ của dữ liệu cung cấp cho Learneris.
+        </li>
+      </ul>
+
+      <h2>12. Trách nhiệm của Người dùng cá nhân</h2>
       <p>
         <em>(Giáo viên, Giảng viên, Nhà sáng tạo nội dung, Phụ huynh và Học sinh)</em>
       </p>
-      <p>Người dùng cá nhân đồng ý:</p>
+      <p>Mỗi Người dùng cá nhân đồng ý:</p>
       <ul>
         <li>
-          Sử dụng nền tảng của Learneris theo đúng Thỏa thuận này và chính sách bảo mật của
-          Learneris.
+          Sử dụng các Dịch vụ theo Thoả thuận này và Chính sách Bảo mật.
         </li>
-        <li>Đảm bảo mọi thông tin cá nhân được cung cấp là chính xác và đầy đủ.</li>
+        <li>Đảm bảo mọi Thông tin Cá nhân được cung cấp là chính xác và đầy đủ.</li>
         <li>
-          Lấy sự đồng ý từ phụ huynh hoặc người giám hộ khi thu thập thông tin cá nhân từ học
-          sinh dưới 13 tuổi, tuân thủ COPPA.
+          Có được sự đồng ý của phụ huynh hoặc người giám hộ trước khi thu
+          thập Thông tin Cá nhân từ học sinh dưới 13 tuổi, theo COPPA.
         </li>
         <li>
-          Đối với phụ huynh, cung cấp các sự đồng ý cần thiết cho việc sử dụng nền tảng của con
-          cái và quản lý thông tin của con cái theo yêu cầu.
+          Đối với phụ huynh: cung cấp các sự đồng ý cần thiết cho con sử dụng
+          các Dịch vụ và quản lý thông tin của con theo yêu cầu.
         </li>
       </ul>
 
-      <h2>6. Quyền sở hữu dữ liệu</h2>
-      <ul>
-        <li>
-          Tất cả nội dung giáo dục do người dùng tạo ra trên nền tảng vẫn thuộc quyền sở hữu của
-          những người tạo (giáo viên, giảng viên, nhà sáng tạo nội dung hoặc Tổ chức).
-        </li>
-        <li>
-          Thông tin cá nhân thu thập từ người dùng bởi Learneris thuộc quyền sở hữu của cá nhân
-          đó và được bảo vệ theo các luật hiện hành như FERPA và COPPA.
-        </li>
-      </ul>
-
-      <h2>7. Bảo mật dữ liệu</h2>
-      <ul>
-        <li>
-          Learneris sẽ thực hiện và duy trì các biện pháp bảo vệ hành chính, kỹ thuật và vật lý
-          hợp lý để bảo vệ tính an toàn, bảo mật và toàn vẹn của thông tin cá nhân.
-        </li>
-        <li>
-          Learneris sẽ thông báo cho người dùng trong vòng 72 giờ về bất kỳ vi phạm dữ liệu nào
-          ảnh hưởng đến thông tin cá nhân, theo các luật hiện hành.
-        </li>
-      </ul>
-
-      <h2>8. Tuân thủ COPPA và FERPA</h2>
-      <ul>
-        <li>
-          Learneris sẽ tuân thủ mọi yêu cầu của Đạo luật Bảo vệ Quyền Riêng tư Trẻ em Trên Mạng
-          (COPPA) và Đạo luật Quyền Riêng tư và Quyền Giáo dục Gia đình (FERPA) khi áp dụng.
-        </li>
-        <li>
-          Tổ chức và Người dùng cá nhân sẽ hợp tác với Learneris để đảm bảo tuân thủ các luật
-          này, bao gồm việc cung cấp các sự đồng ý và thông báo cần thiết cho phụ huynh hoặc
-          người giám hộ.
-        </li>
-      </ul>
-
-      <h2>9. Sự đồng ý của phụ huynh</h2>
-      <ul>
-        <li>
-          Tổ chức sẽ đóng vai trò đại diện cho phụ huynh để cung cấp sự đồng ý có thể xác minh
-          được cho việc học sinh sử dụng nền tảng của Learneris.
-        </li>
-        <li>
-          Người dùng cá nhân (giáo viên, giảng viên, nhà sáng tạo nội dung, phụ huynh và học
-          sinh) chịu trách nhiệm lấy sự đồng ý có thể xác minh từ phụ huynh cho bất kỳ thông tin
-          cá nhân nào thu thập từ học sinh dưới 13 tuổi.
-        </li>
-        <li>
-          Learneris sẽ cung cấp thông tin rõ ràng và đầy đủ để hỗ trợ quá trình lấy sự đồng ý
-          cho Tổ chức và Người dùng cá nhân.
-        </li>
-      </ul>
-
-      <h2>10. Thời hạn và Chấm dứt</h2>
-      <ul>
-        <li>
-          Mỗi bên có thể chấm dứt Thỏa thuận này vì bất kỳ lý do gì với thông báo bằng văn bản
-          30 ngày cho bên còn lại.
-        </li>
-        <li>
-          Khi chấm dứt, Learneris sẽ xóa an toàn tất cả thông tin cá nhân thu thập từ người dùng,
-          phù hợp với các luật hiện hành.
-        </li>
-      </ul>
-
-      <h2>11. Giới hạn trách nhiệm và Bồi thường</h2>
-      <ul>
-        <li>
-          <strong>Giới hạn trách nhiệm:</strong> Tổng trách nhiệm của Learneris đối với người
-          dùng cho bất kỳ khiếu nại nào phát sinh từ hoặc liên quan đến Thỏa thuận này sẽ được
-          giới hạn ở mức phí mà người dùng đã trả cho Learneris trong 12 tháng trước khiếu nại đó.
-        </li>
-        <li>
-          <strong>Bồi thường:</strong> Người dùng đồng ý bồi thường, bảo vệ và giữ cho Learneris
-          không bị tổn hại khỏi bất kỳ khiếu nại, thiệt hại, trách nhiệm, chi phí và phí tổn nào
-          (bao gồm phí luật sư hợp lý) phát sinh từ việc người dùng sử dụng nền tảng, vi phạm
-          Thỏa thuận này hoặc vi phạm bất kỳ luật hiện hành nào.
-        </li>
-      </ul>
-
-      <h2>12. Giải quyết tranh chấp</h2>
+      <h2>13. Quyền riêng tư</h2>
       <p>
-        Bất kỳ tranh chấp nào phát sinh từ hoặc liên quan đến Thỏa thuận này sẽ được giải quyết
-        thông qua trọng tài do Trung tâm Trọng tài Quốc tế Singapore (SIAC) quản lý theo quy tắc
-        của tổ chức này.
+        Cách chúng tôi xử lý Thông tin Cá nhân được mô tả trong{' '}
+        <a href="/privacy">Chính sách Bảo mật</a>, là một phần không thể tách
+        rời của Thoả thuận này.
       </p>
 
-      <h2>13. Các điều khoản khác</h2>
-      <p>
-        Thỏa thuận này cấu thành toàn bộ thỏa thuận giữa các bên và thay thế mọi thỏa thuận và
-        hiểu biết trước đó.
-      </p>
+      <h2>14. Tuân thủ COPPA và FERPA</h2>
       <ul>
         <li>
-          Bất kỳ sửa đổi nào đối với Thỏa thuận này phải được lập thành văn bản và có chữ ký của
-          cả hai bên.
-        </li>
-        <li>Thỏa thuận này được điều chỉnh và giải thích theo pháp luật Singapore.</li>
-        <li>
-          <strong>Sự kiện bất khả kháng (Force Majeure):</strong> Không bên nào chịu trách nhiệm
-          cho bất kỳ việc không thực hiện nghĩa vụ nào của mình theo Thỏa thuận này nếu việc đó
-          do các tình huống ngoài tầm kiểm soát hợp lý của bên đó, bao gồm nhưng không giới hạn
-          ở thiên tai, chiến tranh, đại dịch hoặc các sự kiện bất khả kháng khác.
+          Learneris sẽ tuân thủ các yêu cầu của Đạo luật Bảo vệ Quyền Riêng tư
+          Trẻ em Trên Mạng (COPPA) và Đạo luật Quyền Riêng tư và Quyền Giáo
+          dục Gia đình (FERPA) khi các luật này áp dụng.
         </li>
         <li>
-          <strong>Tính từng phần (Severability):</strong> Nếu bất kỳ điều khoản nào của Thỏa
-          thuận này bị coi là không thể thi hành, phần còn lại của Thỏa thuận vẫn giữ nguyên hiệu
-          lực.
+          Tổ chức và Người dùng cá nhân sẽ phối hợp với Learneris để đảm bảo
+          tuân thủ các luật này, bao gồm việc cung cấp các sự đồng ý và thông
+          báo cần thiết cho phụ huynh hoặc người giám hộ.
         </li>
       </ul>
+
+      <h2>15. Sự đồng ý của phụ huynh</h2>
+      <ul>
+        <li>
+          Tổ chức sẽ đóng vai trò đại diện cho phụ huynh để cung cấp sự đồng ý
+          có thể xác minh cho việc học sinh sử dụng các Dịch vụ.
+        </li>
+        <li>
+          Người dùng cá nhân chịu trách nhiệm có được sự đồng ý có thể xác minh
+          của phụ huynh đối với mọi Thông tin Cá nhân thu thập từ học sinh dưới
+          13 tuổi.
+        </li>
+        <li>
+          Learneris sẽ cung cấp thông tin rõ ràng và đầy đủ để hỗ trợ quá trình
+          xin sự đồng ý cho Tổ chức và Người dùng cá nhân.
+        </li>
+      </ul>
+
+      <h2>16. Thời hạn và Chấm dứt</h2>
+      <ul>
+        <li>
+          Thoả thuận này có hiệu lực trong suốt thời gian bạn có Tài khoản hoặc
+          sử dụng các Dịch vụ.
+        </li>
+        <li>
+          Mỗi bên có thể chấm dứt Thoả thuận này vì bất kỳ lý do gì với thông
+          báo bằng văn bản 30 ngày cho bên còn lại.
+        </li>
+        <li>
+          Chúng tôi có thể tạm ngừng hoặc chấm dứt Tài khoản của bạn ngay lập
+          tức nếu bạn vi phạm Thoả thuận này, bao gồm phần Sử dụng được Chấp
+          nhận, hoặc nếu cần thiết để tuân thủ pháp luật.
+        </li>
+        <li>
+          Khi chấm dứt, Learneris sẽ xoá hoặc phi định danh Thông tin Cá nhân
+          liên quan theo Chính sách Bảo mật và pháp luật hiện hành.
+        </li>
+      </ul>
+
+      <h2>17. Tuyên bố từ chối bảo đảm</h2>
       <p>
-        Bằng việc sử dụng nền tảng của Learneris, bạn đồng ý với các điều khoản và điều kiện này.
-        Nếu bạn không đồng ý, bạn không nên sử dụng nền tảng. Nếu có bất kỳ câu hỏi nào về các
-        điều khoản này, vui lòng liên hệ chúng tôi tại{' '}
+        Các Dịch vụ và Kết quả AI được cung cấp "như hiện trạng" và "theo tình
+        trạng sẵn có". Trong phạm vi tối đa pháp luật cho phép, Learneris từ
+        chối mọi bảo đảm, dù rõ ràng hay ngầm định, bao gồm các bảo đảm về
+        khả năng thương mại, sự phù hợp cho một mục đích cụ thể, không xâm
+        phạm quyền và bất kỳ bảo đảm nào phát sinh từ thông lệ giao dịch hoặc
+        thực tiễn thương mại. Learneris không bảo đảm rằng các Dịch vụ sẽ không
+        bị gián đoạn, không có lỗi, hoặc Kết quả AI sẽ chính xác hoặc phù hợp
+        với trường hợp sử dụng của bạn.
+      </p>
+
+      <h2>18. Giới hạn Trách nhiệm và Bồi thường</h2>
+      <ul>
+        <li>
+          <strong>Giới hạn Trách nhiệm:</strong> trong phạm vi tối đa pháp luật
+          cho phép, tổng trách nhiệm hợp gộp của Learneris đối với Người dùng
+          cho bất kỳ khiếu nại nào phát sinh từ hoặc liên quan đến Thoả thuận
+          này sẽ được giới hạn ở mức cao hơn giữa (a) các khoản phí mà Người
+          dùng đó đã trả cho Learneris trong 12 tháng trước khiếu nại, hoặc
+          (b) 100 USD. Trong mọi trường hợp, Learneris không chịu trách nhiệm
+          cho các thiệt hại gián tiếp, ngẫu nhiên, đặc biệt, hậu quả, mang
+          tính răn đe hoặc trừng phạt, hoặc cho mất lợi nhuận, doanh thu, dữ
+          liệu, uy tín hoặc cơ hội kinh doanh.
+        </li>
+        <li>
+          <strong>Bồi thường:</strong> mỗi Người dùng đồng ý bồi thường, bảo vệ
+          và giữ cho Learneris không bị tổn hại khỏi mọi khiếu nại, thiệt hại,
+          trách nhiệm, chi phí và phí tổn (bao gồm phí luật sư hợp lý) phát
+          sinh từ việc Người dùng sử dụng các Dịch vụ, Nội dung Người dùng, vi
+          phạm Thoả thuận này, hoặc vi phạm pháp luật hiện hành.
+        </li>
+      </ul>
+
+      <h2>19. Giải quyết Tranh chấp và Luật điều chỉnh</h2>
+      <p>
+        Thoả thuận này được điều chỉnh và giải thích theo pháp luật Singapore,
+        không xét đến các nguyên tắc xung đột pháp luật. Mọi tranh chấp phát
+        sinh từ hoặc liên quan đến Thoả thuận này, bao gồm bất kỳ vấn đề nào
+        về sự tồn tại, hiệu lực hoặc chấm dứt, sẽ được đưa ra và giải quyết
+        chung thẩm bằng trọng tài do Trung tâm Trọng tài Quốc tế Singapore
+        (SIAC) quản lý theo Quy tắc SIAC có hiệu lực tại thời điểm đó. Địa
+        điểm trọng tài là Singapore. Ngôn ngữ trọng tài là tiếng Anh.
+      </p>
+
+      <h2>20. Các điều khoản chung</h2>
+      <ul>
+        <li>
+          <strong>Toàn bộ Thoả thuận:</strong> Thoả thuận này, cùng với Chính
+          sách Bảo mật, cấu thành toàn bộ thoả thuận giữa bạn và Learneris liên
+          quan đến các Dịch vụ và thay thế mọi thoả thuận và hiểu biết trước
+          đó.
+        </li>
+        <li>
+          <strong>Sửa đổi:</strong> mọi sửa đổi đối với Thoả thuận này phải
+          được lập thành văn bản theo § 3.
+        </li>
+        <li>
+          <strong>Chuyển nhượng:</strong> bạn không được chuyển nhượng Thoả
+          thuận này nếu chưa có sự đồng ý trước bằng văn bản của chúng tôi.
+          Learneris có thể chuyển nhượng Thoả thuận này trong bối cảnh sáp
+          nhập, mua lại, tổ chức lại hoặc bán phần lớn tài sản.
+        </li>
+        <li>
+          <strong>Tính từng phần:</strong> nếu bất kỳ điều khoản nào không thể
+          thi hành, các điều khoản còn lại tiếp tục có hiệu lực.
+        </li>
+        <li>
+          <strong>Sự kiện Bất khả kháng:</strong> không bên nào chịu trách
+          nhiệm cho việc không thực hiện hoặc chậm thực hiện do các tình huống
+          ngoài tầm kiểm soát hợp lý, bao gồm thiên tai, chiến tranh, bất ổn
+          dân sự, đại dịch hoặc lỗi của hạ tầng bên thứ ba.
+        </li>
+        <li>
+          <strong>Không từ bỏ quyền:</strong> việc không thực thi một điều
+          khoản nào không được coi là từ bỏ điều khoản đó.
+        </li>
+      </ul>
+
+      <p>
+        Bằng việc sử dụng các Dịch vụ, bạn đồng ý với Thoả thuận này. Nếu bạn
+        không đồng ý, vui lòng không sử dụng các Dịch vụ. Nếu có câu hỏi, vui
+        lòng liên hệ chúng tôi tại{' '}
         <a href="mailto:support@learneris.com">support@learneris.com</a>.
       </p>
     </>
@@ -630,7 +818,7 @@ export function TermsPage() {
       title={isVi ? 'Điều khoản Sử dụng' : 'Terms & Conditions'}
       effectiveDate={
         isVi
-          ? 'Có hiệu lực từ ngày 26 tháng 7 năm 2024 · Cập nhật lần cuối ngày 17/01/2025'
+          ? 'Có hiệu lực từ ngày 26/07/2024 · Cập nhật lần cuối ngày 26/04/2026'
           : 'Effective July 26, 2024 · Last updated April 26, 2026'
       }
     >
