@@ -57,12 +57,17 @@ function TermsContentEn() {
 
       <h2>2. Eligibility &amp; Account</h2>
       <p>
-        You must be at least 13 years old to create an Account, or older where
-        required by your jurisdiction. Minors may use the Services only through an
-        Account managed by a parent, guardian, or Institution acting as their
-        representative. You agree to provide accurate registration information and to
-        keep your credentials confidential. You are responsible for activity on your
-        Account.
+        To create your own Account through self-signup, you must be at least 13 years
+        old (or older where required by your local law). Children under 13 may use
+        the Services through an Account provisioned for them by an Institution or by
+        a parent or guardian, where verifiable parental consent has been obtained in
+        accordance with §§ 14&ndash;15. Where an Institution provisions Accounts on
+        behalf of students, the Institution is responsible for managing those
+        Accounts and for the consents required under applicable child-data laws.
+      </p>
+      <p>
+        You agree to provide accurate registration information and to keep your
+        credentials confidential. You are responsible for activity on your Account.
       </p>
 
       <h2>3. Acceptance &amp; Changes</h2>
