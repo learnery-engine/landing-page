@@ -33,7 +33,8 @@ function TermsContentEn() {
         </li>
         <li>
           <strong>Institution(s):</strong> schools, educational centres, tutoring
-          centres, and skills-training providers that use the Services.
+          centres, skills-training providers, publishers, and other organisations
+          that use the Services.
         </li>
         <li>
           <strong>Individual User(s):</strong> teachers, lecturers, content creators,
@@ -211,7 +212,12 @@ function TermsContentEn() {
       </p>
 
       <h2>11. Institution Obligations</h2>
-      <p>Each Institution agrees to:</p>
+      <p>
+        Each Institution agrees to the following, to the extent applicable to its
+        use of the Services (for example, the parent-representative and
+        student-data obligations apply only where the Institution provides the
+        Services to students or other learners under its authority):
+      </p>
       <ul>
         <li>
           Facilitate use of the Services by its teachers, lecturers, and students.
@@ -431,7 +437,8 @@ function TermsContentVi() {
         </li>
         <li>
           <strong>Tổ chức:</strong> trường học, trung tâm giáo dục, trung tâm
-          dạy kèm và các cơ sở đào tạo kỹ năng sử dụng các Dịch vụ.
+          dạy kèm, các cơ sở đào tạo kỹ năng, nhà xuất bản và các tổ chức khác
+          sử dụng các Dịch vụ.
         </li>
         <li>
           <strong>Người dùng cá nhân:</strong> giáo viên, giảng viên, nhà sáng
@@ -618,7 +625,13 @@ function TermsContentVi() {
       </p>
 
       <h2>11. Trách nhiệm của Tổ chức</h2>
-      <p>Mỗi Tổ chức đồng ý:</p>
+      <p>
+        Mỗi Tổ chức đồng ý với những điều dưới đây, trong phạm vi áp dụng cho
+        cách Tổ chức sử dụng các Dịch vụ (ví dụ: các trách nhiệm về đại diện
+        cho phụ huynh và dữ liệu học sinh chỉ áp dụng khi Tổ chức cung cấp các
+        Dịch vụ cho học sinh hoặc người học khác thuộc quyền quản lý của
+        mình):
+      </p>
       <ul>
         <li>
           Tạo điều kiện cho việc giáo viên, giảng viên và học sinh của mình sử
