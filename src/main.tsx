@@ -31,11 +31,22 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { LanguageProvider } from './i18n'
+import { CSWidget } from '@learneris/cs-widget'
+import '@learneris/cs-widget/styles.css'
+
+const csGatewayUrl = import.meta.env.VITE_CS_GATEWAY_URL as string | undefined
+const csGatewayKey = import.meta.env.VITE_CS_GATEWAY_KEY as string | undefined
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <LanguageProvider>
       <App />
+      <CSWidget
+        app="landing"
+        lang="en"
+        gatewayUrl={csGatewayUrl}
+        gatewayKey={csGatewayKey}
+      />
     </LanguageProvider>
   </StrictMode>,
 )
