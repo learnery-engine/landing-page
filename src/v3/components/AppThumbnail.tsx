@@ -1,15 +1,15 @@
 /**
- * Mini app-UI thumbnails for the student-built-apps marquee.
+ * Mini app-UI thumbnails for the student-built-apps marquee + featured
+ * spotlights.
  *
- * Each variant renders a tiny phone-screen-style preview that reads as
- * "this is an actual app" rather than "here's an emoji". The art is
- * deliberately abstract — colored bars, blocks, and shapes — so we don't
- * need to ship real screenshots (which would require consent + ongoing
- * maintenance) and so it scales arbitrarily.
+ * Two sizes:
+ *   - `small`  (76×64)  — featured-student spotlight cards
+ *   - `medium` (120×100) — marquee tiles (the "wall" of student apps)
  *
- * Frame: rounded card with a tinted status-bar strip + interior content
- * keyed off the variant. The accent color comes from each app's brand
- * color so the marquee stays visually varied.
+ * Each variant renders a phone-screen-style preview keyed off the app
+ * category. Deliberately abstract (no real screenshots; consent + drift
+ * risk) but rich enough to read as "this is an actual app screen" at
+ * marquee scale.
  *
  * Variants chosen to cover the K-12 app corpus:
  *   quiz       — multiple-choice / radio rows
@@ -21,148 +21,218 @@
  *   chat       — speech bubbles (speaking, pronunciation)
  */
 export type AppThumbnailVariant = 'quiz' | 'flashcard' | 'counter' | 'text' | 'tracker' | 'game' | 'chat'
+export type AppThumbnailSize = 'small' | 'medium'
+
+const SIZE_DIMS: Record<AppThumbnailSize, { w: number; h: number; statusBarH: number; pad: number }> = {
+  small:  { w: 76,  h: 64,  statusBarH: 8,  pad: 6 },
+  medium: { w: 120, h: 100, statusBarH: 12, pad: 10 },
+}
 
 export function AppThumbnail({
   variant,
   color,
+  size = 'small',
+  appLabel,
   className,
 }: {
   variant: AppThumbnailVariant
   color: string
+  size?: AppThumbnailSize
+  /** Optional short title shown in the phone-frame title bar at medium size. */
+  appLabel?: string
   className?: string
 }) {
+  const dims = SIZE_DIMS[size]
   return (
     <div
-      className={`relative rounded-lg overflow-hidden shrink-0 ${className ?? ''}`}
+      className={`relative rounded-xl overflow-hidden shrink-0 ${className ?? ''}`}
       style={{
-        width: 76,
-        height: 64,
+        width: dims.w,
+        height: dims.h,
         background: '#ffffff',
-        boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.08), 0 2px 6px -2px rgba(0,0,0,0.35)',
+        boxShadow:
+          'inset 0 0 0 1px rgba(255,255,255,0.08), 0 4px 14px -4px rgba(0,0,0,0.45), 0 1px 2px rgba(0,0,0,0.3)',
       }}
       aria-hidden
     >
       {/* Status-bar strip — keys to the app's brand color */}
-      <div className="h-2 w-full flex items-center justify-between px-1.5" style={{ background: color }}>
-        <span className="w-0.5 h-0.5 rounded-full" style={{ background: '#ffffff90' }} />
-        <span className="w-3 h-0.5 rounded-full" style={{ background: '#ffffff60' }} />
-        <span className="w-0.5 h-0.5 rounded-full" style={{ background: '#ffffff90' }} />
+      <div
+        className="w-full flex items-center justify-between"
+        style={{ height: dims.statusBarH, padding: '0 6px', background: color }}
+      >
+        <span className="w-1 h-1 rounded-full" style={{ background: '#ffffff90' }} />
+        {size === 'medium' && (
+          <span className="text-[7px] font-bold uppercase tracking-widest text-white/70 truncate max-w-[80px]">
+            {appLabel || ''}
+          </span>
+        )}
+        <span className="w-1 h-1 rounded-full" style={{ background: '#ffffff90' }} />
       </div>
       {/* Body */}
-      <div className="absolute inset-x-0 bottom-0 top-2 p-1.5">
-        {renderVariant(variant, color)}
+      <div
+        className="absolute inset-x-0 bottom-0"
+        style={{ top: dims.statusBarH, padding: dims.pad }}
+      >
+        {renderVariant(variant, color, size)}
       </div>
     </div>
   )
 }
 
-function renderVariant(variant: AppThumbnailVariant, color: string): React.ReactNode {
+function renderVariant(variant: AppThumbnailVariant, color: string, size: AppThumbnailSize): React.ReactNode {
   switch (variant) {
-    case 'quiz':       return <QuizThumb color={color} />
-    case 'flashcard':  return <FlashcardThumb color={color} />
-    case 'counter':    return <CounterThumb color={color} />
-    case 'text':       return <TextThumb color={color} />
-    case 'tracker':    return <TrackerThumb color={color} />
-    case 'game':       return <GameThumb color={color} />
-    case 'chat':       return <ChatThumb color={color} />
+    case 'quiz':       return <QuizThumb color={color} size={size} />
+    case 'flashcard':  return <FlashcardThumb color={color} size={size} />
+    case 'counter':    return <CounterThumb color={color} size={size} />
+    case 'text':       return <TextThumb color={color} size={size} />
+    case 'tracker':    return <TrackerThumb color={color} size={size} />
+    case 'game':       return <GameThumb color={color} size={size} />
+    case 'chat':       return <ChatThumb color={color} size={size} />
   }
 }
 
 /* ──────────────────────────────────────────────────────────────────────── */
 
-function QuizThumb({ color }: { color: string }) {
-  // 3 radio rows; first one selected
+function QuizThumb({ color, size }: { color: string; size: AppThumbnailSize }) {
+  // Small: 3 radio rows. Medium: 4 rows + a tiny question header.
+  const rows = size === 'medium' ? 4 : 3
+  const selectedIdx = 1
+  const dot = size === 'medium' ? 'w-2 h-2' : 'w-1.5 h-1.5'
+  const barH = size === 'medium' ? 'h-1.5' : 'h-1'
   return (
     <div className="flex flex-col gap-1 h-full justify-center">
-      {[true, false, false].map((selected, i) => (
-        <div key={i} className="flex items-center gap-1">
-          <div
-            className="w-1.5 h-1.5 rounded-full shrink-0"
-            style={{ background: selected ? color : 'transparent', border: `1px solid ${selected ? color : '#cbd5e1'}` }}
-          />
-          <div className="h-1 flex-1 rounded-full" style={{ background: selected ? `${color}55` : '#e2e8f0' }} />
-        </div>
-      ))}
+      {size === 'medium' && (
+        // Tiny "question" prompt strip
+        <div className="h-1.5 w-3/4 rounded-full mb-1" style={{ background: `${color}40` }} />
+      )}
+      {Array.from({ length: rows }).map((_, i) => {
+        const selected = i === selectedIdx
+        return (
+          <div key={i} className={`flex items-center ${size === 'medium' ? 'gap-2' : 'gap-1'}`}>
+            <div
+              className={`${dot} rounded-full shrink-0`}
+              style={{ background: selected ? color : 'transparent', border: `1px solid ${selected ? color : '#cbd5e1'}` }}
+            />
+            <div
+              className={`${barH} flex-1 rounded-full`}
+              style={{ background: selected ? `${color}66` : '#e2e8f0', width: i % 2 ? '88%' : '70%' }}
+            />
+          </div>
+        )
+      })}
     </div>
   )
 }
 
-function FlashcardThumb({ color }: { color: string }) {
-  // Two stacked cards, slight rotation offset on the back
+function FlashcardThumb({ color, size }: { color: string; size: AppThumbnailSize }) {
+  // Stacked cards with rotation offset. Medium has 3 visible cards + content.
+  const showThird = size === 'medium'
   return (
     <div className="relative h-full">
+      {showThird && (
+        <div
+          className="absolute inset-x-3 inset-y-2 rounded-md transform -rotate-6"
+          style={{ background: `${color}22`, border: `1px solid ${color}33` }}
+        />
+      )}
       <div
-        className="absolute inset-x-2 inset-y-1.5 rounded transform -rotate-3"
-        style={{ background: `${color}30`, border: `1px solid ${color}55` }}
+        className="absolute inset-x-3 inset-y-2 rounded-md transform -rotate-3"
+        style={{ background: `${color}40`, border: `1px solid ${color}55` }}
       />
       <div
-        className="absolute inset-x-2 inset-y-1.5 rounded transform rotate-2 flex items-center justify-center"
-        style={{ background: '#ffffff', border: `1px solid ${color}` }}
+        className="absolute inset-x-3 inset-y-2 rounded-md transform rotate-2 flex flex-col justify-center items-center gap-1"
+        style={{ background: '#ffffff', border: `1px solid ${color}`, padding: size === 'medium' ? 8 : 4 }}
       >
-        <div className="flex flex-col gap-0.5 w-3/4">
-          <div className="h-0.5 rounded-full" style={{ background: color }} />
-          <div className="h-0.5 w-2/3 rounded-full" style={{ background: `${color}80` }} />
+        <div className={`${size === 'medium' ? 'h-1.5' : 'h-0.5'} w-3/4 rounded-full`} style={{ background: color }} />
+        <div className={`${size === 'medium' ? 'h-1' : 'h-0.5'} w-1/2 rounded-full`} style={{ background: `${color}80` }} />
+        {size === 'medium' && (
+          <div className="h-1 w-2/3 rounded-full mt-0.5" style={{ background: `${color}55` }} />
+        )}
+      </div>
+    </div>
+  )
+}
+
+function CounterThumb({ color, size }: { color: string; size: AppThumbnailSize }) {
+  // Big number stat. Medium adds a label, mini progress bar, and a "today" badge.
+  const fontSize = size === 'medium' ? 28 : 14
+  return (
+    <div className="flex flex-col items-center justify-center h-full gap-1">
+      {size === 'medium' && (
+        <div className="text-[7px] font-bold uppercase tracking-widest opacity-60" style={{ color }}>
+          Hôm nay
         </div>
+      )}
+      <div
+        className="font-extrabold leading-none tabular-nums"
+        style={{ color, fontSize, letterSpacing: '-0.04em' }}
+      >
+        {size === 'medium' ? '1,247' : '347'}
       </div>
+      {size === 'medium' ? (
+        <>
+          <div className="text-[7px] font-semibold opacity-50" style={{ color }}>kcal</div>
+          <div className="w-full h-1 rounded-full mt-1" style={{ background: '#e2e8f0' }}>
+            <div className="h-full rounded-full" style={{ width: '64%', background: color }} />
+          </div>
+        </>
+      ) : (
+        <div className="h-0.5 w-6 rounded-full" style={{ background: `${color}55` }} />
+      )}
     </div>
   )
 }
 
-function CounterThumb({ color }: { color: string }) {
-  // Big number stat + small label
+function TextThumb({ color, size }: { color: string; size: AppThumbnailSize }) {
+  // Translator: source language row, arrow, target row. Medium has fuller content.
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-0.5">
-      <div className="text-[14px] font-extrabold leading-none tabular-nums" style={{ color }}>
-        347
+    <div className={`flex flex-col h-full justify-center ${size === 'medium' ? 'gap-1.5 px-1' : 'gap-1 px-0.5'}`}>
+      <div className={`flex items-center ${size === 'medium' ? 'gap-2' : 'gap-1'}`}>
+        <div className={`${size === 'medium' ? 'text-[8px]' : 'text-[6px]'} font-bold uppercase shrink-0`} style={{ color }}>EN</div>
+        <div className={`${size === 'medium' ? 'h-1.5' : 'h-1'} flex-1 rounded-full`} style={{ background: `${color}40` }} />
       </div>
-      <div className="h-0.5 w-6 rounded-full" style={{ background: `${color}55` }} />
+      <div className={`${size === 'medium' ? 'text-[10px]' : 'text-[6px]'} text-center font-bold leading-none opacity-60`} style={{ color }}>↓</div>
+      <div className={`flex items-center ${size === 'medium' ? 'gap-2' : 'gap-1'}`}>
+        <div className={`${size === 'medium' ? 'text-[8px]' : 'text-[6px]'} font-bold uppercase shrink-0`} style={{ color }}>VI</div>
+        <div className={`${size === 'medium' ? 'h-1.5' : 'h-1'} flex-1 rounded-full`} style={{ background: color }} />
+      </div>
+      {size === 'medium' && (
+        <div className="h-1 w-2/3 rounded-full mt-0.5 mx-auto" style={{ background: `${color}50` }} />
+      )}
     </div>
   )
 }
 
-function TextThumb({ color }: { color: string }) {
-  // Translator-style: 2 short rows with an arrow between
+function TrackerThumb({ color, size }: { color: string; size: AppThumbnailSize }) {
+  // Bar chart. Medium = 7 bars (weekly), with axis line.
+  const heights = size === 'medium' ? [30, 55, 42, 70, 38, 85, 60] : [40, 65, 30, 80, 55]
   return (
-    <div className="flex flex-col gap-1 h-full justify-center px-0.5">
-      <div className="flex items-center gap-1">
-        <div className="text-[6px] font-bold uppercase shrink-0" style={{ color }}>EN</div>
-        <div className="h-1 flex-1 rounded-full" style={{ background: `${color}40` }} />
+    <div className="flex flex-col h-full">
+      <div className="flex items-end justify-between gap-0.5 flex-1 pb-0.5" style={{ paddingLeft: 2, paddingRight: 2 }}>
+        {heights.map((h, i) => (
+          <div
+            key={i}
+            className="flex-1 rounded-t"
+            style={{
+              height: `${h}%`,
+              background: i === heights.length - 2 ? color : `${color}55`,
+            }}
+          />
+        ))}
       </div>
-      <div className="text-[6px] text-center font-bold leading-none opacity-50" style={{ color }}>↓</div>
-      <div className="flex items-center gap-1">
-        <div className="text-[6px] font-bold uppercase shrink-0" style={{ color }}>VI</div>
-        <div className="h-1 flex-1 rounded-full" style={{ background: `${color}80` }} />
-      </div>
+      {size === 'medium' && (
+        <div className="h-px w-full" style={{ background: `${color}30` }} />
+      )}
     </div>
   )
 }
 
-function TrackerThumb({ color }: { color: string }) {
-  // 5 bars of varying heights — like a weekly progress chart
-  const heights = [40, 65, 30, 80, 55]
+function GameThumb({ color, size }: { color: string; size: AppThumbnailSize }) {
+  // Colored cell grid. Small = 3x3, Medium = 4x4 with one cell highlighted as "active".
+  const dim = size === 'medium' ? 4 : 3
+  const cells = useMemoSeed(dim * dim, color)
   return (
-    <div className="flex items-end justify-between gap-0.5 h-full pb-0.5 px-0.5">
-      {heights.map((h, i) => (
-        <div
-          key={i}
-          className="flex-1 rounded-sm"
-          style={{ height: `${h}%`, background: i === heights.length - 1 ? color : `${color}55` }}
-        />
-      ))}
-    </div>
-  )
-}
-
-function GameThumb({ color }: { color: string }) {
-  // 3x3 colored cell grid, some active
-  // Use the color + complementary shades for visual variety
-  const cells = [
-    color, `${color}33`, color,
-    `${color}33`, color, `${color}33`,
-    color, `${color}33`, `${color}33`,
-  ]
-  return (
-    <div className="grid grid-cols-3 gap-0.5 h-full">
+    <div className={`grid h-full gap-0.5`} style={{ gridTemplateColumns: `repeat(${dim}, 1fr)` }}>
       {cells.map((c, i) => (
         <div key={i} className="rounded-sm" style={{ background: c }} />
       ))}
@@ -170,26 +240,64 @@ function GameThumb({ color }: { color: string }) {
   )
 }
 
-function ChatThumb({ color }: { color: string }) {
-  // Two speech bubbles, alternating sides
+// Deterministic-ish color pattern based on the dim so each variant feels consistent across renders.
+function useMemoSeed(n: number, color: string): string[] {
+  // Simple alternating + sprinkled pattern. Not random — stable across renders.
+  const out: string[] = []
+  for (let i = 0; i < n; i++) {
+    if (i % 5 === 0) out.push(color)
+    else if (i % 3 === 0) out.push(`${color}66`)
+    else if (i % 2 === 0) out.push(`${color}33`)
+    else out.push(`${color}22`)
+  }
+  return out
+}
+
+function ChatThumb({ color, size }: { color: string; size: AppThumbnailSize }) {
+  // Speech bubbles. Medium has 3 bubbles + an avatar dot.
+  const bubbles = size === 'medium' ? 3 : 2
   return (
-    <div className="flex flex-col gap-1 h-full justify-center">
-      <div className="flex justify-start">
-        <div
-          className="rounded-md rounded-tl-none px-1.5 py-0.5"
-          style={{ background: `${color}33`, minWidth: 24 }}
-        >
-          <div className="h-0.5 w-4 rounded-full" style={{ background: color }} />
+    <div className={`flex flex-col h-full ${size === 'medium' ? 'gap-2 justify-center' : 'gap-1 justify-center'}`}>
+      {bubbles >= 1 && (
+        <div className="flex justify-start items-end gap-1">
+          {size === 'medium' && (
+            <div className="w-3 h-3 rounded-full shrink-0" style={{ background: `${color}80` }} />
+          )}
+          <div
+            className={`${size === 'medium' ? 'rounded-xl rounded-bl-sm px-2.5 py-1.5' : 'rounded-md rounded-tl-none px-1.5 py-0.5'}`}
+            style={{ background: `${color}33`, minWidth: size === 'medium' ? 50 : 24 }}
+          >
+            <div className={`${size === 'medium' ? 'h-1.5 w-10' : 'h-0.5 w-4'} rounded-full`} style={{ background: color }} />
+          </div>
         </div>
-      </div>
-      <div className="flex justify-end">
-        <div
-          className="rounded-md rounded-tr-none px-1.5 py-0.5"
-          style={{ background: color, minWidth: 18 }}
-        >
-          <div className="h-0.5 w-3 rounded-full bg-white/80" />
+      )}
+      {bubbles >= 2 && (
+        <div className="flex justify-end">
+          <div
+            className={`${size === 'medium' ? 'rounded-xl rounded-br-sm px-2.5 py-1.5' : 'rounded-md rounded-tr-none px-1.5 py-0.5'}`}
+            style={{ background: color, minWidth: size === 'medium' ? 40 : 18 }}
+          >
+            <div className={`${size === 'medium' ? 'h-1.5 w-7' : 'h-0.5 w-3'} rounded-full bg-white/80`} />
+          </div>
         </div>
-      </div>
+      )}
+      {bubbles >= 3 && (
+        <div className="flex justify-start items-end gap-1">
+          {size === 'medium' && (
+            <div className="w-3 h-3 rounded-full shrink-0" style={{ background: `${color}80` }} />
+          )}
+          <div
+            className="rounded-xl rounded-bl-sm px-2.5 py-1.5"
+            style={{ background: `${color}33`, minWidth: 36 }}
+          >
+            <div className="flex gap-0.5">
+              <div className="w-1 h-1 rounded-full" style={{ background: color }} />
+              <div className="w-1 h-1 rounded-full" style={{ background: color, opacity: 0.6 }} />
+              <div className="w-1 h-1 rounded-full" style={{ background: color, opacity: 0.3 }} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
