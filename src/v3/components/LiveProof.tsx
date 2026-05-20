@@ -225,10 +225,9 @@ function StudentAppsHero() {
         </div>
 
         {/* Three marquee lanes — alternating direction, varying speed */}
-        <div className="space-y-3 -mx-7 lg:-mx-10 mb-10">
-          <MarqueeLane offset={0}  direction="left"  speed={45} />
-          <MarqueeLane offset={6}  direction="right" speed={55} />
-          <MarqueeLane offset={12} direction="left"  speed={38} />
+        <div className="space-y-4 -mx-7 lg:-mx-10 mb-10">
+          <MarqueeLane offset={0} direction="left"  speed={60} />
+          <MarqueeLane offset={9} direction="right" speed={70} />
         </div>
 
         {/* Featured-student spotlights */}
@@ -244,15 +243,20 @@ function StudentAppsHero() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
-                className="flex items-center gap-3 p-4 rounded-2xl"
+                className="flex items-center gap-4 p-5 rounded-2xl"
                 style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
               >
-                <AppThumbnail variant={s.variant} color={s.color} />
-                <div className="min-w-0">
-                  <div className="text-xs font-semibold opacity-60">
+                <AppThumbnail
+                  variant={s.variant}
+                  color={s.color}
+                  size="medium"
+                  appLabel={s.app}
+                />
+                <div className="min-w-0 flex flex-col gap-1">
+                  <div className="text-[10px] font-bold uppercase tracking-wider opacity-50">
                     {s.initials} · {s.grade} · {s.school}
                   </div>
-                  <div className="text-sm font-bold truncate">{s.app}</div>
+                  <div className="text-base font-bold truncate">{s.app}</div>
                 </div>
               </motion.div>
             ))}
@@ -369,19 +373,34 @@ function MarqueeLane({ offset, direction, speed }: { offset: number; direction: 
         {lane.map((app, i) => (
           <div
             key={i}
-            className="flex items-center gap-3 px-4 py-3 rounded-2xl shrink-0 transition-transform hover:scale-[1.03]"
+            className="flex items-center gap-4 px-5 py-4 rounded-2xl shrink-0 transition-transform hover:scale-[1.02]"
             style={{
-              background: `linear-gradient(135deg, ${app.color}18, rgba(255,255,255,0.04))`,
-              border: `1px solid ${app.color}33`,
-              minWidth: 280,
+              background: `linear-gradient(135deg, ${app.color}1c, rgba(255,255,255,0.03))`,
+              border: `1px solid ${app.color}3a`,
+              minWidth: 380,
             }}
           >
-            <AppThumbnail variant={app.variant} color={app.color} />
-            <div className="flex flex-col min-w-0">
-              <span className="text-sm font-bold truncate">{locale === 'vi' ? app.vi : app.en}</span>
-              <span className="text-[10px] uppercase tracking-wider opacity-60 font-semibold">
-                {app.grade} · {app.variant}
+            <AppThumbnail
+              variant={app.variant}
+              color={app.color}
+              size="medium"
+              appLabel={locale === 'vi' ? app.vi : app.en}
+            />
+            <div className="flex flex-col min-w-0 gap-1">
+              <span className="text-base font-bold leading-tight truncate">
+                {locale === 'vi' ? app.vi : app.en}
               </span>
+              <div className="flex items-center gap-1.5">
+                <span
+                  className="text-[10px] font-bold tracking-wider px-1.5 py-0.5 rounded uppercase"
+                  style={{ background: `${app.color}22`, color: app.color }}
+                >
+                  {app.grade}
+                </span>
+                <span className="text-[10px] opacity-50 font-medium">
+                  Học sinh tự xây
+                </span>
+              </div>
             </div>
           </div>
         ))}
