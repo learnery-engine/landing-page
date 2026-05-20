@@ -62,3 +62,23 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* V3 — generic gradient-text clip rules. Pair with an inline
+   `style={{ backgroundImage: '...' }}` to control the gradient per
+   element. Splitting clip rules out of inline style is what makes V3
+   gradient text actually render as clipped text instead of a solid
+   block — inline `background:` shorthand kept resetting `background-clip`
+   to `border-box` regardless of property order.
+
+   Pattern in components:
+
+     <span className="v3-grad-clip" style={{ backgroundImage: 'linear-gradient(...)' }}>
+       Text here
+     </span>
+*/
+.v3-grad-clip {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}

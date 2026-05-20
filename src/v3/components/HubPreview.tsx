@@ -58,12 +58,9 @@ export function HubPreview() {
           >
             Đăng nhập là vào{' '}
             <span
+              className="v3-grad-clip"
               style={{
                 backgroundImage: `linear-gradient(135deg, ${tokens.accent}, ${tokens.text})`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                color: 'transparent',
               }}
             >
               ngay đây

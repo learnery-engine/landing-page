@@ -50,13 +50,9 @@ export function TrustStrip() {
               className="text-center"
             >
               <div
-                className="text-4xl lg:text-5xl font-extrabold tabular-nums mb-1"
+                className="v3-grad-clip text-4xl lg:text-5xl font-extrabold tabular-nums mb-1"
                 style={{
                   backgroundImage: `linear-gradient(135deg, ${accent.accent}, ${accent.text})`,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  color: 'transparent',
                 }}
               >
                 {item.value}
