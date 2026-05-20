@@ -43,6 +43,14 @@
 }
 .animate-marquee { animation: marquee 25s linear infinite; }
 
+/* Reverse-direction marquee for the multi-lane "student apps shipped" hero
+   in v3/LiveProof — staggering left/right scrolls makes the wall feel
+   kinetic and alive instead of one stiff horizontal scroll. */
+@keyframes marquee-rev {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
 @keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes orbit-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 .animate-orbit { animation: orbit 20s linear infinite; }
