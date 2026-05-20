@@ -89,10 +89,11 @@ export function HeroV3() {
           <span>{v3.hero.headlineLine1} </span>
           <span
             style={{
-              background: `linear-gradient(135deg, ${tokens.accent}, ${persona ? PERSONA_TOKENS[persona].text : '#5B21B6'})`,
+              backgroundImage: `linear-gradient(135deg, ${tokens.accent}, ${persona ? PERSONA_TOKENS[persona].text : '#5B21B6'})`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
+              color: 'transparent',
             }}
           >
             {v3.hero.headlineHighlight}

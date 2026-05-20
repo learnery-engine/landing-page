@@ -209,7 +209,7 @@ function StudentAppsHero() {
               Đầu tiên ở Việt Nam · Học sinh tự ship app AI
             </div>
             <h3 className="text-3xl lg:text-4xl font-extrabold leading-[1.1] mb-3 tracking-tight">
-              <span style={{ background: 'linear-gradient(135deg, #A78BFA 0%, #F472B6 50%, #FBBF24 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <span style={{ backgroundImage: 'linear-gradient(135deg, #A78BFA 0%, #F472B6 50%, #FBBF24 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>
                 Học sinh xây app AI.
               </span>
               <br />
@@ -329,10 +329,11 @@ function BigCounter({ target }: { target: number }) {
           className="font-extrabold tabular-nums tracking-tighter"
           style={{
             fontSize: 'clamp(4rem, 10vw, 7rem)',
-            background: 'linear-gradient(180deg, #fff 0%, rgba(167,139,250,0.6) 100%)',
+            backgroundImage: 'linear-gradient(180deg, #fff 0%, rgba(167,139,250,0.6) 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
+            color: 'transparent',
             filter: 'drop-shadow(0 4px 24px rgba(167,139,250,0.4))',
           }}
         >
