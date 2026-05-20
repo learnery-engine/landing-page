@@ -59,10 +59,11 @@ export function HubPreview() {
             Đăng nhập là vào{' '}
             <span
               style={{
-                background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.text})`,
+                backgroundImage: `linear-gradient(135deg, ${tokens.accent}, ${tokens.text})`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
+                color: 'transparent',
               }}
             >
               ngay đây
