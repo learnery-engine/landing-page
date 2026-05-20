@@ -215,14 +215,14 @@ export const V3_VI: V3Strings = {
     legendVision: 'Tầm nhìn 2026',
   },
   proof: {
-    eyebrow: 'Bằng chứng thật, không phải mock-up',
-    heading: 'Mỗi bề mặt đều đã có sản phẩm thật',
+    eyebrow: 'Sản phẩm đang chạy',
+    heading: 'Đây là Learneris thật.',
     subhead:
-      'Không phải landing-page đẹp — đây là những thứ học sinh, giáo viên, và trường thật đang dùng mỗi tuần.',
+      'Học sinh tự xây app · Giáo viên ra đề trong 30 giây · COMPASS chấm chuẩn từng câu. Mỗi tuần, hàng nghìn lần.',
     apps: {
-      title: 'Học sinh đang xây app thật',
+      title: 'Học sinh ship app',
       subtitle:
-        'Mỗi tile là một app AI do học sinh K-12 Việt Nam tự nghĩ, tự prompt, tự ship qua creator.learnery.',
+        'Mỗi card là một app AI học sinh K-12 Việt Nam tự nghĩ, prompt, debug, và ship qua creator.learnery.',
       counterLabel: 'Apps đã ship',
       counterValue: '735+',
       cta: 'Xem showcase',
@@ -230,7 +230,7 @@ export const V3_VI: V3Strings = {
     compass: {
       title: 'COMPASS — em Minh, lớp 12',
       subtitle:
-        'Đậu ĐH Toán · Pretest 4.8/10 · Target 6.0 · 30 giờ ôn trong 6 tháng. Mọi con số đều từ spec engine, không phải UI mock.',
+        'Đậu ĐH Toán · Pretest 4.8/10 · Target 6.0 · 30 giờ ôn trong 6 tháng. Số liệu từ engine spec — không phải UI mock.',
       pretestLabel: 'Pretest',
       pretestValue: '4.8 / 10',
       targetLabel: 'Target',
@@ -415,14 +415,14 @@ export const V3_EN: V3Strings = {
     legendVision: '2026 vision',
   },
   proof: {
-    eyebrow: 'Real evidence, not mockups',
-    heading: 'Every surface has a real product behind it',
+    eyebrow: 'What\'s shipping',
+    heading: 'This is Learneris, in production.',
     subhead:
-      'Not a pretty landing page — these are the things real students, teachers, and schools use every week.',
+      'Students ship apps · Teachers generate in 30 seconds · COMPASS scores every step. Every week, thousands of times.',
     apps: {
-      title: 'Students are building real apps',
+      title: 'Students ship apps',
       subtitle:
-        'Each tile is an AI app a Vietnamese K-12 student thought up, prompted, and shipped through creator.learnery.',
+        'Each card is an AI app a Vietnamese K-12 student thought up, prompted, debugged, and shipped through creator.learnery.',
       counterLabel: 'Apps shipped',
       counterValue: '735+',
       cta: 'See the showcase',
@@ -430,7 +430,7 @@ export const V3_EN: V3Strings = {
     compass: {
       title: 'COMPASS — Minh, grade 12',
       subtitle:
-        'University-entrance Math · Pretest 4.8/10 · Target 6.0 · 30 hours over 6 months. Every number comes from the engine spec, not a UI mock.',
+        'University-entrance Math · Pretest 4.8/10 · Target 6.0 · 30 hours over 6 months. Numbers come from the engine spec — not a UI mock.',
       pretestLabel: 'Pretest',
       pretestValue: '4.8 / 10',
       targetLabel: 'Target',
