@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { CheckCircle2, XCircle, ArrowRight, RotateCcw } from 'lucide-react'
+import { navigate } from '../../../lib/navigate'
 
 interface CompassQ {
   topic: string
@@ -184,15 +185,14 @@ function CompassResult({
             <RotateCcw className="w-4 h-4" />
             Làm lại
           </button>
-          <a
-            href="https://prototype.learneris.com/journey/v1.html#/pretest-results"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => navigate('/signup')}
             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-violet-600 text-white text-sm font-semibold hover:bg-violet-700 transition-colors"
           >
-            Xem COMPASS đầy đủ
+            Làm bài COMPASS 50 câu — miễn phí
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </button>
         </div>
       </motion.div>
     </div>
