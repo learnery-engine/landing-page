@@ -3,10 +3,14 @@ import { usePersona } from '../PersonaContext'
 import { personaTokens } from '../tokens'
 
 /**
- * Short founder note. Vietnamese market puts heavy weight on trust signal +
- * a named human behind the product. This isn't a long bio — it's a
- * quiet "here's who I am, here's why this exists" beat right before the
- * final CTA. No fabricated metrics, no "rags to riches" story arc.
+ * Quiet "from the team" beat right before the final CTA. Vietnamese
+ * market puts heavy weight on trust signal + a named human channel —
+ * a paragraph signed by "đội ngũ Learneris" with a real support email
+ * does the same job as a founder photo while keeping personal identity
+ * out of the public surface.
+ *
+ * The file is still named `FounderNote.tsx` for git history continuity;
+ * the user-facing copy is team-signed, not founder-signed.
  */
 export function FounderNote() {
   const { persona } = usePersona()
@@ -24,13 +28,13 @@ export function FounderNote() {
           className="flex flex-col sm:flex-row items-center sm:items-start gap-6 p-7 sm:p-9 rounded-2xl bg-gradient-to-br from-gray-50 via-white to-gray-50 border"
           style={{ borderColor: tokens.ring }}
         >
-          {/* Avatar */}
+          {/* Brand glyph — neutral, not a personal avatar */}
           <div
-            className="w-20 h-20 rounded-full shrink-0 flex items-center justify-center text-white font-extrabold text-2xl"
+            className="w-20 h-20 rounded-2xl shrink-0 flex items-center justify-center text-white font-extrabold text-3xl"
             style={{ background: `linear-gradient(135deg, ${tokens.accent}, ${tokens.text})` }}
             aria-hidden
           >
-            K
+            L
           </div>
 
           <div className="flex-1 text-center sm:text-left">
@@ -38,24 +42,28 @@ export function FounderNote() {
               className="inline-block text-[10px] font-bold uppercase tracking-widest mb-2"
               style={{ color: tokens.accent }}
             >
-              Lời nhắn từ người sáng lập
+              Lời nhắn từ đội ngũ Learneris
             </div>
             <p className="text-base text-text leading-relaxed mb-3">
-              Mình xây Learneris vì tin rằng AI nên giúp giáo dục Việt Nam{' '}
+              Chúng tôi xây Learneris vì tin rằng AI nên giúp giáo dục Việt Nam{' '}
               <strong>nhanh hơn, công bằng hơn, và sâu hơn</strong> — không chỉ một bộ công cụ
               cho thầy cô soạn bài, mà là một hệ sinh thái nơi học sinh thực sự biết AI và biết
               <em> dùng AI để xây thứ thuộc về mình</em>.
             </p>
             <p className="text-sm text-text-muted leading-relaxed mb-4">
               Mỗi feature trên đây đều đến từ cuộc trò chuyện thật với giáo viên, học sinh, hoặc
-              phụ huynh ở Hà Nội, Sài Gòn, Cần Thơ. Có ý kiến để mình lắng nghe? Email mình tại{' '}
-              <a href="mailto:kelsienguyen@gmail.com" className="font-semibold underline decoration-2 underline-offset-2" style={{ color: tokens.accent }}>
-                kelsienguyen@gmail.com
+              phụ huynh ở Hà Nội, Sài Gòn, Cần Thơ. Có góp ý cho chúng tôi? Email tại{' '}
+              <a
+                href="mailto:support@learneris.com"
+                className="font-semibold underline decoration-2 underline-offset-2"
+                style={{ color: tokens.accent }}
+              >
+                support@learneris.com
               </a>{' '}
-              — mình đọc hết.
+              — đội ngũ đọc hết.
             </p>
-            <div className="text-sm font-semibold text-text">— Kelsie Nguyễn</div>
-            <div className="text-xs text-text-muted">Founder, Learneris</div>
+            <div className="text-sm font-semibold text-text">— Đội ngũ Learneris</div>
+            <div className="text-xs text-text-muted">Hà Nội · Sài Gòn · Cần Thơ</div>
           </div>
         </motion.div>
       </div>
