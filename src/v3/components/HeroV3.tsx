@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useReducer, useRef, useState } from 'react'
-import { ArrowRight, RotateCcw } from 'lucide-react'
+import { ArrowRight, RotateCcw, Sparkles, ClipboardCheck, FileText, Gamepad2, Wand2 } from 'lucide-react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { useV3Translation } from '../i18n'
 import { usePersona, type Persona } from '../PersonaContext'
-import { PERSONA_TOKENS, personaTokens } from '../tokens'
+import { PERSONA_TOKENS, personaTokens, type PersonaToken } from '../tokens'
 import { navigate } from '../../lib/navigate'
 import { PersonaIcon } from './PersonaIcon'
 
@@ -132,6 +132,13 @@ export function HeroV3() {
             <PersonaPickerBlock key="picker" onPick={setPersona} />
           )}
         </AnimatePresence>
+
+        {/* Animated product mockup — persona-themed browser-chrome with
+            mini-app generating preview. Mirrors V2's hero polish (V2's
+            Hero.tsx 119-189) but persona-aware. */}
+        <div className="mt-14 lg:mt-16 flex justify-center">
+          <HeroMockup tokens={tokens} />
+        </div>
 
         {/* Rotating live proof line */}
         <motion.div
@@ -361,6 +368,199 @@ function AnimatedMesh({ accent, reducedMotion }: { accent: string; reducedMotion
         </defs>
         <rect width="100%" height="100%" fill="url(#hero-dots)" />
       </svg>
+    </div>
+  )
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+/**
+ * Browser-chrome product mockup. Mirrors V2's hero polish (V2 Hero.tsx
+ * lines 120–189): bezel + window dots + URL bar + 4-card mini-app preview
+ * + "AI generating" indicator + 2 floating badges around the frame.
+ *
+ * Persona-themed: URL bar accent, mini-app card tints, badge colors all
+ * shift with the active persona. Stays neutral-violet when no persona.
+ */
+function HeroMockup({ tokens }: { tokens: PersonaToken }) {
+  const prefersReducedMotion = useReducedMotion()
+  return (
+    <motion.div
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="relative w-full max-w-[600px]"
+    >
+      {/* Float container so the frame gently bobs */}
+      <div className={prefersReducedMotion ? '' : 'animate-float'}>
+        <div
+          className="relative bg-white rounded-2xl border border-gray-200/80 overflow-hidden"
+          style={{
+            boxShadow:
+              `0 50px 100px -30px ${tokens.ring}, 0 30px 60px -30px rgba(15,23,42,0.18)`,
+          }}
+        >
+          {/* Browser chrome */}
+          <div className="flex items-center gap-2 px-4 py-3 bg-gray-50/80 border-b border-gray-100">
+            <div className="flex gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-red-400" />
+              <div className="w-3 h-3 rounded-full bg-yellow-400" />
+              <div className="w-3 h-3 rounded-full bg-green-400" />
+            </div>
+            <div className="flex-1 mx-4">
+              <div
+                className="bg-white rounded-lg px-3 py-1 text-[11px] border flex items-center gap-1.5"
+                style={{ borderColor: tokens.ring, color: tokens.text }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: tokens.accent }} />
+                aiapp.learneris.com
+              </div>
+            </div>
+          </div>
+
+          {/* App preview body */}
+          <div className="p-5 sm:p-6 bg-gradient-to-br from-gray-50/40 to-white">
+            <MockupAppGrid tokens={tokens} />
+            <MockupGenerating tokens={tokens} />
+          </div>
+        </div>
+      </div>
+
+      {/* Floating badges around the frame */}
+      <FloatingBadge
+        position="top-right"
+        icon="⚡"
+        label="Tốc độ"
+        value="30 giây"
+        tone="accent"
+        tokens={tokens}
+        delay="1s"
+      />
+      <FloatingBadge
+        position="bottom-left"
+        icon="🎯"
+        label="Chuẩn"
+        value="GDPT 2018"
+        tone="text"
+        tokens={tokens}
+        delay="2s"
+      />
+    </motion.div>
+  )
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+const MOCKUP_APPS = [
+  { key: 'quiz',     label: 'Bài kiểm tra', Icon: ClipboardCheck, accent: '#7C3AED' },
+  { key: 'lesson',   label: 'Giáo án',       Icon: FileText,       accent: '#3B82F6' },
+  { key: 'slides',   label: 'Slides',         Icon: Wand2,          accent: '#10B981' },
+  { key: 'inter',    label: 'Tương tác',     Icon: Gamepad2,       accent: '#F59E0B' },
+] as const
+
+function MockupAppGrid({ tokens }: { tokens: PersonaToken }) {
+  const prefersReducedMotion = useReducedMotion()
+  return (
+    <div className="grid grid-cols-2 gap-3 mb-4">
+      {MOCKUP_APPS.map((app, i) => {
+        const Icon = app.Icon
+        return (
+          <motion.div
+            key={app.key}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.5 + i * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
+            whileHover={{ y: -2 }}
+            className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              className="w-9 h-9 rounded-lg flex items-center justify-center mb-2"
+              style={{ background: `${app.accent}15`, color: app.accent }}
+            >
+              <Icon className="w-4 h-4" strokeWidth={2.25} />
+            </div>
+            <div className="text-sm font-semibold text-text leading-tight">{app.label}</div>
+            <div className="text-[10px] text-text-muted mt-0.5 truncate" style={{ color: tokens.text, opacity: 0.6 }}>
+              AI-powered
+            </div>
+          </motion.div>
+        )
+      })}
+    </div>
+  )
+}
+
+function MockupGenerating({ tokens }: { tokens: PersonaToken }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.95 }}
+      className="rounded-xl p-3.5 flex items-center gap-3 border"
+      style={{
+        background: tokens.tint,
+        borderColor: tokens.ring,
+      }}
+    >
+      <div
+        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+        style={{ background: tokens.accent }}
+      >
+        <Sparkles className="w-4 h-4 text-white" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="text-sm font-semibold text-text">AI đang soạn quiz về hàm số…</div>
+        <div className="mt-1.5 h-1 rounded-full overflow-hidden" style={{ background: `${tokens.accent}22` }}>
+          <motion.div
+            initial={{ width: '0%' }}
+            animate={{ width: ['0%', '70%', '85%', '92%'] }}
+            transition={{ duration: 3.5, repeat: Infinity, repeatType: 'loop', ease: 'easeOut' }}
+            className="h-full rounded-full"
+            style={{ background: `linear-gradient(90deg, ${tokens.accent}, ${tokens.text})` }}
+          />
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+function FloatingBadge({
+  position,
+  icon,
+  label,
+  value,
+  tone,
+  tokens,
+  delay,
+}: {
+  position: 'top-right' | 'bottom-left'
+  icon: string
+  label: string
+  value: string
+  tone: 'accent' | 'text'
+  tokens: PersonaToken
+  delay: string
+}) {
+  const prefersReducedMotion = useReducedMotion()
+  const posClasses =
+    position === 'top-right' ? '-top-4 -right-4 sm:-top-5 sm:-right-6' : '-bottom-3 -left-3 sm:-bottom-4 sm:-left-6'
+  const valueColor = tone === 'accent' ? tokens.accent : tokens.text
+  return (
+    <div
+      className={`absolute ${posClasses} bg-white rounded-xl shadow-lg shadow-gray-200/60 border border-gray-100 px-3.5 sm:px-4 py-2 sm:py-2.5 ${prefersReducedMotion ? '' : 'animate-float'}`}
+      style={{ animationDelay: delay }}
+    >
+      <div className="flex items-center gap-2">
+        <span className="text-xl sm:text-2xl" aria-hidden>
+          {icon}
+        </span>
+        <div>
+          <div className="text-[10px] sm:text-xs font-medium text-text-muted">{label}</div>
+          <div className="text-xs sm:text-sm font-bold" style={{ color: valueColor }}>
+            {value}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
