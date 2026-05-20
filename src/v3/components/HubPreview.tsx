@@ -181,22 +181,68 @@ export function HubPreview() {
                 </div>
               </div>
 
-              {/* Continue row mockup */}
-              <div>
-                <div className="text-xs font-bold text-text mb-2">Tiếp tục</div>
+              {/* Continue row mockup — richer content per V2-hero polish bar */}
+              <div className="mb-5">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-xs font-bold text-text">Tiếp tục</div>
+                  <span className="text-[9px] text-text-muted">↗ Tất cả</span>
+                </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[
-                    { name: 'Quiz Hàm số · 20 câu', date: '2 giờ trước' },
-                    { name: 'KHBD Tuần 12', date: 'Hôm qua' },
-                    { name: 'Đáp án Vật lý', date: '3 ngày trước' },
-                    { name: 'Slide ôn tập', date: 'Tuần trước' },
-                  ].map((r) => (
-                    <div key={r.name} className="bg-white rounded-lg p-2.5 border border-gray-100">
-                      <div className="text-[10px] font-semibold text-gray-700 truncate mb-0.5">{r.name}</div>
-                      <div className="text-[9px] text-gray-400">{r.date}</div>
-                    </div>
-                  ))}
+                    { name: 'Quiz Hàm số · 20 câu', date: '2 giờ trước', AppIcon: ClipboardCheck, color: '#7C3AED', status: 'done' as const },
+                    { name: 'KHBD Tuần 12 — Toán 12', date: 'Hôm qua',      AppIcon: FileText,       color: '#3B82F6', status: 'done' as const },
+                    { name: 'Bài luyện hình học',   date: '3 ngày trước', AppIcon: Gamepad2,      color: '#14B8A6', status: 'done' as const },
+                    { name: 'Slide ôn tập THPT',    date: 'Tuần trước',   AppIcon: FileText,       color: '#22C55E', status: 'done' as const },
+                  ].map((r) => {
+                    const Icon = r.AppIcon
+                    return (
+                      <div key={r.name} className="bg-white rounded-lg p-2.5 border border-gray-100 flex flex-col gap-1.5">
+                        <div className="flex items-center justify-between">
+                          <div
+                            className="w-5 h-5 rounded flex items-center justify-center"
+                            style={{ background: `${r.color}15`, color: r.color }}
+                          >
+                            <Icon className="w-3 h-3" />
+                          </div>
+                          <span className="w-1 h-1 rounded-full bg-emerald-400" aria-hidden />
+                        </div>
+                        <div className="text-[10px] font-semibold text-gray-700 leading-tight line-clamp-2 min-h-[1.6em]">{r.name}</div>
+                        <div className="text-[9px] text-gray-400 mt-auto">{r.date}</div>
+                      </div>
+                    )
+                  })}
                 </div>
+              </div>
+
+              {/* Active "Lumi suggestion" beat — gives the mockup a live-product feel
+                  (mirrors V2 Hero.tsx 152-163 "AI generating" indicator) */}
+              <div
+                className="rounded-lg p-2.5 flex items-center gap-2 border"
+                style={{
+                  background: tokens.tint,
+                  borderColor: tokens.ring,
+                }}
+              >
+                <div
+                  className="w-7 h-7 rounded-md flex items-center justify-center shrink-0"
+                  style={{ background: tokens.accent, color: '#fff' }}
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[11px] font-semibold text-text truncate">
+                    Lumi gợi ý: ôn lại Mũ-Log trước Kỳ thi giữa kỳ
+                  </div>
+                  <div className="mt-1 h-1 rounded-full overflow-hidden" style={{ background: `${tokens.accent}22` }}>
+                    <div
+                      className="h-full rounded-full"
+                      style={{ width: '62%', background: `linear-gradient(90deg, ${tokens.accent}, ${tokens.text})` }}
+                    />
+                  </div>
+                </div>
+                <span className="text-[9px] font-bold tabular-nums shrink-0" style={{ color: tokens.text }}>
+                  62%
+                </span>
               </div>
             </main>
           </div>
