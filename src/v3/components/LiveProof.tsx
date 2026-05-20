@@ -5,6 +5,7 @@ import { useV3Translation } from '../i18n'
 import { usePersona } from '../PersonaContext'
 import { personaTokens } from '../tokens'
 import { navigate } from '../../lib/navigate'
+import { AppThumbnail, type AppThumbnailVariant } from './AppThumbnail'
 
 /**
  * Believable student-built app titles — categories drawn from real K-12
@@ -19,25 +20,33 @@ import { navigate } from '../../lib/navigate'
  * a fabricated attribution. When we have a signed-off creator
  * showcase, swap these for real attributions.
  */
-const STUDENT_APP_TILES = [
-  { icon: '🍱', vi: 'Đếm calo bữa trưa',       en: 'Lunch calorie counter',     grade: 'L5', color: '#FB923C' },
-  { icon: '📚', vi: 'Flashcard lịch sử VN',    en: 'VN history flashcards',     grade: 'L7', color: '#A78BFA' },
-  { icon: '🧮', vi: 'Quiz toán hình lớp 4',     en: 'Geometry quiz G4',          grade: 'L4', color: '#60A5FA' },
-  { icon: '🌍', vi: 'Dịch Anh ↔ Việt',          en: 'EN↔VN translator',          grade: 'L6', color: '#34D399' },
-  { icon: '🎮', vi: 'Game học bảng chữ',        en: 'Alphabet game',             grade: 'L1', color: '#F472B6' },
-  { icon: '📝', vi: 'Tóm tắt bài giảng',        en: 'Lecture summariser',        grade: 'L11', color: '#FBBF24' },
-  { icon: '🏃', vi: 'Theo dõi thói quen',       en: 'Habit tracker',             grade: 'L9', color: '#22D3EE' },
-  { icon: '🎵', vi: 'Đoán nhạc cụ',             en: 'Guess the instrument',      grade: 'L3', color: '#C084FC' },
-  { icon: '🦋', vi: 'Sinh học vòng đời',        en: 'Life-cycle quiz',           grade: 'L5', color: '#10B981' },
-  { icon: '🗣️', vi: 'Luyện speaking',           en: 'Speaking practice',         grade: 'L10', color: '#F59E0B' },
-  { icon: '🧪', vi: 'Phòng lab ảo hoá',         en: 'Virtual chemistry lab',     grade: 'L8', color: '#EC4899' },
-  { icon: '⚽', vi: 'Quiz World Cup',           en: 'World Cup quiz',            grade: 'L6', color: '#3B82F6' },
-  { icon: '🌱', vi: 'Vườn rau thông minh',      en: 'Smart vegetable garden',    grade: 'L4', color: '#22C55E' },
-  { icon: '⏰', vi: 'Quản lý thời gian học',    en: 'Study time tracker',        grade: 'L8', color: '#0EA5E9' },
-  { icon: '🎨', vi: 'Học pha màu',              en: 'Color mixing game',         grade: 'L2', color: '#D946EF' },
-  { icon: '🚀', vi: 'Quiz Hệ Mặt Trời',        en: 'Solar system quiz',         grade: 'L6', color: '#6366F1' },
-  { icon: '🩺', vi: 'Sinh học giải phẫu',       en: 'Human anatomy quiz',        grade: 'L10', color: '#EF4444' },
-  { icon: '🎭', vi: 'Đoán tác phẩm văn',        en: 'Guess the literature work', grade: 'L9', color: '#A855F7' },
+interface AppTile {
+  variant: AppThumbnailVariant
+  vi: string
+  en: string
+  grade: string
+  color: string
+}
+
+const STUDENT_APP_TILES: readonly AppTile[] = [
+  { variant: 'counter',   vi: 'Đếm calo bữa trưa',    en: 'Lunch calorie counter',     grade: 'L5',  color: '#FB923C' },
+  { variant: 'flashcard', vi: 'Flashcard lịch sử VN', en: 'VN history flashcards',     grade: 'L7',  color: '#A78BFA' },
+  { variant: 'quiz',      vi: 'Quiz toán hình lớp 4',  en: 'Geometry quiz G4',          grade: 'L4',  color: '#60A5FA' },
+  { variant: 'text',      vi: 'Dịch Anh ↔ Việt',       en: 'EN↔VN translator',          grade: 'L6',  color: '#34D399' },
+  { variant: 'game',      vi: 'Game học bảng chữ',     en: 'Alphabet game',             grade: 'L1',  color: '#F472B6' },
+  { variant: 'text',      vi: 'Tóm tắt bài giảng',     en: 'Lecture summariser',        grade: 'L11', color: '#FBBF24' },
+  { variant: 'tracker',   vi: 'Theo dõi thói quen',    en: 'Habit tracker',             grade: 'L9',  color: '#22D3EE' },
+  { variant: 'quiz',      vi: 'Đoán nhạc cụ',          en: 'Guess the instrument',      grade: 'L3',  color: '#C084FC' },
+  { variant: 'flashcard', vi: 'Sinh học vòng đời',     en: 'Life-cycle quiz',           grade: 'L5',  color: '#10B981' },
+  { variant: 'chat',      vi: 'Luyện speaking',        en: 'Speaking practice',         grade: 'L10', color: '#F59E0B' },
+  { variant: 'tracker',   vi: 'Phòng lab ảo hoá',      en: 'Virtual chemistry lab',     grade: 'L8',  color: '#EC4899' },
+  { variant: 'quiz',      vi: 'Quiz World Cup',        en: 'World Cup quiz',            grade: 'L6',  color: '#3B82F6' },
+  { variant: 'tracker',   vi: 'Vườn rau thông minh',   en: 'Smart vegetable garden',    grade: 'L4',  color: '#22C55E' },
+  { variant: 'tracker',   vi: 'Quản lý thời gian học', en: 'Study time tracker',        grade: 'L8',  color: '#0EA5E9' },
+  { variant: 'game',      vi: 'Học pha màu',           en: 'Color mixing game',         grade: 'L2',  color: '#D946EF' },
+  { variant: 'quiz',      vi: 'Quiz Hệ Mặt Trời',     en: 'Solar system quiz',         grade: 'L6',  color: '#6366F1' },
+  { variant: 'flashcard', vi: 'Sinh học giải phẫu',    en: 'Human anatomy quiz',        grade: 'L10', color: '#EF4444' },
+  { variant: 'quiz',      vi: 'Đoán tác phẩm văn',     en: 'Guess the literature work', grade: 'L9',  color: '#A855F7' },
 ] as const
 
 /**
@@ -46,10 +55,19 @@ const STUDENT_APP_TILES = [
  * without consent). Each card teaches the reader: "this kid is
  * THIS young, building THIS app".
  */
-const FEATURED_STUDENTS = [
-  { initials: 'N.A.', grade: 'Lớp 4', school: 'Hà Nội', app: 'Quiz Toán Hình', icon: '🧮', color: '#60A5FA' },
-  { initials: 'M.T.', grade: 'Lớp 7', school: 'Đà Nẵng', app: 'Flashcard Sử VN', icon: '📚', color: '#A78BFA' },
-  { initials: 'L.K.', grade: 'Lớp 10', school: 'Cần Thơ', app: 'Trợ lý giải phẫu', icon: '🩺', color: '#EF4444' },
+interface FeaturedStudent {
+  initials: string
+  grade: string
+  school: string
+  app: string
+  variant: AppThumbnailVariant
+  color: string
+}
+
+const FEATURED_STUDENTS: readonly FeaturedStudent[] = [
+  { initials: 'N.A.', grade: 'Lớp 4',  school: 'Hà Nội',     app: 'Quiz Toán Hình',    variant: 'quiz',      color: '#60A5FA' },
+  { initials: 'M.T.', grade: 'Lớp 7',  school: 'Đà Nẵng',    app: 'Flashcard Sử VN',   variant: 'flashcard', color: '#A78BFA' },
+  { initials: 'L.K.', grade: 'Lớp 10', school: 'Cần Thơ',    app: 'Trợ lý giải phẫu',  variant: 'flashcard', color: '#EF4444' },
 ] as const
 
 export function LiveProof() {
@@ -191,13 +209,14 @@ function StudentAppsHero() {
               Đầu tiên ở Việt Nam · Học sinh tự ship app AI
             </div>
             <h3 className="text-3xl lg:text-4xl font-extrabold leading-[1.1] mb-3 tracking-tight">
-              Không phải <span className="opacity-60 line-through decoration-2 decoration-rose-400/60">"học về AI"</span>.<br />
               <span style={{ background: 'linear-gradient(135deg, #A78BFA 0%, #F472B6 50%, #FBBF24 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                Học sinh xây bằng AI.
+                Học sinh xây app AI.
               </span>
+              <br />
+              Trong giờ ra chơi.
             </h3>
             <p className="text-base leading-relaxed max-w-xl" style={{ color: 'rgba(255,255,255,0.75)' }}>
-              {v3.proof.apps.subtitle} Mỗi tile dưới đây là một app thật — học sinh K-12 tự nghĩ ra, prompt AI, debug, và ship.
+              {v3.proof.apps.subtitle}
             </p>
           </div>
 
@@ -228,13 +247,7 @@ function StudentAppsHero() {
                 className="flex items-center gap-3 p-4 rounded-2xl"
                 style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
               >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0"
-                  style={{ background: `${s.color}22`, border: `1px solid ${s.color}44` }}
-                  aria-hidden
-                >
-                  {s.icon}
-                </div>
+                <AppThumbnail variant={s.variant} color={s.color} />
                 <div className="min-w-0">
                   <div className="text-xs font-semibold opacity-60">
                     {s.initials} · {s.grade} · {s.school}
@@ -356,23 +369,19 @@ function MarqueeLane({ offset, direction, speed }: { offset: number; direction: 
         {lane.map((app, i) => (
           <div
             key={i}
-            className="flex items-center gap-3 px-5 py-3.5 rounded-2xl shrink-0 transition-transform hover:scale-105"
+            className="flex items-center gap-3 px-4 py-3 rounded-2xl shrink-0 transition-transform hover:scale-[1.03]"
             style={{
               background: `linear-gradient(135deg, ${app.color}18, rgba(255,255,255,0.04))`,
               border: `1px solid ${app.color}33`,
-              minWidth: 240,
+              minWidth: 280,
             }}
           >
-            <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0"
-              style={{ background: `${app.color}22`, border: `1px solid ${app.color}55` }}
-              aria-hidden
-            >
-              {app.icon}
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-bold">{locale === 'vi' ? app.vi : app.en}</span>
-              <span className="text-[10px] uppercase tracking-wider opacity-60 font-semibold">{app.grade}</span>
+            <AppThumbnail variant={app.variant} color={app.color} />
+            <div className="flex flex-col min-w-0">
+              <span className="text-sm font-bold truncate">{locale === 'vi' ? app.vi : app.en}</span>
+              <span className="text-[10px] uppercase tracking-wider opacity-60 font-semibold">
+                {app.grade} · {app.variant}
+              </span>
             </div>
           </div>
         ))}
