@@ -261,7 +261,7 @@ export const V3_VI: V3Strings = {
       { value: '5', label: 'Bề mặt sản phẩm' },
       { value: 'K-12', label: 'Phủ toàn cấp học' },
     ],
-    badges: ['VNIES chứng nhận', 'Chuẩn UNESCO AI Competency', 'GDPT 2018', 'Đề án 06'],
+    badges: ['VNIES chứng nhận', 'Sở GDĐT TP.HCM Đạt chất lượng (Tiểu học + THCS)', 'Chuẩn UNESCO AI Competency', 'GDPT 2018', 'Đề án 06'],
   },
   programs: {
     eyebrow: 'Chương trình AI Literacy đóng gói sẵn',
@@ -461,7 +461,7 @@ export const V3_EN: V3Strings = {
       { value: '5', label: 'Product surfaces' },
       { value: 'K-12', label: 'Full grade coverage' },
     ],
-    badges: ['VNIES certified', 'UNESCO AI Competency aligned', 'GDPT 2018', 'Đề án 06'],
+    badges: ['VNIES certified', 'HCMC DOET quality-approved (Primary + Lower-Sec)', 'UNESCO AI Competency aligned', 'GDPT 2018', 'Đề án 06'],
   },
   programs: {
     eyebrow: 'Pre-packaged AI Literacy programs',

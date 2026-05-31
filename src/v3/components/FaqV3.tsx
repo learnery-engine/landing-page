@@ -16,7 +16,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'Có chuẩn không? Trường có dùng được chính thức không?',
-    a: 'Chương trình K-12 đã được VNIES (Viện Khoa học Giáo dục Việt Nam) thẩm định, phù hợp Khung năng lực AI của UNESCO và Chương trình GDPT 2018. Nhiều trường dùng Learneris làm phần chính thức của môn Tin học hoặc hoạt động trải nghiệm.',
+    a: 'Chương trình K-12 đã được VNIES (Viện Khoa học Giáo dục Việt Nam) thẩm định và được Sở GDĐT TP.HCM kết luận Đạt chất lượng sử dụng trong nhà trường phổ thông cho cả cấp Tiểu học (CV 4847/SGDĐT-GDPT, 22/5/2026) và THCS (CV 1388/SGDĐT-GDPT, 11/2/2026). Phù hợp Khung năng lực AI của UNESCO và Chương trình GDPT 2018. Nhiều trường dùng Learneris làm phần chính thức của môn Tin học hoặc hoạt động trải nghiệm.',
   },
   {
     q: 'Bảo mật dữ liệu học sinh thế nào?',
