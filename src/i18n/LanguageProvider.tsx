@@ -1,7 +1,8 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, type ReactNode } from 'react'
 import type { Locale, Translations } from './types'
 import { en } from './locales/en'
 import { vi } from './locales/vi'
+import { LanguageContext } from './context'
 
 const STORAGE_KEY = 'learneris-lang'
 const translations: Record<Locale, Translations> = { en, vi }
@@ -16,15 +17,7 @@ function getInitialLocale(): Locale {
   return 'en'
 }
 
-interface LanguageContextValue {
-  locale: Locale
-  setLocale: (locale: Locale) => void
-  t: Translations
-}
-
-const LanguageContext = createContext<LanguageContextValue | null>(null)
-
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(getInitialLocale)
 
   const setLocale = useCallback((newLocale: Locale) => {
@@ -43,11 +36,3 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     </LanguageContext.Provider>
   )
 }
-
-export function useTranslation() {
-  const ctx = useContext(LanguageContext)
-  if (!ctx) throw new Error('useTranslation must be used within LanguageProvider')
-  return ctx
-}
-
-export type { Locale, Translations }
