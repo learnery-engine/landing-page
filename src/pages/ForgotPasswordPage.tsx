@@ -4,6 +4,7 @@ import { AuthLayout } from '../components/auth/AuthLayout'
 import { FormInput } from '../components/auth/FormInput'
 import { useTranslation } from '../i18n'
 import { auth } from '../lib/api'
+import { normalizeEmail } from '../lib/normalize-credentials'
 import { navigate } from '../lib/navigate'
 
 export function ForgotPasswordPage() {
@@ -17,13 +18,14 @@ export function ForgotPasswordPage() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     setApiError('')
-    if (!email.trim()) { setError(t.auth.errors.required); return }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError(t.auth.errors.invalidEmail); return }
+    const cleanEmail = normalizeEmail(email)
+    if (!cleanEmail) { setError(t.auth.errors.required); return }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) { setError(t.auth.errors.invalidEmail); return }
     setError('')
 
     setLoading(true)
     try {
-      await auth.resetPassword(email)
+      await auth.resetPassword(cleanEmail)
       setSent(true)
     } catch {
       setApiError(t.auth.errors.genericError)

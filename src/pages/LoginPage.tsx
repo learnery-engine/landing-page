@@ -5,6 +5,7 @@ import { FormInput } from '../components/auth/FormInput'
 import { GoogleSignIn } from '../components/auth/GoogleSignIn'
 import { useTranslation } from '../i18n'
 import { auth, trackLogin } from '../lib/api'
+import { normalizeEmail, normalizePassword } from '../lib/normalize-credentials'
 import { navigate } from '../lib/navigate'
 
 export function LoginPage() {
@@ -18,25 +19,31 @@ export function LoginPage() {
   const resetSuccess = params.get('reset') === 'success'
   const next = params.get('next') ?? undefined
 
-  function validate() {
+  function validate(emailValue: string, passwordValue: string) {
     const errs: Record<string, string> = {}
-    if (!email.trim()) errs.email = t.auth.errors.required
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = t.auth.errors.invalidEmail
-    if (!password) errs.password = t.auth.errors.required
+    if (!emailValue) errs.email = t.auth.errors.required
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) errs.email = t.auth.errors.invalidEmail
+    if (!passwordValue) errs.password = t.auth.errors.required
     return errs
   }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     setApiError('')
-    const errs = validate()
+    // Normalize before validating/submitting. Credentials are routinely typed
+    // on a Vietnamese IME / touch keyboard or pasted from chat, so look-alike
+    // and invisible characters (full-width "＠", zero-width chars, stray spaces)
+    // are common — they must not silently produce "invalid email or password".
+    const cleanEmail = normalizeEmail(email)
+    const cleanPassword = normalizePassword(password)
+    const errs = validate(cleanEmail, cleanPassword)
     setErrors(errs)
     if (Object.keys(errs).length) return
 
     setLoading(true)
     try {
-      const res = await auth.login(email, password)
-      trackLogin(email, 'email')
+      const res = await auth.login(cleanEmail, cleanPassword)
+      trackLogin(cleanEmail, 'email')
       const loginUrl = new URL(res.response.login_url)
       if (next) loginUrl.searchParams.set('next', next)
       window.location.href = loginUrl.toString()
