@@ -1,0 +1,42 @@
+version: 2
+
+# Routine version-update PRs. Security updates are opened out-of-band by
+# Dependabot (repo setting "Dependabot security updates" is on) and are not
+# affected by this schedule.
+#
+# Note: unlike the sibling repos, landing-page has no private @learnery-engine/*
+# npm dependencies (its only scoped dep, @learneris/cs-widget, is a vendored
+# file: tarball), so no GitHub Packages registry auth is needed here.
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    # Group non-major bumps into one PR per week so a solo operator isn't
+    # buried in dependency PRs.
+    groups:
+      prod-minor-patch:
+        applies-to: version-updates
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+      dev-minor-patch:
+        applies-to: version-updates
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    groups:
+      actions-all:
+        patterns:
+          - "*"
