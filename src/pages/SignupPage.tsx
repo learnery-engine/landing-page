@@ -5,6 +5,7 @@ import { FormInput } from '../components/auth/FormInput'
 import { GoogleSignIn } from '../components/auth/GoogleSignIn'
 import { useTranslation } from '../i18n'
 import { auth } from '../lib/api'
+import { normalizeEmail, normalizePassword } from '../lib/normalize-credentials'
 import { navigate } from '../lib/navigate'
 
 export function SignupPage() {
@@ -16,26 +17,32 @@ export function SignupPage() {
   const [apiError, setApiError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  function validate() {
+  function validate(nameValue: string, emailValue: string, passwordValue: string) {
     const errs: Record<string, string> = {}
-    if (!name.trim()) errs.name = t.auth.errors.required
-    if (!email.trim()) errs.email = t.auth.errors.required
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = t.auth.errors.invalidEmail
-    if (!password) errs.password = t.auth.errors.required
-    else if (password.length < 8) errs.password = t.auth.errors.passwordTooShort
+    if (!nameValue) errs.name = t.auth.errors.required
+    if (!emailValue) errs.email = t.auth.errors.required
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) errs.email = t.auth.errors.invalidEmail
+    if (!passwordValue) errs.password = t.auth.errors.required
+    else if (passwordValue.length < 8) errs.password = t.auth.errors.passwordTooShort
     return errs
   }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     setApiError('')
-    const errs = validate()
+    // Normalize so look-alike / invisible characters from a Vietnamese IME,
+    // touch keyboard, or paste aren't baked into the stored credential — they
+    // would then never match the value normalized the same way at login.
+    const cleanName = name.trim()
+    const cleanEmail = normalizeEmail(email)
+    const cleanPassword = normalizePassword(password)
+    const errs = validate(cleanName, cleanEmail, cleanPassword)
     setErrors(errs)
     if (Object.keys(errs).length) return
 
     setLoading(true)
     try {
-      const res = await auth.signup(email, password, name)
+      const res = await auth.signup(cleanEmail, cleanPassword, cleanName)
       window.location.href = res.response.login_url
     } catch (err) {
       const msg = (err as Error).message || ''
