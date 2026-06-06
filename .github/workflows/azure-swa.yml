@@ -15,12 +15,15 @@ permissions:
   contents: read
   pull-requests: write
 
-# Cancel superseded runs so a burst of merges to main doesn't race: only the
-# latest deploy runs (earlier ones show "cancelled", not a scary "failure").
-# Keyed per-ref so PR previews don't cancel each other or main.
+# Serialize main deploys: a burst of merges must NOT run concurrent Azure
+# deploys (they cancel each other -> "Deployment Canceled" failures). Queue them
+# (cancel-in-progress: false) so every push deploys in order and the latest
+# always lands — true would race-cancel the latest in a tight burst. Keyed
+# per-ref so PR previews don't queue behind main. Mirrors deploy.yml's Pages
+# concurrency.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build_and_deploy:
