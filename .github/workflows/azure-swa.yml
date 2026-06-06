@@ -7,6 +7,14 @@ on:
     types: [opened, synchronize, reopened, closed]
     branches: [main]
 
+# Least-privilege GITHUB_TOKEN. The Azure SWA action needs pull-requests:write
+# to post the preview-URL comment and to close the PR staging environment;
+# contents:read is for checkout. Resolves the CodeQL "Analyze (actions)"
+# missing-permissions finding.
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   build_and_deploy:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
