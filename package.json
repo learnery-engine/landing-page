@@ -12,17 +12,17 @@
   },
   "dependencies": {
     "@learneris/cs-widget": "file:vendor/learneris-cs-widget.tgz",
-    "@react-oauth/google": "^0.13.4",
-    "@sentry/react": "^10.47.0",
+    "@react-oauth/google": "^0.13.5",
+    "@sentry/react": "^10.56.0",
     "@tailwindcss/typography": "^0.5.19",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@tailwindcss/vite": "^4.2.1",
     "@types/node": "^24.10.1",
-    "@types/react": "^19.2.7",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "eslint": "^9.39.1",
