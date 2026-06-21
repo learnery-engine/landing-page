@@ -1,0 +1,60 @@
+# Automated Claude PR reviewer — stands in for a human reviewer.
+# Auth: Claude Max via CLAUDE_CODE_OAUTH_TOKEN. Model: Opus 4.8. Advisory (does not block).
+name: Claude Review
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+permissions:
+  contents: read
+  pull-requests: write
+  id-token: write
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          track_progress: true
+          prompt: |
+            Review this pull request (REPO: ${{ github.repository }}, PR #${{ github.event.pull_request.number }}).
+            Report ONLY real defects: correctness bugs, security issues (XSS,
+            injection, leaked secrets/PII, unsafe rendering of untrusted input),
+            data-loss, and regressions. Skip style/formatting nits.
+            This repo is ~90% AI-generated and self-merged with no human reviewer,
+            so you are the safety net.
+            For any user-facing change (a page, component, or rendered output),
+            check the PR description includes a screenshot/mockup of the end
+            state; flag it if missing.
+            POST findings as inline comments (file:line + the concrete risk + a
+            one-line fix). End with a summary comment whose FIRST line is a
+            verdict: "Verdict: REQUEST CHANGES — N blocking" or
+            "Verdict: APPROVE — 0 blocking, M nit(s)" (REQUEST CHANGES iff there
+            is at least one blocking finding; nits never block).
+          claude_args: |
+            --model claude-opus-4-8
+            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
+      - name: Fail on a silent no-op review
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          PR='${{ github.event.pull_request.number }}'
+          REPO='${{ github.repository }}'
+          if gh pr diff "$PR" --repo "$REPO" --name-only 2>/dev/null | grep -q '\.github/workflows/claude-review\.yml'; then
+            echo "PR edits the review workflow -> reviewer skip is expected; not enforcing."
+            exit 0
+          fi
+          latest=$(gh api "repos/$REPO/issues/$PR/comments" --jq '[.[] | select(.user.login=="claude[bot]")] | last | .body // ""' 2>/dev/null || true)
+          if printf '%s' "$latest" | grep -qiF "get back to you"; then
+            echo "::error::Claude review no-op'd (only its placeholder was posted). Failing so a silent no-op can't show green."
+            exit 1
+          fi
+          echo "Claude review completed."
