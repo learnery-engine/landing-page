@@ -20,7 +20,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'Bảo mật dữ liệu học sinh thế nào?',
-    a: 'Tất cả dữ liệu lưu trên Azure Việt Nam, tuân thủ Nghị định 13/2023 về bảo vệ dữ liệu cá nhân. Học sinh dưới 16 tuổi cần phụ huynh xác nhận. Output AI không huấn luyện model, chỉ dùng trong phiên. Trường có thể yêu cầu xoá hoặc xuất dữ liệu bất cứ lúc nào.',
+    a: 'Dữ liệu cá nhân của người dùng Việt Nam được lưu trữ tại Việt Nam, tuân thủ Nghị định 13/2023 về bảo vệ dữ liệu cá nhân. Học sinh dưới 16 tuổi cần phụ huynh xác nhận. Output AI không huấn luyện model, chỉ dùng trong phiên. Trường có thể yêu cầu xoá hoặc xuất dữ liệu bất cứ lúc nào.',
   },
   {
     q: 'Trường tôi triển khai như thế nào?',
