@@ -20,7 +20,7 @@ export const vi: Translations = {
     ctaSecondary: 'Khám phá nền tảng',
     stats: {
       prepTime: { value: '80%', label: 'giảm thời gian soạn bài' },
-      tools: { value: '14+', label: 'ứng dụng AI' },
+      tools: { value: '22+', label: 'ứng dụng AI' },
       free: { value: 'Miễn phí', label: 'để bắt đầu' },
     },
     mockup: {
@@ -44,7 +44,7 @@ export const vi: Translations = {
   features: {
     heading: { before: 'Nền tảng toàn diện để ', highlight: 'đổi mới giáo dục' },
     subheading:
-      '14+ công cụ tạo nội dung AI, hệ thống quản lý học tập, và thư viện nội dung cộng tác — tất cả dành cho giáo viên K-12.',
+      '22+ công cụ tạo nội dung AI, hệ thống quản lý học tập, và thư viện nội dung cộng tác — tất cả dành cho giáo viên K-12.',
     tags: { new: 'Mới', popular: 'Phổ biến', preview: 'Thử nghiệm', org: 'Tổ chức' },
     items: {
       lms: { name: 'Lớp học & Khóa học', desc: 'Tạo khóa học, quản lý lớp, giao bài tập, chấm điểm và theo dõi tiến độ học sinh' },
@@ -72,7 +72,7 @@ export const vi: Translations = {
     subheading: 'Không cần đào tạo. Từ tạo nội dung đến giảng dạy trên lớp chỉ trong vài phút.',
     stepLabel: 'Bước',
     steps: [
-      { title: 'Tạo nội dung với AI', description: 'Sử dụng 14+ công cụ AI để tạo bài kiểm tra, bài giảng, slide, trò chơi tương tác và nhiều hơn — tất cả phù hợp chương trình.' },
+      { title: 'Tạo nội dung với AI', description: 'Sử dụng 22+ công cụ AI để tạo bài kiểm tra, bài giảng, slide, trò chơi tương tác và nhiều hơn — tất cả phù hợp chương trình.' },
       { title: 'Tổ chức & Giảng dạy', description: 'Xây dựng khóa học, quản lý lớp, giao nội dung cho học sinh và cộng tác cùng đồng nghiệp qua thư viện nội dung.' },
       { title: 'Theo dõi & Cải thiện', description: 'Theo dõi tiến độ học sinh, chấm bài, trao huy hiệu và sử dụng dữ liệu để liên tục cải thiện kết quả học tập.' },
     ],
@@ -82,7 +82,7 @@ export const vi: Translations = {
     items: [
       { value: '10.000+', label: 'Giáo viên sử dụng Learneris' },
       { value: '80%', label: 'Giảm thời gian soạn bài' },
-      { value: '14+', label: 'Ứng dụng AI' },
+      { value: '22+', label: 'Ứng dụng AI' },
       { value: 'Toàn diện', label: 'Soạn bài · Dạy học · Học tập' },
     ],
   },
@@ -227,7 +227,7 @@ export const vi: Translations = {
       subheadline: 'Tạo nội dung AI, quản lý lớp học và theo dõi tiến độ học sinh — tất cả trong một nền tảng.',
       stats: [
         { value: '10.000+', label: 'Giáo viên' },
-        { value: '14+', label: 'Công cụ AI' },
+        { value: '22+', label: 'Công cụ AI' },
         { value: '80%', label: 'Giảm thời gian soạn bài' },
       ],
     },
@@ -240,8 +240,8 @@ export const vi: Translations = {
       pillars: {
         aiSuite: {
           title: 'Công cụ AI & Tạo ứng dụng',
-          badge: '14+ công cụ + ứng dụng tùy chỉnh',
-          description: '14+ công cụ chuyên biệt cho mọi loại nội dung, cùng khả năng tự tạo và xuất bản ứng dụng AI riêng.',
+          badge: '22+ công cụ + ứng dụng tùy chỉnh',
+          description: '22+ công cụ chuyên biệt cho mọi loại nội dung, cùng khả năng tự tạo và xuất bản ứng dụng AI riêng.',
         },
         production: {
           title: 'Sản xuất & Thư viện',
@@ -260,7 +260,7 @@ export const vi: Translations = {
         },
       },
       tools: {
-        sectionTitle: '14+ Công cụ AI trong tầm tay',
+        sectionTitle: '22+ Công cụ AI trong tầm tay',
         sectionSubtitle: 'Mỗi ứng dụng chuyên tạo một loại nội dung — chọn công cụ và tạo ngay trong vài giây.',
         items: {
           quickQuiz: 'Tạo đề nhanh',
@@ -317,7 +317,7 @@ export const vi: Translations = {
           audience: 'Cho giáo viên',
           description: 'Chọn công cụ AI bất kỳ, chọn chương trình giảng dạy và tạo nội dung ngay lập tức. Không cần thiết lập — chỉ cần dạy.',
           steps: [
-            'Chọn từ 14+ công cụ AI cho mọi loại nội dung',
+            'Chọn từ 22+ công cụ AI cho mọi loại nội dung',
             'Chọn chương trình quốc gia tích hợp sẵn (VN, US...)',
             'Tạo và sử dụng ngay — bài kiểm tra, giáo án, slide',
           ],

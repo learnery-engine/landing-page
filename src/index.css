@@ -43,6 +43,14 @@
 }
 .animate-marquee { animation: marquee 25s linear infinite; }
 
+/* Reverse-direction marquee for the multi-lane "student apps shipped" hero
+   in v3/LiveProof — staggering left/right scrolls makes the wall feel
+   kinetic and alive instead of one stiff horizontal scroll. */
+@keyframes marquee-rev {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
 @keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes orbit-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
 .animate-orbit { animation: orbit 20s linear infinite; }
@@ -53,4 +61,24 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* V3 — generic gradient-text clip rules. Pair with an inline
+   `style={{ backgroundImage: '...' }}` to control the gradient per
+   element. Splitting clip rules out of inline style is what makes V3
+   gradient text actually render as clipped text instead of a solid
+   block — inline `background:` shorthand kept resetting `background-clip`
+   to `border-box` regardless of property order.
+
+   Pattern in components:
+
+     <span className="v3-grad-clip" style={{ backgroundImage: 'linear-gradient(...)' }}>
+       Text here
+     </span>
+*/
+.v3-grad-clip {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }

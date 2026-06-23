@@ -20,7 +20,7 @@ export const en: Translations = {
     ctaSecondary: 'Explore the Platform',
     stats: {
       prepTime: { value: '80%', label: 'less prep time' },
-      tools: { value: '14+', label: 'AI mini apps' },
+      tools: { value: '22+', label: 'AI mini apps' },
       free: { value: 'Free', label: 'to get started' },
     },
     mockup: {
@@ -44,7 +44,7 @@ export const en: Translations = {
   features: {
     heading: { before: 'The complete platform to ', highlight: 'transform education' },
     subheading:
-      '14+ AI content tools, AI-powered classroom and course management, and a collaborative content library — all designed for K-12 educators.',
+      '22+ AI content tools, AI-powered classroom and course management, and a collaborative content library — all designed for K-12 educators.',
     tags: { new: 'New', popular: 'Popular', preview: 'Preview', org: 'Org' },
     items: {
       lms: { name: 'Classroom & Courses', desc: 'Create courses, manage classes, assign homework, grade work, and track student progress' },
@@ -72,7 +72,7 @@ export const en: Translations = {
     subheading: 'No training required. Go from content creation to classroom delivery in minutes.',
     stepLabel: 'Step',
     steps: [
-      { title: 'Create with AI', description: 'Use 14+ AI tools to generate quizzes, lessons, slides, interactive games, and more — all aligned to your curriculum.' },
+      { title: 'Create with AI', description: 'Use 22+ AI tools to generate quizzes, lessons, slides, interactive games, and more — all aligned to your curriculum.' },
       { title: 'Organize & Deliver', description: 'Build courses, manage your classes, assign content to students, and collaborate with your team via the content library.' },
       { title: 'Track & Improve', description: 'Monitor student progress, grade assignments, award badges, and use insights to continuously improve learning outcomes.' },
     ],
@@ -82,7 +82,7 @@ export const en: Translations = {
     items: [
       { value: '10,000+', label: 'Educators using Learneris' },
       { value: '80%', label: 'Less time on lesson prep' },
-      { value: '14+', label: 'AI-powered mini apps' },
+      { value: '22+', label: 'AI-powered mini apps' },
       { value: 'All-in-one', label: 'Create · Teach · Learn' },
     ],
   },
@@ -227,7 +227,7 @@ export const en: Translations = {
       subheadline: 'Create AI-powered content, manage classrooms, and track student progress — all in one platform.',
       stats: [
         { value: '10,000+', label: 'Educators' },
-        { value: '14+', label: 'AI tools' },
+        { value: '22+', label: 'AI tools' },
         { value: '80%', label: 'Less prep time' },
       ],
     },
@@ -240,8 +240,8 @@ export const en: Translations = {
       pillars: {
         aiSuite: {
           title: 'AI Tools & App Builder',
-          badge: '14+ tools + custom apps',
-          description: '14+ specialized tools for every content type, plus build and publish your own custom AI apps.',
+          badge: '22+ tools + custom apps',
+          description: '22+ specialized tools for every content type, plus build and publish your own custom AI apps.',
         },
         production: {
           title: 'Production & Library',
@@ -260,7 +260,7 @@ export const en: Translations = {
         },
       },
       tools: {
-        sectionTitle: '14+ AI Tools at Your Fingertips',
+        sectionTitle: '22+ AI Tools at Your Fingertips',
         sectionSubtitle: 'Each mini app specializes in one content type — pick a tool and generate in seconds.',
         items: {
           quickQuiz: 'Quick Quiz',
@@ -317,7 +317,7 @@ export const en: Translations = {
           audience: 'For individual teachers',
           description: 'Pick any AI tool, select your curriculum, and generate content instantly. No setup needed — just teach.',
           steps: [
-            'Choose from 14+ AI tools for any content type',
+            'Choose from 22+ AI tools for any content type',
             'Select integrated national curriculum (VN, US, etc.)',
             'Generate and use immediately — quizzes, lessons, slides',
           ],
