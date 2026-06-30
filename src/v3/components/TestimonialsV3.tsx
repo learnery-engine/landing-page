@@ -91,7 +91,7 @@ export function TestimonialsV3() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.4 }}
             className="inline-block text-xs font-bold uppercase tracking-widest mb-4"
-            style={{ color: tokens.accent }}
+            style={{ color: tokens.text }}
           >
             Người dùng thật, không cherry-picked
           </motion.span>

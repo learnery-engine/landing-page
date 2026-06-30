@@ -142,7 +142,7 @@ export function ToolGrid() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.4 }}
             className="inline-block text-xs font-bold uppercase tracking-widest mb-4"
-            style={{ color: accent.accent }}
+            style={{ color: accent.text }}
           >
             {locale === 'vi' ? '13+ Mini App AI' : '13+ AI Mini Apps'}
           </motion.span>

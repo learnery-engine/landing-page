@@ -39,7 +39,7 @@ export function ProgramsV3() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.4 }}
             className="inline-block text-xs font-bold uppercase tracking-widest mb-4"
-            style={{ color: accent.accent }}
+            style={{ color: accent.text }}
           >
             {v3.programs.eyebrow}
           </motion.span>

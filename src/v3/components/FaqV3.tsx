@@ -52,7 +52,7 @@ export function FaqV3() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.4 }}
             className="inline-flex items-center gap-2 mb-3 text-xs font-bold uppercase tracking-widest"
-            style={{ color: tokens.accent }}
+            style={{ color: tokens.text }}
           >
             <MessageCircleQuestion className="w-3.5 h-3.5" />
             Câu hỏi thường gặp
