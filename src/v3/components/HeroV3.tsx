@@ -40,6 +40,15 @@ export function HeroV3() {
   const { persona, setPersona } = usePersona()
   const prefersReducedMotion = useReducedMotion()
   const tokens = personaTokens(persona)
+  // Age-adaptive register: students get a larger, airier headline; institutional
+  // buyers get a tighter, denser one. One layout, persona-scaled typography.
+  const heroScale =
+    ({
+      hs:  { h1: 'clamp(2.75rem, 6.5vw, 5.25rem)', lh: 1.04, tracking: '-0.01em', lead: 'text-xl sm:text-2xl' },
+      pro: { h1: 'clamp(2.25rem, 4.5vw, 3.75rem)', lh: 1.08, tracking: '-0.025em', lead: 'text-base sm:text-lg' },
+      b2b: { h1: 'clamp(2.25rem, 4.25vw, 3.5rem)', lh: 1.1,  tracking: '-0.025em', lead: 'text-base sm:text-lg' },
+    } as Record<string, { h1: string; lh: number; tracking: string; lead: string }>)[persona ?? ''] ??
+    { h1: 'clamp(2.5rem, 5.5vw, 4.5rem)', lh: 1.05, tracking: '-0.02em', lead: 'text-lg sm:text-xl' }
 
   // Rotating student app proof line — pauses on hover to let users actually read it
   const [proofIndex, advance] = useReducer((i: number) => (i + 1) % STUDENT_APP_SAMPLES[locale].length, 0)
@@ -83,8 +92,8 @@ export function HeroV3() {
           initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.05 }}
-          className="text-center font-extrabold tracking-tight text-text mb-6"
-          style={{ fontSize: 'clamp(2.5rem, 5.5vw, 4.5rem)', lineHeight: 1.05 }}
+          className="text-center font-extrabold text-text mb-6"
+          style={{ fontSize: heroScale.h1, lineHeight: heroScale.lh, letterSpacing: heroScale.tracking }}
         >
           <span>{v3.hero.headlineLine1} </span>
           <span
@@ -103,7 +112,7 @@ export function HeroV3() {
           initial={prefersReducedMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-center text-lg sm:text-xl text-text-muted max-w-3xl mx-auto mb-10 min-h-[5rem]"
+          className={`text-center ${heroScale.lead} text-text-muted max-w-3xl mx-auto mb-10 min-h-[5rem]`}
         >
           <AnimatePresence mode="wait">
             <motion.p
