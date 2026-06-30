@@ -3,10 +3,10 @@ import type { Locale, Translations } from './types'
 import { en } from './locales/en'
 import { vi } from './locales/vi'
 
-const STORAGE_KEY = 'learneris-lang'
+export const STORAGE_KEY = 'learneris-lang'
 const translations: Record<Locale, Translations> = { en, vi }
 
-function getInitialLocale(): Locale {
+export function getInitialLocale(): Locale {
   // 1. localStorage  2. browser language  3. default EN for international visitors
   const stored = localStorage.getItem(STORAGE_KEY)
   const loc: Locale =

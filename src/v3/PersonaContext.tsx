@@ -20,10 +20,10 @@ interface PersonaContextValue {
 
 const PersonaCtx = createContext<PersonaContextValue | null>(null)
 
-const STORAGE_KEY = 'lrn.v3.persona'
+export const STORAGE_KEY = 'lrn.v3.persona'
 const VALID_PERSONAS: readonly Persona[] = ['hs', 'gv', 'ph', 'pro', 'b2b']
 
-function readInitial(): Persona | null {
+export function readInitial(): Persona | null {
   if (typeof window === 'undefined') return null
   // URL hash wins (deep-link friendly: /v3#persona=gv)
   const hash = window.location.hash.match(/persona=([a-z0-9]+)/i)?.[1]?.toLowerCase()
