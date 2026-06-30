@@ -25,7 +25,7 @@ export function HubPreview() {
 
   // Persona-aware copy. Default to teacher-style copy when neutral.
   const personaLabel = persona ? v3.personas[persona].label : v3.personas.gv.label
-  const greetingName = persona === 'hs' ? 'em' : persona === 'gv' ? 'cô Lan' : persona === 'ph' ? 'anh Hùng' : 'bạn'
+  const greetingName = persona ? v3.hub.greetingNames[persona] : v3.hub.greetingNames.pro
 
   return (
     <section
@@ -46,7 +46,7 @@ export function HubPreview() {
             className="inline-block text-xs font-bold uppercase tracking-widest mb-4"
             style={{ color: tokens.accent }}
           >
-            Sau khi đăng nhập
+            {v3.hub.eyebrow}
           </motion.span>
           <motion.h2
             initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
@@ -56,14 +56,14 @@ export function HubPreview() {
             className="font-extrabold tracking-tight text-text mb-4"
             style={{ fontSize: 'clamp(1.875rem, 3.5vw, 2.75rem)', lineHeight: 1.15 }}
           >
-            Đăng nhập là vào{' '}
+            {v3.hub.headingBefore}{' '}
             <span
               className="v3-grad-clip"
               style={{
                 backgroundImage: `linear-gradient(135deg, ${tokens.accent}, ${tokens.text})`,
               }}
             >
-              ngay đây
+              {v3.hub.headingHighlight}
             </span>
             .
           </motion.h2>
@@ -74,8 +74,7 @@ export function HubPreview() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-lg text-text-muted leading-relaxed"
           >
-            Không phải tool catalog. Là một bảng điều khiển nhận ra bạn — bạn đang là ai,
-            đang quan tâm việc gì, và bề mặt nào liên quan đến bạn.
+            {v3.hub.subhead}
           </motion.p>
         </div>
 
@@ -118,11 +117,11 @@ export function HubPreview() {
                 <span className="text-sm font-bold text-text">Learneris</span>
               </div>
               {[
-                { label: 'Trang chủ', active: true },
-                { label: 'Tài liệu' },
-                { label: 'Lớp học' },
-                { label: 'Hồ sơ' },
-                { label: 'Lumi', soon: true },
+                { label: v3.hub.sidebar.home, active: true },
+                { label: v3.hub.sidebar.docs },
+                { label: v3.hub.sidebar.classes },
+                { label: v3.hub.sidebar.profile },
+                { label: v3.hub.sidebar.lumi, soon: true },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -132,7 +131,7 @@ export function HubPreview() {
                   <span>{item.label}</span>
                   {item.soon && (
                     <span className="text-[8px] font-bold uppercase tracking-wide px-1 py-0.5 rounded text-gray-400 bg-gray-100">
-                      Sắp ra mắt
+                      {v3.hub.soon}
                     </span>
                   )}
                 </div>
@@ -148,58 +147,59 @@ export function HubPreview() {
                   style={{ background: tokens.tint, color: tokens.text, border: `1px solid ${tokens.ring}` }}
                 >
                   <Sparkles className="w-2.5 h-2.5" />
-                  Bản xem trước · v3
+                  {v3.hub.previewBadge}
                 </span>
                 <h3 className="text-lg sm:text-xl font-bold text-text mb-1">
-                  Xin chào, {greetingName}!
+                  {v3.hub.greeting}, {greetingName}!
                 </h3>
                 <p className="text-xs text-text-muted mb-3">
-                  {persona ? v3.personas[persona].pitch.slice(0, 80) + '…' : 'Một tài khoản · Năm bề mặt · Cả hệ sinh thái.'}
+                  {persona ? v3.personas[persona].pitch.slice(0, 80) + '…' : v3.hub.greetingNeutralPitch}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <Chip value="7" label="Gen tuần này" accent={tokens.accent} />
-                  <Chip value="3" label="Lớp đang chấm" accent={tokens.accent} />
-                  <Chip value="4" label="App đã ship" accent={tokens.accent} />
+                  <Chip value="7" label={v3.hub.chips.gen} accent={tokens.accent} />
+                  <Chip value="3" label={v3.hub.chips.grading} accent={tokens.accent} />
+                  <Chip value="4" label={v3.hub.chips.shipped} accent={tokens.accent} />
                 </div>
               </div>
 
               {/* Surface dock mockup */}
               <div className="mb-6">
                 <div className="grid grid-cols-5 gap-2">
-                  <MiniSurface Icon={Compass}         name="COMPASS"  accent="#7C3AED" primary={!persona || persona === 'hs' || persona === 'pro'} />
-                  <MiniSurface Icon={Wand2}           name="Mini Apps" accent="#8B5CF6" primary={!persona || persona === 'gv' || persona === 'hs'} />
-                  <MiniSurface Icon={LayoutDashboard} name="Lớp học"   accent="#22C55E" primary={!persona || persona === 'gv' || persona === 'hs'} />
-                  <MiniSurface Icon={Award}           name="Hồ sơ"     accent="#F59E0B" primary={!persona || persona === 'hs' || persona === 'ph' || persona === 'pro'} />
-                  <MiniSurface Icon={Sparkles}        name="Lumi"      accent="#EC4899" primary={false} soon />
+                  <MiniSurface Icon={Compass}         name={v3.hub.surfaces.compass}  accent="#7C3AED" primary={!persona || persona === 'hs' || persona === 'pro'} />
+                  <MiniSurface Icon={Wand2}           name={v3.hub.surfaces.miniApps} accent="#8B5CF6" primary={!persona || persona === 'gv' || persona === 'hs'} />
+                  <MiniSurface Icon={LayoutDashboard} name={v3.hub.surfaces.class}    accent="#22C55E" primary={!persona || persona === 'gv' || persona === 'hs'} />
+                  <MiniSurface Icon={Award}           name={v3.hub.surfaces.profile}  accent="#F59E0B" primary={!persona || persona === 'hs' || persona === 'ph' || persona === 'pro'} />
+                  <MiniSurface Icon={Sparkles}        name={v3.hub.surfaces.lumi}     accent="#EC4899" primary={false} soon soonLabel={v3.hub.soon} />
                 </div>
               </div>
 
               {/* Quick actions mockup */}
               <div className="mb-6">
-                <div className="text-xs font-bold text-text mb-2">Bắt đầu nhanh</div>
+                <div className="text-xs font-bold text-text mb-2">{v3.hub.quickStartLabel}</div>
                 <div className="grid grid-cols-3 gap-2">
-                  <MiniAction Icon={ClipboardCheck} label="Tạo bài kiểm tra" accent="#7C3AED" />
-                  <MiniAction Icon={FileText}       label="Hướng dẫn học tập" accent="#3B82F6" />
-                  <MiniAction Icon={Gamepad2}       label="Nội dung tương tác" accent="#14B8A6" />
+                  <MiniAction Icon={ClipboardCheck} label={v3.hub.actions.quiz} accent="#7C3AED" />
+                  <MiniAction Icon={FileText}       label={v3.hub.actions.studyGuide} accent="#3B82F6" />
+                  <MiniAction Icon={Gamepad2}       label={v3.hub.actions.interactive} accent="#14B8A6" />
                 </div>
               </div>
 
               {/* Continue row mockup — richer content per V2-hero polish bar */}
               <div className="mb-5">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-xs font-bold text-text">Tiếp tục</div>
-                  <span className="text-[9px] text-text-muted">↗ Tất cả</span>
+                  <div className="text-xs font-bold text-text">{v3.hub.continueLabel}</div>
+                  <span className="text-[9px] text-text-muted">{v3.hub.continueAll}</span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[
-                    { name: 'Quiz Hàm số · 20 câu', date: '2 giờ trước', AppIcon: ClipboardCheck, color: '#7C3AED', status: 'done' as const },
-                    { name: 'KHBD Tuần 12 — Toán 12', date: 'Hôm qua',      AppIcon: FileText,       color: '#3B82F6', status: 'done' as const },
-                    { name: 'Bài luyện hình học',   date: '3 ngày trước', AppIcon: Gamepad2,      color: '#14B8A6', status: 'done' as const },
-                    { name: 'Slide ôn tập THPT',    date: 'Tuần trước',   AppIcon: FileText,       color: '#22C55E', status: 'done' as const },
-                  ].map((r) => {
+                    { AppIcon: ClipboardCheck, color: '#7C3AED' },
+                    { AppIcon: FileText,       color: '#3B82F6' },
+                    { AppIcon: Gamepad2,       color: '#14B8A6' },
+                    { AppIcon: FileText,       color: '#22C55E' },
+                  ].map((r, ri) => {
                     const Icon = r.AppIcon
+                    const item = v3.hub.continueItems[ri]
                     return (
-                      <div key={r.name} className="bg-white rounded-lg p-2.5 border border-gray-100 flex flex-col gap-1.5">
+                      <div key={ri} className="bg-white rounded-lg p-2.5 border border-gray-100 flex flex-col gap-1.5">
                         <div className="flex items-center justify-between">
                           <div
                             className="w-5 h-5 rounded flex items-center justify-center"
@@ -209,8 +209,8 @@ export function HubPreview() {
                           </div>
                           <span className="w-1 h-1 rounded-full bg-emerald-400" aria-hidden />
                         </div>
-                        <div className="text-[10px] font-semibold text-gray-700 leading-tight line-clamp-2 min-h-[1.6em]">{r.name}</div>
-                        <div className="text-[9px] text-gray-400 mt-auto">{r.date}</div>
+                        <div className="text-[10px] font-semibold text-gray-700 leading-tight line-clamp-2 min-h-[1.6em]">{item.name}</div>
+                        <div className="text-[9px] text-gray-400 mt-auto">{item.date}</div>
                       </div>
                     )
                   })}
@@ -236,10 +236,10 @@ export function HubPreview() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
                     <span className="text-[8px] font-bold uppercase tracking-wide px-1 py-0.5 rounded shrink-0" style={{ background: '#fff', color: tokens.text, border: `1px solid ${tokens.ring}` }}>
-                      Sắp ra mắt
+                      {v3.hub.soon}
                     </span>
                     <div className="text-[11px] font-semibold text-text truncate">
-                      Lumi sẽ chủ động nhắc lịch ôn cho từng học sinh
+                      {v3.hub.lumiTeaser}
                     </div>
                   </div>
                 </div>
@@ -258,9 +258,9 @@ export function HubPreview() {
         >
           <p className="text-sm text-text-muted mb-4">
             {persona ? (
-              <>Đây là cách hub hiển thị cho <strong className="text-text">{personaLabel}</strong>. Mỗi vai trò thấy bề mặt + nội dung khác nhau.</>
+              <>{v3.hub.captionPersonaBefore} <strong className="text-text">{personaLabel}</strong>{v3.hub.captionPersonaAfter}</>
             ) : (
-              <>Chọn vai trò ở phần đầu trang để xem hub hiển thị thế nào cho bạn.</>
+              <>{v3.hub.captionNeutral}</>
             )}
           </p>
           <button
@@ -272,7 +272,7 @@ export function HubPreview() {
               boxShadow: `0 6px 20px -6px ${tokens.ring}`,
             }}
           >
-            Đăng nhập là thấy ngay
+            {v3.hub.ctaButton}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </motion.div>
@@ -292,7 +292,7 @@ function Chip({ value, label, accent }: { value: string; label: string; accent: 
   )
 }
 
-function MiniSurface({ Icon, name, accent, primary, soon }: { Icon: React.ComponentType<{ className?: string }>; name: string; accent: string; primary: boolean; soon?: boolean }) {
+function MiniSurface({ Icon, name, accent, primary, soon, soonLabel }: { Icon: React.ComponentType<{ className?: string }>; name: string; accent: string; primary: boolean; soon?: boolean; soonLabel?: string }) {
   // `soon` surfaces (e.g. Lumi, status:'vision') render muted with a tag so
   // the mockup never implies they're a live, usable part of the hub today.
   const isPrimary = primary && !soon
@@ -314,7 +314,7 @@ function MiniSurface({ Icon, name, accent, primary, soon }: { Icon: React.Compon
       <div className="text-[8px] font-semibold text-gray-700 truncate">{name}</div>
       {soon && (
         <div className="text-[7px] font-bold uppercase tracking-wide text-gray-400 leading-none mt-0.5">
-          Sắp ra mắt
+          {soonLabel}
         </div>
       )}
     </div>

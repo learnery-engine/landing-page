@@ -57,17 +57,20 @@ const STUDENT_APP_TILES: readonly AppTile[] = [
  */
 interface FeaturedStudent {
   initials: string
-  grade: string
-  school: string
-  app: string
+  gradeVi: string
+  gradeEn: string
+  schoolVi: string
+  schoolEn: string
+  appVi: string
+  appEn: string
   variant: AppThumbnailVariant
   color: string
 }
 
 const FEATURED_STUDENTS: readonly FeaturedStudent[] = [
-  { initials: 'N.A.', grade: 'Lớp 4',  school: 'Hà Nội',     app: 'Quiz Toán Hình',    variant: 'quiz',      color: '#60A5FA' },
-  { initials: 'M.T.', grade: 'Lớp 7',  school: 'Đà Nẵng',    app: 'Flashcard Sử VN',   variant: 'flashcard', color: '#A78BFA' },
-  { initials: 'L.K.', grade: 'Lớp 10', school: 'Cần Thơ',    app: 'Trợ lý giải phẫu',  variant: 'flashcard', color: '#EF4444' },
+  { initials: 'N.A.', gradeVi: 'Lớp 4',  gradeEn: 'Grade 4',  schoolVi: 'Hà Nội',   schoolEn: 'Hanoi',   appVi: 'Quiz Toán Hình',   appEn: 'Geometry quiz',    variant: 'quiz',      color: '#60A5FA' },
+  { initials: 'M.T.', gradeVi: 'Lớp 7',  gradeEn: 'Grade 7',  schoolVi: 'Đà Nẵng',  schoolEn: 'Da Nang', appVi: 'Flashcard Sử VN',  appEn: 'VN history flashcards', variant: 'flashcard', color: '#A78BFA' },
+  { initials: 'L.K.', gradeVi: 'Lớp 10', gradeEn: 'Grade 10', schoolVi: 'Cần Thơ',  schoolEn: 'Can Tho', appVi: 'Trợ lý giải phẫu', appEn: 'Anatomy helper',   variant: 'flashcard', color: '#EF4444' },
 ] as const
 
 export function LiveProof() {
@@ -174,7 +177,7 @@ export function LiveProof() {
  *      attribution without consent; we swap to real when ready)
  */
 function StudentAppsHero() {
-  const { v3 } = useV3Translation()
+  const { v3, locale } = useV3Translation()
   const prefersReducedMotion = useReducedMotion()
   return (
     <motion.div
@@ -205,14 +208,14 @@ function StudentAppsHero() {
               style={{ background: 'rgba(251,191,36,0.15)', color: '#FBBF24', border: '1px solid rgba(251,191,36,0.30)' }}
             >
               <Award className="w-3 h-3" />
-              Đầu tiên ở Việt Nam · Học sinh tự ship app AI
+              {v3.proof.apps.badge}
             </div>
             <h3 className="text-3xl lg:text-4xl font-extrabold leading-[1.1] mb-3 tracking-tight">
               <span className="v3-grad-clip" style={{ backgroundImage: 'linear-gradient(135deg, #A78BFA 0%, #F472B6 50%, #FBBF24 100%)' }}>
-                Học sinh xây app AI.
+                {v3.proof.apps.headlineLine1}
               </span>
               <br />
-              Trong giờ ra chơi.
+              {v3.proof.apps.headlineLine2}
             </h3>
             <p className="text-base leading-relaxed max-w-xl" style={{ color: 'rgba(255,255,255,0.75)' }}>
               {v3.proof.apps.subtitle}
@@ -232,10 +235,14 @@ function StudentAppsHero() {
         {/* Featured-student spotlights */}
         <div className="mb-8">
           <div className="text-[10px] font-bold uppercase tracking-widest mb-4 opacity-50">
-            Học sinh cụ thể · ví dụ minh hoạ
+            {v3.proof.apps.featuredLabel}
           </div>
           <div className="grid sm:grid-cols-3 gap-3">
-            {FEATURED_STUDENTS.map((s, i) => (
+            {FEATURED_STUDENTS.map((s, i) => {
+              const grade = locale === 'vi' ? s.gradeVi : s.gradeEn
+              const school = locale === 'vi' ? s.schoolVi : s.schoolEn
+              const app = locale === 'vi' ? s.appVi : s.appEn
+              return (
               <motion.div
                 key={s.initials}
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
@@ -249,31 +256,36 @@ function StudentAppsHero() {
                   variant={s.variant}
                   color={s.color}
                   size="medium"
-                  appLabel={s.app}
+                  appLabel={app}
                 />
                 <div className="min-w-0 flex flex-col gap-1">
                   <div className="text-[10px] font-bold uppercase tracking-wider opacity-50">
-                    {s.initials} · {s.grade} · {s.school}
+                    {s.initials} · {grade} · {school}
                   </div>
-                  <div className="text-base font-bold truncate">{s.app}</div>
+                  <div className="text-base font-bold truncate">{app}</div>
                 </div>
               </motion.div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
         {/* Stats row */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-7">
-          <StatPill Icon={Sparkles}        value="735+" label="Apps đã ship" />
-          <StatPill Icon={GraduationCap}   value="K-12" label="Phủ cả 12 lớp" />
-          <StatPill Icon={Award}           value="100%" label="Học sinh tự xây" />
-          <StatPill Icon={TrendingUp}      value="Real" label="App thật · chạy được" />
+          {([Sparkles, GraduationCap, Award, TrendingUp] as const).map((Icon, si) => (
+            <StatPill
+              key={si}
+              Icon={Icon}
+              value={v3.proof.apps.stats[si].value}
+              label={v3.proof.apps.stats[si].label}
+            />
+          ))}
         </div>
 
         {/* CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm leading-relaxed text-center sm:text-left" style={{ color: 'rgba(255,255,255,0.65)' }}>
-            Đây là sự khác biệt thật. Không ai khác đang để học sinh tiểu học VN ship app AI thật mỗi tuần.
+            {v3.proof.apps.closing}
           </p>
           <button
             type="button"
@@ -285,7 +297,7 @@ function StudentAppsHero() {
               boxShadow: '0 8px 24px -8px rgba(167,139,250,0.50)',
             }}
           >
-            Để con tôi xây
+            {v3.proof.apps.ctaButton}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
@@ -295,6 +307,7 @@ function StudentAppsHero() {
 }
 
 function BigCounter({ target }: { target: number }) {
+  const { v3 } = useV3Translation()
   const ref = useRef<HTMLDivElement | null>(null)
   const inView = useInView(ref, { once: true, amount: 0.5 })
   const prefersReducedMotion = useReducedMotion()
@@ -342,7 +355,7 @@ function BigCounter({ target }: { target: number }) {
         </span>
       </div>
       <div className="text-xs font-bold uppercase tracking-widest mt-1 opacity-70">
-        Apps học sinh đã ship
+        {v3.proof.apps.counterCaption}
       </div>
     </div>
   )
@@ -354,7 +367,7 @@ function MarqueeLane({ offset, direction, speed }: { offset: number; direction: 
     const list = [...STUDENT_APP_TILES.slice(offset), ...STUDENT_APP_TILES.slice(0, offset)]
     return [...list, ...list] // doubled for seamless loop
   }, [offset])
-  const { locale } = useV3Translation()
+  const { v3, locale } = useV3Translation()
   const isRight = direction === 'right'
   return (
     <div className="relative overflow-hidden py-1">
@@ -394,7 +407,7 @@ function MarqueeLane({ offset, direction, speed }: { offset: number; direction: 
                   {app.grade}
                 </span>
                 <span className="text-[10px] opacity-50 font-medium">
-                  Học sinh tự xây
+                  {v3.proof.apps.tileBuiltBy}
                 </span>
               </div>
             </div>

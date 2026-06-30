@@ -1,75 +1,39 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Quote } from 'lucide-react'
+import { useV3Translation } from '../i18n'
 import { usePersona } from '../PersonaContext'
 import { personaTokens, PERSONA_TOKENS, type Persona } from '../tokens'
 
-interface Testimonial {
+/**
+ * Persona + name are stable identity (sort key + proper noun, never
+ * translated). The localized role/location/quote live in i18n under
+ * `v3.testimonials.items`, keyed by `name`.
+ *
+ * Persona-aware: when a persona is active, that persona's voices float to
+ * the top. Mix of re-used V2 teacher quotes (the strongest verbatim copy
+ * in the legacy landing) and net-new ones for HS / PH / Pro — written
+ * conservatively, modeled on real customer-success notes (no fabricated
+ * metrics or schools).
+ */
+interface TestimonialMeta {
   persona: Persona
   name: string
-  role: string
-  location: string
-  quote: string
 }
 
-/**
- * Persona-aware testimonials. When a persona is active, that persona's
- * voices float to the top. Mix of re-used V2 teacher quotes (which were
- * the strongest verbatim copy in the legacy landing) and net-new ones
- * for HS / PH / Pro / B2B who didn't have V2 representation.
- *
- * Net-new quotes are written conservatively — modeled on the kind of
- * thing the relevant persona actually says when interviewed (per
- * `customer-success/` notes), no fabricated metrics or schools.
- */
-const TESTIMONIALS: readonly Testimonial[] = [
+const TESTIMONIALS: readonly TestimonialMeta[] = [
   // Re-used from V2
-  {
-    persona: 'gv',
-    name: 'Cô Thanh Nguyễn',
-    role: 'Giáo viên tiếng Anh THPT',
-    location: 'TP. Hồ Chí Minh',
-    quote: 'Learneris giúp tôi giảm thời gian tạo đề từ 2 tiếng xuống dưới 5 phút. AI hiểu chính xác trình độ học sinh cần.',
-  },
-  {
-    persona: 'gv',
-    name: 'Thầy Đức Trần',
-    role: 'Trưởng bộ môn Toán',
-    location: 'Hà Nội',
-    quote: 'Tôi quản lý 6 lớp dễ dàng. Tạo khóa học, giao bài tập, theo dõi điểm — tất cả từ một bảng điều khiển.',
-  },
-  {
-    persona: 'gv',
-    name: 'Cô Linh Phạm',
-    role: 'Giáo viên Tiểu học',
-    location: 'Đà Nẵng',
-    quote: 'Học sinh thích nội dung tương tác, tổ bộ môn chia sẻ tài nguyên dễ hơn bao giờ hết.',
-  },
+  { persona: 'gv', name: 'Cô Thanh Nguyễn' },
+  { persona: 'gv', name: 'Thầy Đức Trần' },
+  { persona: 'gv', name: 'Cô Linh Phạm' },
   // Net-new — modeled on customer-success notes
-  {
-    persona: 'hs',
-    name: 'Em Minh',
-    role: 'Học sinh lớp 11',
-    location: 'Cần Thơ',
-    quote: 'Em làm COMPASS xong là biết phải ôn Mũ-Log trước. Trước đây em hay ôn dàn trải, mất thời gian không đúng chỗ.',
-  },
-  {
-    persona: 'ph',
-    name: 'Chị Hương',
-    role: 'Phụ huynh học sinh lớp 9',
-    location: 'Hà Nội',
-    quote: 'Mỗi tuần tôi mở bảng theo dõi là biết con học gì, mạnh yếu chỗ nào. Không phải hỏi con, không phải đoán.',
-  },
-  {
-    persona: 'pro',
-    name: 'Anh Tuấn',
-    role: 'Kỹ sư phần mềm, đang ôn IELTS',
-    location: 'TP. Hồ Chí Minh',
-    quote: 'COMPASS chấm trình độ rồi đề xuất lộ trình 12 tuần. Mỗi tuần đo tiến độ thật, không phải cảm tính.',
-  },
+  { persona: 'hs', name: 'Em Minh' },
+  { persona: 'ph', name: 'Chị Hương' },
+  { persona: 'pro', name: 'Anh Tuấn' },
 ]
 
 export function TestimonialsV3() {
   const { persona } = usePersona()
+  const { v3 } = useV3Translation()
   const tokens = personaTokens(persona)
   const prefersReducedMotion = useReducedMotion()
 
@@ -93,7 +57,7 @@ export function TestimonialsV3() {
             className="inline-block text-xs font-bold uppercase tracking-widest mb-4"
             style={{ color: tokens.text }}
           >
-            Người dùng thật, không cherry-picked
+            {v3.testimonials.eyebrow}
           </motion.span>
           <motion.h2
             initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
@@ -103,13 +67,19 @@ export function TestimonialsV3() {
             className="font-extrabold tracking-tight text-text mb-4"
             style={{ fontSize: 'clamp(1.875rem, 3.5vw, 2.75rem)', lineHeight: 1.15 }}
           >
-            {persona ? 'Người như bạn đang nói gì' : 'Họ đang nói gì'}
+            {persona ? v3.testimonials.headingPersona : v3.testimonials.headingNeutral}
           </motion.h2>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sorted.map((t, i) => (
-            <TestimonialCard key={t.name} t={t} index={i} activePersona={persona} />
+            <TestimonialCard
+              key={t.name}
+              t={t}
+              copy={v3.testimonials.items[t.name]}
+              index={i}
+              activePersona={persona}
+            />
           ))}
         </div>
       </div>
@@ -118,9 +88,10 @@ export function TestimonialsV3() {
 }
 
 function TestimonialCard({
-  t, index, activePersona,
+  t, copy, index, activePersona,
 }: {
-  t: Testimonial
+  t: TestimonialMeta
+  copy: { role: string; location: string; quote: string }
   index: number
   activePersona: Persona | null
 }) {
@@ -144,7 +115,7 @@ function TestimonialCard({
       }
     >
       <Quote className="w-6 h-6 mb-3" style={{ color: tokens.accent, opacity: 0.4 }} aria-hidden />
-      <p className="text-sm text-text leading-relaxed mb-4 italic">"{t.quote}"</p>
+      <p className="text-sm text-text leading-relaxed mb-4 italic">"{copy.quote}"</p>
       <div className="flex items-center gap-3">
         <div
           className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
@@ -156,7 +127,7 @@ function TestimonialCard({
         <div className="min-w-0">
           <div className="text-sm font-bold text-text truncate">{t.name}</div>
           <div className="text-xs text-text-muted truncate">
-            {t.role} · {t.location}
+            {copy.role} · {copy.location}
           </div>
         </div>
       </div>

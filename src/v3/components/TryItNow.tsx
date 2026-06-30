@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Compass, Wand2 } from 'lucide-react'
+import { useV3Translation } from '../i18n'
 import { usePersona } from '../PersonaContext'
 import { personaTokens } from '../tokens'
 import { CompassDemo } from './demos/CompassDemo'
@@ -11,9 +12,10 @@ import { MiniAppDemo } from './demos/MiniAppDemo'
 // try-it-now tab — that would read as a live, usable feature.
 type DemoKey = 'compass' | 'miniApp'
 
+// Icon + accent stay static; the tab label is localized via i18n (v3.tryIt.tabs).
 const DEMO_META = [
-  { key: 'compass' as const, label: 'COMPASS · 3 câu',   Icon: Compass, color: '#7C3AED' },
-  { key: 'miniApp' as const, label: 'Mini App · Tạo quiz', Icon: Wand2,   color: '#8B5CF6' },
+  { key: 'compass' as const, Icon: Compass, color: '#7C3AED' },
+  { key: 'miniApp' as const, Icon: Wand2,   color: '#8B5CF6' },
 ]
 
 /**
@@ -26,6 +28,7 @@ const DEMO_META = [
  */
 export function TryItNow() {
   const { persona } = usePersona()
+  const { v3 } = useV3Translation()
   const tokens = personaTokens(persona)
   const prefersReducedMotion = useReducedMotion()
   const [activeDemo, setActiveDemo] = useState<DemoKey>('compass')
@@ -43,7 +46,7 @@ export function TryItNow() {
             className="inline-block text-xs font-bold uppercase tracking-widest mb-4"
             style={{ color: tokens.text }}
           >
-            Thử trực tiếp · không cần đăng ký
+            {v3.tryIt.eyebrow}
           </motion.span>
           <motion.h2
             initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
@@ -53,10 +56,10 @@ export function TryItNow() {
             className="font-extrabold tracking-tight text-text mb-4"
             style={{ fontSize: 'clamp(1.875rem, 3.5vw, 2.75rem)', lineHeight: 1.15 }}
           >
-            Bấm thử ngay.
+            {v3.tryIt.heading}
           </motion.h2>
           <p className="text-lg text-text-muted leading-relaxed">
-            Demo chạy thật trong trình duyệt. Mỗi cái dưới 30 giây — nhanh hơn đọc tiếp.
+            {v3.tryIt.subhead}
           </p>
         </div>
 
@@ -85,7 +88,7 @@ export function TryItNow() {
                 }
               >
                 <Icon className="w-4 h-4" />
-                <span>{d.label}</span>
+                <span>{v3.tryIt.tabs[d.key]}</span>
               </button>
             )
           })}

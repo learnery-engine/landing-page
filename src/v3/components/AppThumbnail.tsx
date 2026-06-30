@@ -20,6 +20,8 @@
  *   game       — colored grid (memory, match, color-mix)
  *   chat       — speech bubbles (speaking, pronunciation)
  */
+import { useV3Translation } from '../i18n'
+
 export type AppThumbnailVariant = 'quiz' | 'flashcard' | 'counter' | 'text' | 'tracker' | 'game' | 'chat'
 export type AppThumbnailSize = 'small' | 'medium'
 
@@ -171,6 +173,7 @@ function FlashcardThumb({ color, size }: { color: string; size: AppThumbnailSize
 
 function CounterThumb({ color, size }: { color: string; size: AppThumbnailSize }) {
   // Big number stat. Medium adds a label, mini progress bar, and a "today" badge.
+  const { v3 } = useV3Translation()
   const fontSize = size === 'medium' ? 28 : 14
   return (
     <div className="flex flex-col items-center justify-center h-full gap-1">
@@ -178,7 +181,7 @@ function CounterThumb({ color, size }: { color: string; size: AppThumbnailSize }
         // Fixed slate (not the brand color at low opacity) so this small
         // label clears WCAG AA on the white phone body for every app color.
         <div className="text-[7px] font-bold uppercase tracking-widest" style={{ color: '#475569' }}>
-          Hôm nay
+          {v3.proof.apps.thumbToday}
         </div>
       )}
       <div
