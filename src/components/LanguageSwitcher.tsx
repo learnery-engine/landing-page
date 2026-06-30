@@ -8,7 +8,7 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
   return (
     <button
       onClick={toggle}
-      className={`flex items-center gap-1.5 text-sm font-medium transition-colors ${className}`}
+      className={`flex items-center justify-center gap-1.5 min-h-[44px] px-2 -mx-1 text-sm font-medium transition-colors ${className}`}
       aria-label={locale === 'vi' ? 'Switch to English' : 'Chuyển sang tiếng Việt'}
     >
       <Globe className="w-4 h-4" />
