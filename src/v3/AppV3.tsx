@@ -24,8 +24,8 @@ import { useDocumentMeta } from './useDocumentMeta'
  *   Surfaces   → 5 surfaces with persona-engagement intensity
  *   Tools      → All 13+ Mini Apps in a single comprehensive grid
  *                (mirrors V2's flagship Platform tool grid)
- *   TryItNow   → Inline interactive demos (COMPASS / Mini App / Lumi)
- *   LiveProof  → Student-built-apps hero + COMPASS + Lumi proof
+ *   TryItNow   → Inline interactive demos (COMPASS / Mini App — shipped only)
+ *   LiveProof  → Student-built-apps hero + COMPASS live-engine proof
  *   Testimonials → Persona-aware voices
  *   HubPreview → "Sign in to land here" mockup of the actual /v3 hub
  *   Trust      → Numbers + accreditation chips

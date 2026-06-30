@@ -206,7 +206,7 @@ function PersonaPickerBlock({ onPick }: { onPick: (p: Persona) => void }) {
 }
 
 function PersonaCard({ persona, onPick }: { persona: Persona; onPick: (p: Persona) => void }) {
-  const { v3 } = useV3Translation()
+  const { v3, locale } = useV3Translation()
   const tokens = PERSONA_TOKENS[persona]
   const copy = v3.personas[persona]
   return (
@@ -243,7 +243,18 @@ function PersonaCard({ persona, onPick }: { persona: Persona; onPick: (p: Person
         <PersonaIcon persona={persona} className="w-6 h-6" />
       </div>
       <span className="text-sm font-bold text-text">{copy.label}</span>
-      <span className="text-xs text-text-muted italic">"{copy.pronoun}"</span>
+      {/* VI: pronoun rendered as an intentional identity chip (the self-pronoun
+          carries real meaning in Vietnamese). EN has no equivalent — every
+          persona would say "you", which reads as a leaked placeholder — so we
+          drop the line entirely there. */}
+      {locale === 'vi' && (
+        <span
+          className="text-[11px] font-semibold px-2 py-0.5 rounded-full leading-none"
+          style={{ background: tokens.tint, color: tokens.text }}
+        >
+          {copy.pronoun}
+        </span>
+      )}
     </motion.button>
   )
 }
@@ -381,6 +392,8 @@ function AnimatedMesh({ accent, reducedMotion }: { accent: string; reducedMotion
  * shift with the active persona. Stays neutral-violet when no persona.
  */
 function HeroMockup({ tokens }: { tokens: PersonaToken }) {
+  const { v3 } = useV3Translation()
+  const m = v3.hero.mockup
   const prefersReducedMotion = useReducedMotion()
   return (
     <motion.div
@@ -428,8 +441,8 @@ function HeroMockup({ tokens }: { tokens: PersonaToken }) {
       <FloatingBadge
         position="top-right"
         icon="⚡"
-        label="Tốc độ"
-        value="30 giây"
+        label={m.speedLabel}
+        value={m.speedValue}
         tone="accent"
         tokens={tokens}
         delay="1s"
@@ -437,8 +450,8 @@ function HeroMockup({ tokens }: { tokens: PersonaToken }) {
       <FloatingBadge
         position="bottom-left"
         icon="🎯"
-        label="Chuẩn"
-        value="GDPT 2018"
+        label={m.standardLabel}
+        value={m.standardValue}
         tone="text"
         tokens={tokens}
         delay="2s"
@@ -450,13 +463,15 @@ function HeroMockup({ tokens }: { tokens: PersonaToken }) {
 /* ─────────────────────────────────────────────────────────────────────────── */
 
 const MOCKUP_APPS = [
-  { key: 'quiz',     label: 'Bài kiểm tra', Icon: ClipboardCheck, accent: '#7C3AED' },
-  { key: 'lesson',   label: 'Giáo án',       Icon: FileText,       accent: '#3B82F6' },
-  { key: 'slides',   label: 'Slides',         Icon: Wand2,          accent: '#10B981' },
-  { key: 'inter',    label: 'Tương tác',     Icon: Gamepad2,       accent: '#F59E0B' },
+  { key: 'quiz',     labelKey: 'quizLabel',        Icon: ClipboardCheck, accent: '#7C3AED' },
+  { key: 'lesson',   labelKey: 'lessonLabel',      Icon: FileText,       accent: '#3B82F6' },
+  { key: 'slides',   labelKey: 'slidesLabel',      Icon: Wand2,          accent: '#10B981' },
+  { key: 'inter',    labelKey: 'interactiveLabel', Icon: Gamepad2,       accent: '#F59E0B' },
 ] as const
 
 function MockupAppGrid({ tokens }: { tokens: PersonaToken }) {
+  const { v3 } = useV3Translation()
+  const m = v3.hero.mockup
   const prefersReducedMotion = useReducedMotion()
   return (
     <div className="grid grid-cols-2 gap-3 mb-4">
@@ -477,9 +492,9 @@ function MockupAppGrid({ tokens }: { tokens: PersonaToken }) {
             >
               <Icon className="w-4 h-4" strokeWidth={2.25} />
             </div>
-            <div className="text-sm font-semibold text-text leading-tight">{app.label}</div>
+            <div className="text-sm font-semibold text-text leading-tight">{m[app.labelKey]}</div>
             <div className="text-[10px] text-text-muted mt-0.5 truncate" style={{ color: tokens.text, opacity: 0.6 }}>
-              AI-powered
+              {m.appPowered}
             </div>
           </motion.div>
         )
@@ -489,6 +504,7 @@ function MockupAppGrid({ tokens }: { tokens: PersonaToken }) {
 }
 
 function MockupGenerating({ tokens }: { tokens: PersonaToken }) {
+  const { v3 } = useV3Translation()
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -507,7 +523,7 @@ function MockupGenerating({ tokens }: { tokens: PersonaToken }) {
         <Sparkles className="w-4 h-4 text-white" />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="text-sm font-semibold text-text">AI đang soạn quiz về hàm số…</div>
+        <div className="text-sm font-semibold text-text">{v3.hero.mockup.generating}</div>
         <div className="mt-1.5 h-1 rounded-full overflow-hidden" style={{ background: `${tokens.accent}22` }}>
           <motion.div
             initial={{ width: '0%' }}

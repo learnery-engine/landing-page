@@ -1,18 +1,19 @@
 import { useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { Compass, Wand2, Sparkles } from 'lucide-react'
+import { Compass, Wand2 } from 'lucide-react'
 import { usePersona } from '../PersonaContext'
 import { personaTokens } from '../tokens'
 import { CompassDemo } from './demos/CompassDemo'
 import { MiniAppDemo } from './demos/MiniAppDemo'
-import { LumiDemo } from './demos/LumiDemo'
 
-type DemoKey = 'compass' | 'miniApp' | 'lumi'
+// Only shipped surfaces get an inline demo. Lumi is status:'vision'
+// (Surfaces grid tags it "Tầm nhìn 2026"), so it must not appear as a
+// try-it-now tab — that would read as a live, usable feature.
+type DemoKey = 'compass' | 'miniApp'
 
 const DEMO_META = [
   { key: 'compass' as const, label: 'COMPASS · 3 câu',   Icon: Compass, color: '#7C3AED' },
   { key: 'miniApp' as const, label: 'Mini App · Tạo quiz', Icon: Wand2,   color: '#8B5CF6' },
-  { key: 'lumi'    as const, label: 'Lumi · Chat',         Icon: Sparkles, color: '#EC4899' },
 ]
 
 /**
@@ -55,7 +56,7 @@ export function TryItNow() {
             Bấm thử ngay.
           </motion.h2>
           <p className="text-lg text-text-muted leading-relaxed">
-            3 mini-demo chạy thật trong trình duyệt. Mỗi cái dưới 30 giây — nhanh hơn đọc tiếp.
+            Demo chạy thật trong trình duyệt. Mỗi cái dưới 30 giây — nhanh hơn đọc tiếp.
           </p>
         </div>
 
@@ -104,7 +105,6 @@ export function TryItNow() {
           >
             {activeDemo === 'compass' && <CompassDemo />}
             {activeDemo === 'miniApp' && <MiniAppDemo />}
-            {activeDemo === 'lumi' && <LumiDemo />}
           </motion.div>
         </AnimatePresence>
       </div>

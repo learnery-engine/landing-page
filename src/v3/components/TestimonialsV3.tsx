@@ -57,7 +57,7 @@ const TESTIMONIALS: readonly Testimonial[] = [
     name: 'Chị Hương',
     role: 'Phụ huynh học sinh lớp 9',
     location: 'Hà Nội',
-    quote: 'Mỗi tuần Lumi nhắn qua Zalo tóm tắt con học gì, mạnh yếu chỗ nào. Không phải hỏi con, không phải đoán.',
+    quote: 'Mỗi tuần tôi mở bảng theo dõi là biết con học gì, mạnh yếu chỗ nào. Không phải hỏi con, không phải đoán.',
   },
   {
     persona: 'pro',

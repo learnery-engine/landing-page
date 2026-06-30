@@ -37,6 +37,19 @@ interface V3Strings {
     rotatingProofSuffix: string
     explore: string
     reset: string
+    /** Strings baked into the animated browser-chrome product mockup. */
+    mockup: {
+      appPowered: string
+      generating: string
+      quizLabel: string
+      lessonLabel: string
+      slidesLabel: string
+      interactiveLabel: string
+      speedLabel: string
+      speedValue: string
+      standardLabel: string
+      standardValue: string
+    }
   }
   personas: Record<Persona, PersonaCopy>
   surfaces: {
@@ -120,16 +133,28 @@ export const V3_VI: V3Strings = {
     rotatingProofSuffix: '+ ứng dụng AI thật do học sinh tự tạo',
     explore: 'Khám phá bề mặt của bạn',
     reset: 'Xem tổng quan',
+    mockup: {
+      appPowered: 'Dùng AI',
+      generating: 'AI đang soạn quiz về hàm số…',
+      quizLabel: 'Bài kiểm tra',
+      lessonLabel: 'Giáo án',
+      slidesLabel: 'Slides',
+      interactiveLabel: 'Tương tác',
+      speedLabel: 'Tốc độ',
+      speedValue: '30 giây',
+      standardLabel: 'Chuẩn',
+      standardValue: 'GDPT 2018',
+    },
   },
   personas: {
     hs: {
       label: 'Học sinh',
       pronoun: 'em',
       pitch:
-        'Em được Lumi đồng hành mỗi ngày, làm app của riêng mình, và có Hồ sơ năng lực để khoe với bố mẹ.',
+        'Em tự làm app AI của riêng mình, học qua mini app tương tác, và có Hồ sơ năng lực để khoe với bố mẹ.',
       cta: 'Bắt đầu hành trình',
       ctaSecondary: 'Xem hồ sơ mẫu',
-      surfaces: ['Lumi đồng hành 24/7', 'Xây app AI đầu đời', 'Hồ sơ năng lực số'],
+      surfaces: ['Xây app AI đầu đời', 'Mini app tương tác', 'Hồ sơ năng lực số'],
     },
     gv: {
       label: 'Giáo viên',
@@ -144,10 +169,10 @@ export const V3_VI: V3Strings = {
       label: 'Phụ huynh',
       pronoun: 'anh/chị',
       pitch:
-        'Anh chị biết con đang học gì, mạnh yếu chỗ nào, và Lumi gửi bản tin tuần qua Zalo — không cần hỏi con.',
+        'Anh chị biết con đang học gì, mạnh yếu chỗ nào, qua bảng theo dõi tuần — không cần hỏi con, không phải đoán.',
       cta: 'Xem bảng theo dõi mẫu',
       ctaSecondary: 'Tải app phụ huynh',
-      surfaces: ['Bảng theo dõi con tuần', 'Lumi nhắn qua Zalo', 'Hồ sơ năng lực con'],
+      surfaces: ['Bảng theo dõi con tuần', 'Hồ sơ năng lực con', 'Lumi nhắn qua Zalo (sắp ra mắt)'],
     },
     pro: {
       label: 'Người đi làm',
@@ -156,7 +181,7 @@ export const V3_VI: V3Strings = {
         'Bạn có lộ trình COMPASS cá nhân hoá cho TOEIC/IELTS/đổi nghề, đo đếm mỗi tuần — bằng dữ liệu, không cảm tính.',
       cta: 'Làm bài COMPASS thử',
       ctaSecondary: 'Xem lộ trình mẫu',
-      surfaces: ['COMPASS chẩn đoán', 'Lộ trình thích nghi', 'Lumi coach trực tuyến'],
+      surfaces: ['COMPASS chẩn đoán', 'Lộ trình thích nghi', 'Lumi coach (sắp ra mắt)'],
     },
     b2b: {
       label: 'Trường / Doanh nghiệp',
@@ -172,7 +197,7 @@ export const V3_VI: V3Strings = {
     eyebrow: '5 bề mặt — 1 nền tảng',
     heading: 'Tất cả nằm trong một hệ sinh thái',
     subhead:
-      'COMPASS chẩn đoán → Mini Apps tạo nội dung → Lớp học số chia bài → Hồ sơ ghi nhận → Lumi đồng hành. Mỗi vai trò chạm vào những bề mặt khác nhau.',
+      'COMPASS chẩn đoán → Mini Apps tạo nội dung → Lớp học số chia bài → Hồ sơ ghi nhận → Lumi sẽ đồng hành. Mỗi vai trò chạm vào những bề mặt khác nhau.',
     items: {
       compass: {
         name: 'COMPASS',
@@ -320,16 +345,28 @@ export const V3_EN: V3Strings = {
     rotatingProofSuffix: '+ real AI apps built by students themselves',
     explore: 'Explore your surface',
     reset: 'See the whole picture',
+    mockup: {
+      appPowered: 'AI-powered',
+      generating: 'AI is writing a quiz on functions…',
+      quizLabel: 'Quiz',
+      lessonLabel: 'Lesson plan',
+      slidesLabel: 'Slides',
+      interactiveLabel: 'Interactive',
+      speedLabel: 'Speed',
+      speedValue: '30 seconds',
+      standardLabel: 'Standard',
+      standardValue: 'GDPT 2018',
+    },
   },
   personas: {
     hs: {
       label: 'Student',
       pronoun: 'you',
       pitch:
-        'You get Lumi by your side every day, you build your own apps, and you carry a competency portfolio you actually own.',
+        'You build your own AI apps, learn through interactive mini-apps, and carry a competency portfolio you actually own.',
       cta: 'Start your journey',
       ctaSecondary: 'See sample portfolio',
-      surfaces: ['Lumi 24/7 companion', 'Build your first AI app', 'Digital competency portfolio'],
+      surfaces: ['Build your first AI app', 'Interactive mini-apps', 'Digital competency portfolio'],
     },
     gv: {
       label: 'Teacher',
@@ -344,10 +381,10 @@ export const V3_EN: V3Strings = {
       label: 'Parent',
       pronoun: 'you',
       pitch:
-        'See what your child is learning, where they\'re strong/weak, and get a weekly digest from Lumi on Zalo — without having to ask them.',
+        'See what your child is learning and where they\'re strong/weak through a weekly dashboard — without having to ask them.',
       cta: 'View sample dashboard',
       ctaSecondary: 'Download parent app',
-      surfaces: ['Weekly child dashboard', 'Lumi nudges on Zalo', 'Child\'s portfolio'],
+      surfaces: ['Weekly child dashboard', 'Child\'s portfolio', 'Lumi nudges on Zalo (coming soon)'],
     },
     pro: {
       label: 'Professional',
@@ -356,7 +393,7 @@ export const V3_EN: V3Strings = {
         'A COMPASS-personalised path for TOEIC/IELTS/career switch — measured weekly with data, not gut feel.',
       cta: 'Take COMPASS demo',
       ctaSecondary: 'See sample path',
-      surfaces: ['COMPASS diagnostic', 'Adaptive path', 'Lumi coach online'],
+      surfaces: ['COMPASS diagnostic', 'Adaptive path', 'Lumi coach (coming soon)'],
     },
     b2b: {
       label: 'School / Org',
@@ -372,7 +409,7 @@ export const V3_EN: V3Strings = {
     eyebrow: '5 surfaces — 1 platform',
     heading: 'Everything lives in one ecosystem',
     subhead:
-      'COMPASS diagnoses → Mini Apps create content → Classroom delivers → Portfolio records → Lumi accompanies. Each role touches a different mix of surfaces.',
+      'COMPASS diagnoses → Mini Apps create content → Classroom delivers → Portfolio records → Lumi will accompany. Each role touches a different mix of surfaces.',
     items: {
       compass: {
         name: 'COMPASS',

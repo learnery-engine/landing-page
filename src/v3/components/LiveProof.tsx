@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, useReducedMotion, useInView } from 'framer-motion'
-import { ArrowRight, MessageCircle, TrendingUp, Sparkles, Award, GraduationCap } from 'lucide-react'
+import { ArrowRight, TrendingUp, Sparkles, Award, GraduationCap } from 'lucide-react'
 import { useV3Translation } from '../i18n'
 import { usePersona } from '../PersonaContext'
 import { personaTokens } from '../tokens'
@@ -74,6 +74,11 @@ export function LiveProof() {
   const { v3 } = useV3Translation()
   const { persona } = usePersona()
   const accent = personaTokens(persona)
+  // On the dark (#0F0E17) section, small <18px labels coloured with the
+  // accent must clear WCAG AA (4.5:1). All five persona accents already do,
+  // but the NEUTRAL brand violet (#7C3AED) only hits 3.36:1 — so swap it for
+  // violet-400 (#A78BFA, 7.04:1) when no persona is active.
+  const darkAccent = persona ? accent.accent : '#A78BFA'
   const prefersReducedMotion = useReducedMotion()
 
   return (
@@ -98,7 +103,7 @@ export function LiveProof() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.4 }}
             className="inline-block text-xs font-bold uppercase tracking-widest mb-4"
-            style={{ color: accent.accent }}
+            style={{ color: darkAccent }}
           >
             {v3.proof.eyebrow}
           </motion.span>
@@ -127,8 +132,11 @@ export function LiveProof() {
         {/* ── HERO: Student-built apps. Full width, oversized. ──────────────── */}
         <StudentAppsHero />
 
-        {/* ── Supporting evidence: COMPASS + Lumi side by side ──────────────── */}
-        <div className="mt-6 grid lg:grid-cols-2 gap-6">
+        {/* ── Supporting evidence: COMPASS live engine. ──────────────────────
+            Only shipped surfaces appear in this "in production" proof block —
+            Lumi lives in the Surfaces roadmap grid tagged "Tầm nhìn 2026"
+            and must never read as live here. */}
+        <div className="mt-6 max-w-3xl mx-auto">
           <ProofCard
             eyebrow="compass · live engine"
             title={v3.proof.compass.title}
@@ -140,20 +148,11 @@ export function LiveProof() {
               type="button"
               onClick={() => navigate('/signup')}
               className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold"
-              style={{ color: '#A78BFA' }}
+              style={{ color: '#C4B5FD' }}
             >
               {v3.proof.compass.cta}
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
-          </ProofCard>
-
-          <ProofCard
-            eyebrow="lumi · cross-surface"
-            title={v3.proof.lumi.title}
-            subtitle={v3.proof.lumi.subtitle}
-            accent="#F472B6"
-          >
-            <LumiMini />
           </ProofCard>
         </div>
       </div>
@@ -523,90 +522,6 @@ function MiniStat({ label, value, accent }: { label: string; value: string; acce
       <div className="text-[10px] uppercase tracking-wider opacity-50 mb-0.5">{label}</div>
       <div className="text-xl font-extrabold tabular-nums" style={{ color: accent }}>
         {value}
-      </div>
-    </div>
-  )
-}
-
-/* ─────────────────────────────────────────────────────────────────────────── */
-
-function LumiMini() {
-  const { v3 } = useV3Translation()
-  const l = v3.proof.lumi
-  const prefersReducedMotion = useReducedMotion()
-
-  return (
-    <div
-      className="rounded-2xl p-5"
-      style={{ background: 'linear-gradient(135deg, rgba(244,114,182,0.12), rgba(244,114,182,0.04))', border: '1px solid rgba(244,114,182,0.2)' }}
-    >
-      {/* Chat header */}
-      <div className="flex items-center gap-2.5 pb-3 mb-3 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-        <div className="relative">
-          <div
-            className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm"
-            style={{ background: 'linear-gradient(135deg, #F472B6, #EC4899)' }}
-          >
-            ✨
-          </div>
-          <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2" style={{ borderColor: '#0F0E17' }} aria-hidden />
-        </div>
-        <div className="flex-1">
-          <div className="text-sm font-bold">Lumi</div>
-          <div className="text-[10px] opacity-50">{l.channelLabel}</div>
-        </div>
-        <MessageCircle className="w-4 h-4 opacity-40" aria-hidden />
-      </div>
-
-      {/* Messages */}
-      <div className="space-y-2.5">
-        {l.messages.map((m, i) => (
-          <motion.div
-            key={i}
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 6, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.35, delay: 0.15 + i * 0.18, ease: [0.22, 1, 0.36, 1] }}
-            className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
-            <div
-              className="max-w-[80%] px-3.5 py-2 rounded-2xl text-sm leading-snug"
-              style={{
-                background:
-                  m.role === 'lumi'
-                    ? 'rgba(255,255,255,0.08)'
-                    : 'linear-gradient(135deg, #F472B6, #EC4899)',
-                color: m.role === 'lumi' ? 'rgba(255,255,255,0.9)' : '#fff',
-                borderTopLeftRadius: m.role === 'lumi' ? 4 : undefined,
-                borderTopRightRadius: m.role === 'user' ? 4 : undefined,
-              }}
-            >
-              {m.text}
-            </div>
-          </motion.div>
-        ))}
-
-        {/* Typing dots */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ delay: 0.7 }}
-          className="flex"
-        >
-          <div className="px-3.5 py-2.5 rounded-2xl" style={{ background: 'rgba(255,255,255,0.08)' }}>
-            <div className="flex gap-1">
-              {[0, 1, 2].map((i) => (
-                <motion.span
-                  key={i}
-                  className="w-1.5 h-1.5 rounded-full bg-white/60"
-                  animate={prefersReducedMotion ? undefined : { opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.15 }}
-                />
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </div>
   )

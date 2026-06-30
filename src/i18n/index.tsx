@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback } from 'react'
 import type { Locale, Translations } from './types'
 import { en } from './locales/en'
 import { vi } from './locales/vi'
@@ -7,13 +7,17 @@ const STORAGE_KEY = 'learneris-lang'
 const translations: Record<Locale, Translations> = { en, vi }
 
 function getInitialLocale(): Locale {
-  // 1. Check localStorage
+  // 1. localStorage  2. browser language  3. default EN for international visitors
   const stored = localStorage.getItem(STORAGE_KEY)
-  if (stored === 'en' || stored === 'vi') return stored
-  // 2. Check browser language
-  if (navigator.language.toLowerCase().startsWith('vi')) return 'vi'
-  // 3. Default to English for international visitors
-  return 'en'
+  const loc: Locale =
+    stored === 'en' || stored === 'vi'
+      ? stored
+      : navigator.language.toLowerCase().startsWith('vi')
+        ? 'vi'
+        : 'en'
+  // Reflect into <html lang> at first render (before paint), not a post-paint effect.
+  if (typeof document !== 'undefined') document.documentElement.lang = loc
+  return loc
 }
 
 interface LanguageContextValue {
@@ -32,10 +36,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem(STORAGE_KEY, newLocale)
     document.documentElement.lang = newLocale
   }, [])
-
-  useEffect(() => {
-    document.documentElement.lang = locale
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <LanguageContext.Provider value={{ locale, setLocale, t: translations[locale] }}>

@@ -122,14 +122,19 @@ export function HubPreview() {
                 { label: 'Tài liệu' },
                 { label: 'Lớp học' },
                 { label: 'Hồ sơ' },
-                { label: 'Lumi' },
+                { label: 'Lumi', soon: true },
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="px-3 py-2 rounded-lg text-xs font-medium text-gray-600"
+                  className="px-3 py-2 rounded-lg text-xs font-medium text-gray-600 flex items-center justify-between gap-1"
                   style={item.active ? { background: tokens.tint, color: tokens.text } : undefined}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {item.soon && (
+                    <span className="text-[8px] font-bold uppercase tracking-wide px-1 py-0.5 rounded text-gray-400 bg-gray-100">
+                      Sắp ra mắt
+                    </span>
+                  )}
                 </div>
               ))}
             </aside>
@@ -154,7 +159,7 @@ export function HubPreview() {
                 <div className="flex flex-wrap gap-2">
                   <Chip value="7" label="Gen tuần này" accent={tokens.accent} />
                   <Chip value="3" label="Lớp đang chấm" accent={tokens.accent} />
-                  <Chip value="2" label="Lumi nhắc" accent={tokens.accent} />
+                  <Chip value="4" label="App đã ship" accent={tokens.accent} />
                 </div>
               </div>
 
@@ -165,7 +170,7 @@ export function HubPreview() {
                   <MiniSurface Icon={Wand2}           name="Mini Apps" accent="#8B5CF6" primary={!persona || persona === 'gv' || persona === 'hs'} />
                   <MiniSurface Icon={LayoutDashboard} name="Lớp học"   accent="#22C55E" primary={!persona || persona === 'gv' || persona === 'hs'} />
                   <MiniSurface Icon={Award}           name="Hồ sơ"     accent="#F59E0B" primary={!persona || persona === 'hs' || persona === 'ph' || persona === 'pro'} />
-                  <MiniSurface Icon={Sparkles}        name="Lumi"      accent="#EC4899" primary />
+                  <MiniSurface Icon={Sparkles}        name="Lumi"      accent="#EC4899" primary={false} soon />
                 </div>
               </div>
 
@@ -213,9 +218,10 @@ export function HubPreview() {
               </div>
 
               {/* Active "Lumi suggestion" beat — gives the mockup a live-product feel
-                  (mirrors V2 Hero.tsx 152-163 "AI generating" indicator) */}
+                  Lumi is status:'vision' — framed as a forthcoming teaser,
+                  never an active recommendation, so the mockup stays claims-accurate. */}
               <div
-                className="rounded-lg p-2.5 flex items-center gap-2 border"
+                className="rounded-lg p-2.5 flex items-center gap-2 border border-dashed"
                 style={{
                   background: tokens.tint,
                   borderColor: tokens.ring,
@@ -228,19 +234,15 @@ export function HubPreview() {
                   <Sparkles className="w-3.5 h-3.5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[11px] font-semibold text-text truncate">
-                    Lumi gợi ý: ôn lại Mũ-Log trước Kỳ thi giữa kỳ
-                  </div>
-                  <div className="mt-1 h-1 rounded-full overflow-hidden" style={{ background: `${tokens.accent}22` }}>
-                    <div
-                      className="h-full rounded-full"
-                      style={{ width: '62%', background: `linear-gradient(90deg, ${tokens.accent}, ${tokens.text})` }}
-                    />
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[8px] font-bold uppercase tracking-wide px-1 py-0.5 rounded shrink-0" style={{ background: '#fff', color: tokens.text, border: `1px solid ${tokens.ring}` }}>
+                      Sắp ra mắt
+                    </span>
+                    <div className="text-[11px] font-semibold text-text truncate">
+                      Lumi sẽ chủ động nhắc lịch ôn cho từng học sinh
+                    </div>
                   </div>
                 </div>
-                <span className="text-[9px] font-bold tabular-nums shrink-0" style={{ color: tokens.text }}>
-                  62%
-                </span>
               </div>
             </main>
           </div>
@@ -290,14 +292,17 @@ function Chip({ value, label, accent }: { value: string; label: string; accent: 
   )
 }
 
-function MiniSurface({ Icon, name, accent, primary }: { Icon: React.ComponentType<{ className?: string }>; name: string; accent: string; primary: boolean }) {
+function MiniSurface({ Icon, name, accent, primary, soon }: { Icon: React.ComponentType<{ className?: string }>; name: string; accent: string; primary: boolean; soon?: boolean }) {
+  // `soon` surfaces (e.g. Lumi, status:'vision') render muted with a tag so
+  // the mockup never implies they're a live, usable part of the hub today.
+  const isPrimary = primary && !soon
   return (
     <div
-      className="bg-white rounded-lg p-2 border text-center transition-all"
+      className="relative bg-white rounded-lg p-2 border text-center transition-all"
       style={{
-        borderColor: primary ? accent : 'rgba(15,23,42,0.08)',
-        borderWidth: primary ? 2 : 1,
-        opacity: primary ? 1 : 0.5,
+        borderColor: isPrimary ? accent : 'rgba(15,23,42,0.08)',
+        borderWidth: isPrimary ? 2 : 1,
+        opacity: soon ? 0.55 : isPrimary ? 1 : 0.5,
       }}
     >
       <div
@@ -307,6 +312,11 @@ function MiniSurface({ Icon, name, accent, primary }: { Icon: React.ComponentTyp
         <Icon className="w-3 h-3" />
       </div>
       <div className="text-[8px] font-semibold text-gray-700 truncate">{name}</div>
+      {soon && (
+        <div className="text-[7px] font-bold uppercase tracking-wide text-gray-400 leading-none mt-0.5">
+          Sắp ra mắt
+        </div>
+      )}
     </div>
   )
 }

@@ -55,18 +55,21 @@ export function AppThumbnail({
       }}
       aria-hidden
     >
-      {/* Status-bar strip — keys to the app's brand color */}
+      {/* Status-bar strip — a darkened tint of the app's brand color. Darkened
+          (mixed toward slate-900) so the small uppercase appLabel in white
+          clears WCAG AA (4.5:1) for EVERY brand color — a saturated mid-tone
+          strip can't host readable text at any text color. */}
       <div
         className="w-full flex items-center justify-between"
-        style={{ height: dims.statusBarH, padding: '0 6px', background: color }}
+        style={{ height: dims.statusBarH, padding: '0 6px', background: darkenToward(color, 0.58) }}
       >
-        <span className="w-1 h-1 rounded-full" style={{ background: '#ffffff90' }} />
+        <span className="w-1 h-1 rounded-full" style={{ background: '#ffffffcc' }} />
         {size === 'medium' && (
-          <span className="text-[7px] font-bold uppercase tracking-widest text-white/70 truncate max-w-[80px]">
+          <span className="text-[7px] font-bold uppercase tracking-widest text-white truncate max-w-[80px]">
             {appLabel || ''}
           </span>
         )}
-        <span className="w-1 h-1 rounded-full" style={{ background: '#ffffff90' }} />
+        <span className="w-1 h-1 rounded-full" style={{ background: '#ffffffcc' }} />
       </div>
       {/* Body */}
       <div
@@ -159,7 +162,9 @@ function CounterThumb({ color, size }: { color: string; size: AppThumbnailSize }
   return (
     <div className="flex flex-col items-center justify-center h-full gap-1">
       {size === 'medium' && (
-        <div className="text-[7px] font-bold uppercase tracking-widest opacity-60" style={{ color }}>
+        // Fixed slate (not the brand color at low opacity) so this small
+        // label clears WCAG AA on the white phone body for every app color.
+        <div className="text-[7px] font-bold uppercase tracking-widest" style={{ color: '#475569' }}>
           Hôm nay
         </div>
       )}
@@ -171,7 +176,7 @@ function CounterThumb({ color, size }: { color: string; size: AppThumbnailSize }
       </div>
       {size === 'medium' ? (
         <>
-          <div className="text-[7px] font-semibold opacity-50" style={{ color }}>kcal</div>
+          <div className="text-[7px] font-semibold" style={{ color: '#475569' }}>kcal</div>
           <div className="w-full h-1 rounded-full mt-1" style={{ background: '#e2e8f0' }}>
             <div className="h-full rounded-full" style={{ width: '64%', background: color }} />
           </div>
