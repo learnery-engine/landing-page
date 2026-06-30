@@ -28,6 +28,19 @@ const SIZE_DIMS: Record<AppThumbnailSize, { w: number; h: number; statusBarH: nu
   medium: { w: 120, h: 100, statusBarH: 12, pad: 10 },
 }
 
+// Mix a hex color toward slate-900 by t (0..1). At t≈0.58 the result is dark
+// enough that white / near-white text clears WCAG AA (4.5:1) for any brand hue.
+function darkenToward(hex: string, t: number): string {
+  const TARGET = [15, 23, 42] // slate-900 (#0f172a)
+  const h = hex.replace('#', '')
+  const full = h.length === 3 ? h.split('').map((c) => c + c).join('') : h
+  const ch = (i: number) => parseInt(full.slice(i, i + 2), 16)
+  const mix = (c: number, target: number) => Math.round(c + (target - c) * t)
+  return `#${[mix(ch(0), TARGET[0]), mix(ch(2), TARGET[1]), mix(ch(4), TARGET[2])]
+    .map((v) => v.toString(16).padStart(2, '0'))
+    .join('')}`
+}
+
 export function AppThumbnail({
   variant,
   color,
