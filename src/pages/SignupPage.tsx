@@ -4,7 +4,8 @@ import { AuthLayout } from '../components/auth/AuthLayout'
 import { FormInput } from '../components/auth/FormInput'
 import { GoogleSignIn } from '../components/auth/GoogleSignIn'
 import { useTranslation } from '../i18n'
-import { auth } from '../lib/api'
+import { MigrationChoiceModal } from '../components/auth/MigrationChoiceModal'
+import { auth, aiappBridgeUrl, bubbleLoginUrl } from '../lib/api'
 import { normalizeEmail, normalizePassword } from '../lib/normalize-credentials'
 import { navigate } from '../lib/navigate'
 
@@ -16,6 +17,7 @@ export function SignupPage() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [apiError, setApiError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [choice, setChoice] = useState<{ move: string; stay: string } | null>(null)
 
   function validate(nameValue: string, emailValue: string, passwordValue: string) {
     const errs: Record<string, string> = {}
@@ -43,7 +45,14 @@ export function SignupPage() {
     setLoading(true)
     try {
       const res = await auth.signup(cleanEmail, cleanPassword, cleanName)
-      window.location.href = res.response.login_url
+      const stay = bubbleLoginUrl(res.response)
+      const move = aiappBridgeUrl(res.response)
+      if (move) {
+        setChoice({ move, stay })
+        setLoading(false)
+        return
+      }
+      window.location.href = stay
     } catch (err) {
       const msg = (err as Error).message || ''
       if (msg.toLowerCase().includes('already') || msg.toLowerCase().includes('exist')) {
@@ -57,6 +66,11 @@ export function SignupPage() {
 
   return (
     <AuthLayout>
+      <MigrationChoiceModal
+        open={!!choice}
+        onMove={() => { if (choice) window.location.href = choice.move }}
+        onStay={() => { if (choice) window.location.href = choice.stay }}
+      />
       <h1 className="text-2xl sm:text-3xl font-bold text-text mb-1">{t.auth.signup.heading}</h1>
       <p className="text-text-muted mb-8">{t.auth.signup.subheading}</p>
 

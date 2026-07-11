@@ -160,6 +160,13 @@ export interface Translations {
       invalidCredentials: string
       genericError: string
     }
+    migration: {
+      heading: string
+      body: string
+      passwordWarning: string
+      moveButton: string
+      stayButton: string
+    }
     socialProof: {
       headline: string
       subheadline: string

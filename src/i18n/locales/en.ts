@@ -222,6 +222,13 @@ export const en: Translations = {
       invalidCredentials: 'Invalid email or password',
       genericError: 'Something went wrong. Please try again.',
     },
+    migration: {
+      heading: 'Learneris has a new version',
+      body: "We're moving to an upgraded system. Would you like to try the new version now, or keep using the current one?",
+      passwordWarning: 'Note: if this account has a password, moving to the new version will reset it. Next time you need to sign in with a password, use "Forgot password" to create a new one.',
+      moveButton: 'Move to the new version',
+      stayButton: 'Stay on the current version',
+    },
     socialProof: {
       headline: 'Join 10,000+ educators',
       subheadline: 'Create AI-powered content, manage classrooms, and track student progress — all in one platform.',

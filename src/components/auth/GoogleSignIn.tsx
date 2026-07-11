@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google'
-import { GOOGLE_CLIENT_ID } from '../../lib/constants'
-import { auth, trackLogin } from '../../lib/api'
+import { AIAPP_URL, GOOGLE_CLIENT_ID } from '../../lib/constants'
+import { auth, aiappBridgeUrl, bubbleLoginUrl, trackLogin } from '../../lib/api'
+import { MigrationChoiceModal } from './MigrationChoiceModal'
 
 interface Props {
   label: string
@@ -10,7 +12,36 @@ interface Props {
   onLoading: (loading: boolean) => void
 }
 
+// Google identity verified by OAuth, held while the user picks a destination
+// in MigrationChoiceModal. The choice decides the `move` param sent to the
+// google-auth workflow — move=yes triggers the temp-password login (may reset
+// an existing password), so it must not run before the user consents.
+interface PendingGoogle {
+  email: string
+  accessToken: string
+  name: string
+}
+
 function GoogleButton({ label, disabled, next, onError, onLoading }: Props) {
+  const [pending, setPending] = useState<PendingGoogle | null>(null)
+  const [finishing, setFinishing] = useState(false)
+
+  async function finishGoogleAuth(p: PendingGoogle, move: boolean) {
+    setFinishing(true)
+    onLoading(true)
+    try {
+      const res = await auth.googleAuth(p.email, p.accessToken, p.name, move)
+      trackLogin(p.email, 'google')
+      const target = move ? aiappBridgeUrl(res.response, next) : null
+      window.location.href = target ?? bubbleLoginUrl(res.response, next)
+    } catch {
+      onError('Something went wrong. Please try again.')
+      setPending(null)
+      setFinishing(false)
+      onLoading(false)
+    }
+  }
+
   const googleLogin = useGoogleLogin({
     scope: 'openid email profile',
     onSuccess: async (tokenResponse) => {
@@ -20,11 +51,18 @@ function GoogleButton({ label, disabled, next, onError, onLoading }: Props) {
           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
         }).then(r => r.json())
 
-        const res = await auth.googleAuth(userInfo.email, tokenResponse.access_token, userInfo.name || '')
-        trackLogin(userInfo.email, 'google')
-        const loginUrl = new URL(res.response.login_url)
-        if (next) loginUrl.searchParams.set('next', next)
-        window.location.href = loginUrl.toString()
+        const p: PendingGoogle = {
+          email: userInfo.email,
+          accessToken: tokenResponse.access_token,
+          name: userInfo.name || '',
+        }
+        if (AIAPP_URL) {
+          // Let the user pick stay/move before committing to the workflow
+          setPending(p)
+          onLoading(false)
+        } else {
+          await finishGoogleAuth(p, false)
+        }
       } catch {
         onError('Something went wrong. Please try again.')
         onLoading(false)
@@ -36,6 +74,14 @@ function GoogleButton({ label, disabled, next, onError, onLoading }: Props) {
   })
 
   return (
+    <>
+    <MigrationChoiceModal
+      open={!!pending}
+      showPasswordWarning
+      loading={finishing}
+      onMove={() => { if (pending) finishGoogleAuth(pending, true) }}
+      onStay={() => { if (pending) finishGoogleAuth(pending, false) }}
+    />
     <button
       onClick={() => googleLogin()}
       disabled={disabled}
@@ -49,6 +95,7 @@ function GoogleButton({ label, disabled, next, onError, onLoading }: Props) {
       </svg>
       {label}
     </button>
+    </>
   )
 }
 

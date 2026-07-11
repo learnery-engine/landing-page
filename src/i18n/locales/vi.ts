@@ -222,6 +222,13 @@ export const vi: Translations = {
       invalidCredentials: 'Email hoặc mật khẩu không đúng',
       genericError: 'Đã xảy ra lỗi. Vui lòng thử lại.',
     },
+    migration: {
+      heading: 'Learneris có phiên bản mới',
+      body: 'Chúng tôi đang chuyển sang hệ thống mới được nâng cấp. Bạn muốn trải nghiệm bản mới ngay, hay tiếp tục dùng bản hiện tại?',
+      passwordWarning: 'Lưu ý: nếu tài khoản này từng đặt mật khẩu, việc chuyển sang bản mới sẽ đặt lại mật khẩu đó. Khi cần đăng nhập bằng mật khẩu lần sau, hãy dùng "Quên mật khẩu" để tạo mật khẩu mới.',
+      moveButton: 'Chuyển sang bản mới',
+      stayButton: 'Ở lại bản hiện tại',
+    },
     socialProof: {
       headline: 'Tham gia 10.000+ giáo viên',
       subheadline: 'Tạo nội dung AI, quản lý lớp học và theo dõi tiến độ học sinh — tất cả trong một nền tảng.',

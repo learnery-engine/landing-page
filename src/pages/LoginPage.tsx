@@ -3,8 +3,9 @@ import { Loader2 } from 'lucide-react'
 import { AuthLayout } from '../components/auth/AuthLayout'
 import { FormInput } from '../components/auth/FormInput'
 import { GoogleSignIn } from '../components/auth/GoogleSignIn'
+import { MigrationChoiceModal } from '../components/auth/MigrationChoiceModal'
 import { useTranslation } from '../i18n'
-import { auth, trackLogin } from '../lib/api'
+import { auth, aiappBridgeUrl, bubbleLoginUrl, trackLogin } from '../lib/api'
 import { normalizeEmail, normalizePassword } from '../lib/normalize-credentials'
 import { navigate } from '../lib/navigate'
 
@@ -15,6 +16,9 @@ export function LoginPage() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [apiError, setApiError] = useState('')
   const [loading, setLoading] = useState(false)
+  // Set when login succeeded and both destinations are available — the user
+  // picks one in MigrationChoiceModal.
+  const [choice, setChoice] = useState<{ move: string; stay: string } | null>(null)
   const params = new URLSearchParams(window.location.search)
   const resetSuccess = params.get('reset') === 'success'
   const next = params.get('next') ?? undefined
@@ -44,9 +48,14 @@ export function LoginPage() {
     try {
       const res = await auth.login(cleanEmail, cleanPassword)
       trackLogin(cleanEmail, 'email')
-      const loginUrl = new URL(res.response.login_url)
-      if (next) loginUrl.searchParams.set('next', next)
-      window.location.href = loginUrl.toString()
+      const stay = bubbleLoginUrl(res.response, next)
+      const move = aiappBridgeUrl(res.response, next)
+      if (move) {
+        setChoice({ move, stay })
+        setLoading(false)
+      } else {
+        window.location.href = stay
+      }
     } catch {
       setApiError(t.auth.errors.invalidCredentials)
       setLoading(false)
@@ -55,6 +64,11 @@ export function LoginPage() {
 
   return (
     <AuthLayout>
+      <MigrationChoiceModal
+        open={!!choice}
+        onMove={() => { if (choice) window.location.href = choice.move }}
+        onStay={() => { if (choice) window.location.href = choice.stay }}
+      />
       <h1 className="text-2xl sm:text-3xl font-bold text-text mb-1">{t.auth.login.heading}</h1>
       <p className="text-text-muted mb-8">{t.auth.login.subheading}</p>
 

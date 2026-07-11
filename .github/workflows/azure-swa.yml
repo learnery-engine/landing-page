@@ -45,6 +45,7 @@ jobs:
           VITE_BUBBLE_API_URL: ${{ secrets.VITE_BUBBLE_API_URL }}
           VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
           VITE_TRACKING_URL: https://admin.learneris.com
+          VITE_AIAPP_URL: https://aiapp.learneris.com
 
       # Dependabot runs get no repo secrets, so this step can't authenticate and
       # would always fail. Skip it on Dependabot PRs (the build above still runs,
