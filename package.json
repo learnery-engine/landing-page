@@ -13,8 +13,8 @@
   "dependencies": {
     "@learneris/cs-widget": "file:vendor/learneris-cs-widget.tgz",
     "@react-oauth/google": "^0.13.5",
-    "@sentry/react": "^10.56.0",
-    "@tailwindcss/typography": "^0.5.19",
+    "@sentry/react": "^10.66.0",
+    "@tailwindcss/typography": "^0.5.20",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
