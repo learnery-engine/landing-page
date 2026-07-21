@@ -53,13 +53,34 @@ jobs:
           set -uo pipefail
           PR='${{ github.event.pull_request.number }}'
           REPO='${{ github.repository }}'
+          # PRs that edit the review workflow are skipped by GitHub by design — don't enforce.
           if gh pr diff "$PR" --repo "$REPO" --name-only 2>/dev/null | grep -q '\.github/workflows/claude-review\.yml'; then
-            echo "PR edits the review workflow -> reviewer skip is expected; not enforcing."
+            echo "PR edits the review workflow → reviewer skip is expected; not enforcing."
             exit 0
           fi
-          latest=$(gh api "repos/$REPO/issues/$PR/comments" --jq '[.[] | select(.user.login=="claude[bot]")] | last | .body // ""' 2>/dev/null || true)
-          if printf '%s' "$latest" | grep -qiF "get back to you"; then
-            echo "::error::Claude review no-op'd (only its placeholder was posted). Failing so a silent no-op can't show green."
+          latest=$(gh api "repos/$REPO/issues/$PR/comments" \
+            --jq '[.[] | select(.user.login=="claude[bot]")] | last | .body // ""' 2>/dev/null || true)
+          # The two failure paths below mean DIFFERENT things and have different
+          # fixes. Keep them apart — conflating them cost a full day on
+          # 2026-07-21, because the placeholder case used to advise updating the
+          # branch, which is unrelated and never helps.
+          #
+          # No comment at all = the action never got far enough to post one.
+          # That is the genuine workflow-validation skip, and it is the only
+          # case where branch staleness is a plausible cause.
+          if [ -z "$latest" ]; then
+            echo "::error::No Claude review was posted at all, so the reviewer never ran. This is the workflow-validation skip: it happens when this branch's copy of .github/workflows/claude-review.yml differs from the one on '${{ github.event.pull_request.base.ref }}'. Merge '${{ github.event.pull_request.base.ref }}' into the branch and push. Failing so a skipped review can't show green."
             exit 1
           fi
-          echo "Claude review completed."
+          # Placeholder only = the action DID run, reached the model, and failed.
+          # Branch state is irrelevant here. The cause is printed in the job log:
+          # open the claude-code-action step and read the `result` field of the
+          # JSON result block. Verified example — an invalid Authorization header
+          # value means the CLAUDE_CODE_OAUTH_TOKEN secret holds a string that is
+          # not a legal HTTP header (usually a trailing newline from pasting it),
+          # which shows up as duration_api_ms 0 because no request is ever sent.
+          if printf '%s' "$latest" | grep -qiF "get back to you"; then
+            echo "::error::Claude posted its placeholder and then failed, so the reviewer DID run — do not update the branch, that is unrelated. Open the claude-code-action step in this job and read the 'result' field of the JSON result block; it carries the actual error. If it mentions an invalid Authorization header, the CLAUDE_CODE_OAUTH_TOKEN secret's value is malformed (typically a trailing newline) and must be re-saved. Failing so a no-op review can't show green."
+            exit 1
+          fi
+          echo "Claude review completed (placeholder was replaced with real content)."
