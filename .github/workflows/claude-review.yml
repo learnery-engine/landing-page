@@ -22,6 +22,11 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           track_progress: true
+          # Dependabot PRs need this or the reviewer refuses them outright and
+          # their check never goes green. Scoped to dependabot[bot] rather than
+          # "*" because this job carries the Claude credential — every open bot
+          # PR in this repo is dependabot, so a wildcard buys nothing.
+          allowed_bots: "dependabot[bot]"
           prompt: |
             Review this pull request (REPO: ${{ github.repository }}, PR #${{ github.event.pull_request.number }}).
             Report ONLY real defects: correctness bugs, security issues (XSS,
